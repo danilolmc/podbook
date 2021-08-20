@@ -1,0 +1,33 @@
+@use '/src/app/global/global' as global; 
+
+.style-list-container{
+    
+    display: flex;
+    column-gap: .5rem;
+    cursor: pointer;
+
+    span{
+        
+        padding: .3rem .4rem .1rem;
+        border-radius: 3px;
+        border: 2px solid global.$medium-gray;
+        transition: background-color .25s ease;
+
+        img{
+
+            filter: invert(90%);
+            height: auto;
+        
+        }
+        
+        &.--active{
+            border-color: transparent;
+            background-color: global.$primary;
+            
+            img{
+                filter: invert(100%);
+            }
+        }
+
+    }
+}

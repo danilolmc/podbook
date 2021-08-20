@@ -1,0 +1,19 @@
+@use '/src/app/global/global' as global; 
+
+.footer-wrapper, .header-wrapper{
+    width: 100%;
+
+    & > * {
+        max-width: 120rem;
+        margin: 0 auto;
+    }
+}
+
+.app-container{
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.footer-wrapper{
+    background: global.$primary;
+}

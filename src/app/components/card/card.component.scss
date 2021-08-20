@@ -1,0 +1,65 @@
+@use '/src/app/global/global' as global; 
+
+
+:host{
+    display: inline;
+    cursor: pointer;
+    
+
+    .card{
+        
+        display: block;
+        min-height: 289px;
+        width: inherit;
+
+
+        img{
+            width: 100%;
+            height: 171px;
+        }
+
+        .card-title{
+            font-size: 1.8rem;
+            color: global.$text;
+            margin-top: .5rem;
+        }
+        
+        .card-description{
+            font-size: 1.4rem;
+            color: global.$text-medium-gray;
+            max-width: 19rem;
+        }
+        
+        .badge-wrapper{
+            background-color: rgba($color: global.$primary, $alpha: .21);
+            font-size: 0.76rem;
+            width: 6rem;
+            height: 2rem;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            transition: .5s ease;
+
+            .badge{
+                font-size: 1rem;
+                color: global.$primary;
+                transition: inherit;
+            }
+        }
+
+        
+        &:hover{
+           .badge-wrapper{
+                background-color: global.$primary;
+
+                .badge{
+                    color: global.$white;
+                }
+            }
+        }
+        
+        .card-title,.card-description{
+            margin: 1.7rem 0;
+        }
+    }
+}

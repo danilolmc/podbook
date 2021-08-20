@@ -1,22 +1,20 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { StyleListComponent } from './style-list.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('StyleListComponent', () => {
+  let component: StyleListComponent;
+  let fixture: ComponentFixture<StyleListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
+      declarations: [ StyleListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(StyleListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +22,8 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should active list style', () => {
+    
+  })
 });

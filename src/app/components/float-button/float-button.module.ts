@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MenuComponent } from "@components/menu/menu.component";
+import { FloatButtonComponent } from "./float-button.component";
 
 @NgModule({
-    declarations: [MenuComponent],
+    declarations: [FloatButtonComponent],
     imports: [CommonModule, RouterModule],
-    exports: [MenuComponent]
+    exports: [FloatButtonComponent]
 })
-export class MenuModule { }
+export class FloatButtonModule { }
