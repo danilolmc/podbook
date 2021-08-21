@@ -1,6 +1,6 @@
-<div [ngClass]="[selector,cardTypeClass]" [style.width]="width">
+<div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width">
     <figure>
-        <img src="https://i.pinimg.com/originals/c8/c7/ff/c8c7ff0070dc0cbd59345630675a2f84.jpg" >
+        <img src="https://i.pinimg.com/originals/c8/c7/ff/c8c7ff0070dc0cbd59345630675a2f84.jpg">
         <figcaption>
             <h5 class="card-title">{{ title }}</h5>
             <p class="card-description">{{ description }}</p>

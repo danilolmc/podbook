@@ -1,0 +1,7 @@
+<div class="form-field-wrapper">
+    <label *ngIf="labelText" [for]="id">{{labelText}}</label>
+    <span>
+        <input [id]="id">
+        <img *ngIf="getFormFieldIcon()" [src]="'assets/icons/' + getFormFieldIcon()?.icon + '.svg'" [alt]="getFormFieldIcon()?.name">
+    </span>
+</div>

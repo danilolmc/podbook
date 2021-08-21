@@ -6,7 +6,7 @@ import { CardProperties, CardTypes, CardTypeStyleStratergy } from './types/CardT
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit, CardProperties {
+export class CardComponent implements CardProperties {
 
   selector = 'card';
 
@@ -19,21 +19,15 @@ export class CardComponent implements OnInit, CardProperties {
   @Input()
   badgeText = 'habits';
 
+  @Input()
   width = 'auto';
 
+  @Input()
   cardType: CardTypes = 'default';
-
-  cardTypeClass = CardTypeStyleStratergy.default;
 
   imgUrl = '';
 
-  constructor() { }
-
-  ngOnInit(){
-    this.cardTypeClass = this.getCardType();
-  }
-
-  getCardType(): string{
+  getCardTypeClass(): string{
     
     return CardTypeStyleStratergy[this.cardType] || CardTypeStyleStratergy.default;
   }

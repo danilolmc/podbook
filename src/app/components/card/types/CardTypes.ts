@@ -4,8 +4,7 @@ export interface CardProperties {
     description: string;
     badgeText: string;
     width: string;
-    getCardType: Function
-
+    getCardTypeClass: Function
 }
 
 export type CardTypes = 'default' | 'inline';

@@ -5,13 +5,17 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './float-button.component.html',
   styleUrls: ['./float-button.component.scss']
 })
-export class FloatButtonComponent implements OnInit {
+export class FloatButtonComponent{
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  private callbackFn: Function = () => {}
 
   @Input()
-  callback : Function = (fun: Function) => fun();
+  set callback(fun: Function) {
+
+    this.callbackFn = fun;
+  }
+
+  executeCallback(){
+    this.callbackFn();
+  }
 }

@@ -1,5 +1,5 @@
 <div class="style-list-container">
-    <span [ngClass]="{'--active': isGridState }" (click)="setGridState()">
+    <span [ngClass]="{'--active': isGridState, 'style-option': true }" (click)="setGridState()">
         <img src="assets/icons/grid-icon.svg" alt="Grid icon">
     </span>
     <span [ngClass]="{'--active': isListState }" (click)="setListState()">

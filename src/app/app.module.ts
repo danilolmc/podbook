@@ -5,7 +5,6 @@ import { MenuModule } from '@components/menu/menu.module';
 import { HomeModule } from '@pages/home/home.module';
 import { AppRoutingModule } from '@routes/app.routing.module';
 import { AppComponent } from './app.component';
-import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({

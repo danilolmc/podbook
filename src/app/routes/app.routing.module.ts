@@ -4,7 +4,11 @@ import { HomeComponent } from "@pages/home/home.component";
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
-    { path: 'home', component: HomeComponent }
+    { path: 'home', component: HomeComponent },
+    {
+        path: 'explore',
+        loadChildren: () => import('@pages/explore/explore.module').then(explore => explore.ExploreModule)
+    }
 ];
 
 @NgModule({

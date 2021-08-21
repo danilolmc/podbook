@@ -30,10 +30,10 @@ describe('CardComponent', () => {
     const selector = `.${component.selector}`;    
     const cardWrapper : HTMLDivElement = fixture.debugElement.query(By.css(selector)).nativeElement;
     
-    component.getCardType();
+    component.getCardTypeClass();
     fixture.detectChanges();
 
-    expect(cardWrapper.classList.contains(component.cardTypeClass)).toBeTruthy();
+    expect(cardWrapper.classList.contains(component.getCardTypeClass())).toBeTruthy();
   });
 
   it('card should have class --inline when cardType its inline', () => {
@@ -42,9 +42,9 @@ describe('CardComponent', () => {
     const selector = `.${component.selector}`;    
     const cardWrapper : HTMLDivElement = fixture.debugElement.query(By.css(selector)).nativeElement;
     
-    component.getCardType();
+    component.getCardTypeClass();
     fixture.detectChanges();
 
-    expect(cardWrapper.classList.contains(component.cardTypeClass)).toBeTruthy();
+    expect(cardWrapper.classList.contains(component.getCardTypeClass())).toBeTruthy();
   });
 });

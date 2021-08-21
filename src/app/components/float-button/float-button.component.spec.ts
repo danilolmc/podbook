@@ -36,7 +36,7 @@ describe('FloatButtonComponent', () => {
 
     component.callback = myObj.log;
     
-    component.callback();
+    component.executeCallback();
 
     expect(spyLogFunction).toHaveBeenCalled();
 

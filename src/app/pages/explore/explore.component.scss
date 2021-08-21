@@ -1,0 +1,31 @@
+
+@use '/src/app/global/global' as global; 
+@use '/src/app/global/shared-styles/shared'; 
+
+.explore-page-container{
+    margin-top: 10.6rem;
+    min-height: 100vh;
+    padding-bottom: 6rem;
+
+
+    .banner{
+        .title{
+            font-size: 7.2rem;
+            color: global.$primary;
+            font-weight: 500;
+        }
+
+        pod-form-field{
+            max-width: 35rem;
+            display: block;
+            margin: 8rem 0;
+        }
+    }
+}
+
+pod-float-button{
+    display: block;
+    position: fixed;
+    bottom: 7.5rem;
+    right: 12vw;
+}

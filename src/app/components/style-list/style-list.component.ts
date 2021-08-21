@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, OnInit } from '@angular/core';
 import { Component, Output } from '@angular/core';
 import { ListStatesEnum } from './enums/ListStateEnum';
 import { defaultState, States } from './types/StyleListTypes';
@@ -9,7 +9,7 @@ import { defaultState, States } from './types/StyleListTypes';
   templateUrl: './style-list.component.html',
   styleUrls: ['./style-list.component.scss']
 })
-export class StyleListComponent{
+export class StyleListComponent implements OnInit{
 
   private state: States = defaultState;
 
@@ -18,6 +18,10 @@ export class StyleListComponent{
   setListState() { 
     this.state = 'list'; 
     this.emitChange();
+  }
+
+  ngOnInit(){
+    this.state = defaultState
   }
   
   setGridState() { 
