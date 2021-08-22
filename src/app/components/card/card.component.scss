@@ -8,15 +8,8 @@
 
     .card{
         
-        display: block;
-        min-height: 289px;
         width: inherit;
-
-
-        img{
-            width: 100%;
-            height: 171px;
-        }
+        background: global.$white;
 
         .card-title{
             font-size: 1.8rem;
@@ -39,7 +32,7 @@
             place-items: center;
             border-radius: 10px;
             transition: .5s ease;
-
+            
             .badge{
                 font-size: 1rem;
                 color: global.$primary;
@@ -49,9 +42,9 @@
 
         
         &:hover{
-           .badge-wrapper{
+            .badge-wrapper{
                 background-color: global.$primary;
-
+                
                 .badge{
                     color: global.$white;
                 }
@@ -60,6 +53,50 @@
         
         .card-title,.card-description{
             margin: 1.7rem 0;
+        }
+        
+        &.--default{
+            min-height: 289px;
+            display: block;                        
+            
+            img{
+                width: 100%;
+                height: 171px;
+            }
+        }
+        
+        &.--inline{
+            border: 1px solid global.$primary;
+            padding: 1rem 4rem;
+            display: block;                        
+            
+
+            figure, figcaption{
+                
+                display: flex;
+                align-items: center;
+            }
+
+            .card-title,.card-description{
+                margin: .7rem 0;
+                max-width: none;
+            }
+            
+
+            figure{
+                column-gap: 5rem;
+            }
+
+            figcaption{
+                flex: 1;
+                justify-content: space-between;
+            }
+
+            img{
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+            }
         }
     }
 }

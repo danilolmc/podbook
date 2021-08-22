@@ -21,7 +21,7 @@ export class StyleListComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.state = defaultState
+    this.state = defaultState;
   }
   
   setGridState() { 

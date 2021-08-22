@@ -23,7 +23,7 @@ export class CardComponent implements CardProperties {
   width = 'auto';
 
   @Input()
-  cardType: CardTypes = 'default';
+  cardType: CardTypes = 'inline';
 
   imgUrl = '';
 

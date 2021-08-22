@@ -4,7 +4,7 @@
     
     min-width: 35.5rem;
     width: auto;
-    
+
     label{
         display: block;
         color: global.$dark-gray;
@@ -29,6 +29,17 @@
             background: transparent;
             font-size: 1.6rem;
             color: global.$text;
+
+            &::-webkit-input-placeholder{
+                color: global.$dark-gray;
+                font-weight: 300;
+            }
         }
     }
+
+    &[formFieldType="search"]{
+
+    
+    }
+    
 }
