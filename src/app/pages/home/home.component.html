@@ -8,18 +8,13 @@
         <img src="assets/illustrations/book-lover.svg" alt="Banner imaage">
     </header>
 
-    <section class="cards-container">
+    <section>
         <header>
-            <h2>Recent podbooks</h2>
-            <pod-style-list></pod-style-list>
+            <pod-style-list (stateListChanges)="changeStyleList($event)"></pod-style-list>
         </header>
-        <div class="cards-container-content">
-            <pod-card></pod-card>
-            <pod-card></pod-card>
-            <pod-card></pod-card>
-            <pod-card></pod-card>
-        </div>
+        <pod-cards-container title="Recent podbooks" [listStyle]="listStyle"></pod-cards-container>
     </section>
+
 </div>
 
 <pod-float-button [callback]="call"></pod-float-button>

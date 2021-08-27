@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MenuDirective } from './directives/menu.directive';
 
 import { MenuComponent } from './menu.component';
 
@@ -9,7 +10,7 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MenuComponent],
+      declarations: [MenuComponent, MenuDirective],
       imports: [RouterTestingModule]
     })
       .compileComponents();

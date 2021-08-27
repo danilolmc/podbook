@@ -1,3 +1,5 @@
+import { CardStyleMappingEnum } from "@enums/cardComponent/CardSstyleMappingEnum";
+
 export interface CardProperties {
     imgUrl: string;
     title: string;
@@ -7,12 +9,4 @@ export interface CardProperties {
     getCardTypeClass: Function
 }
 
-export type CardTypes = 'default' | 'inline';
-
-export const CardTypeStyleStratergy = {
-
-    default: "--default",
-    inline: "--inline",
-}
-
-
+export type CardTypes = CardStyleMappingEnum;

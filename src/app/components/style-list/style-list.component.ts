@@ -1,7 +1,5 @@
-import { EventEmitter, OnInit } from '@angular/core';
-import { Component, Output } from '@angular/core';
-import { ListStatesEnum } from './enums/ListStateEnum';
-import { defaultState, States } from './types/StyleListTypes';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 
 
 @Component({
@@ -11,21 +9,21 @@ import { defaultState, States } from './types/StyleListTypes';
 })
 export class StyleListComponent implements OnInit{
 
-  private state: States = defaultState;
+  private state: ListStatesEnum = ListStatesEnum.GRID;
 
-  @Output() stateListChanges = new EventEmitter<States>();
+  @Output() stateListChanges = new EventEmitter<ListStatesEnum>();
 
   setListState() { 
-    this.state = 'list'; 
+    this.state = ListStatesEnum.LIST; 
     this.emitChange();
   }
 
   ngOnInit(){
-    this.state = defaultState;
+    this.state = ListStatesEnum.GRID;
   }
   
   setGridState() { 
-    this.state = 'grid'; 
+    this.state = ListStatesEnum.GRID; 
     this.emitChange();
   }
   

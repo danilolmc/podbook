@@ -32,6 +32,8 @@
                 place-content: center;
                 cursor: pointer;
                 align-self: stretch;
+                position: relative;
+           
             }
 
             .button{
@@ -62,4 +64,25 @@
           
         }
     }
+}
+
+     
+.--active{
+                    
+                    
+    // &:nth-child(-n+2){
+        
+        ::after{
+            
+            content: "";
+            display: block;
+            width: 5px;
+            border-radius: 50%;
+            margin: 0 auto;
+            height: .5rem;
+            position: absolute;
+            transform: translate(-15px,-12px);                                                       
+            background-color: global.$primary;
+        }
+    // }
 }

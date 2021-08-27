@@ -1,20 +1,17 @@
 <header>
     <div>
-        <a [routerLink]="['/']">
+        <a [routerLink]="['/']" (click)="selectItem('')">
             <img src="assets/logo/logo.svg" alt="Logo" class="logo">
         </a>
         <ul>
-            <li [routerLink]="['/explore']">
-                <button class="button">Explore</button> 
-            </li>
-            <li>
-                <button class="button">Studio</button>
-            </li>
-            <li class="--signup">
-                <button class="button">Sign up</button>
-            </li>
-            <li class="--signin">
-                <button class="button">Sign In</button>
+            <li 
+                *ngFor="let item of menuItems" 
+                [routerLink]="[item.link]"
+                [class]="item.className"
+                (click)="selectItem(item.text)"
+                podMenu [active]="item.active || currentUrl === item.link"
+            >
+                <button class="button">{{item.text}}</button>
             </li>
         </ul>
     </div>

@@ -1,3 +1,3 @@
-export type States = 'list' | 'grid'; 
+import { ListStatesEnum } from "@enums/styleListComponent/ListStateEnum";
 
-export const defaultState : States = "grid";
+export const defaultState = ListStatesEnum.GRID;

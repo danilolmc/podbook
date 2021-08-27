@@ -1,0 +1,33 @@
+@use '/src/app/global/global' as global; 
+
+.cards-container{
+
+    header{
+
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+
+     h2{
+        font-size: 2.4rem;
+        font-weight: 500;
+        color: global.$text;
+     }
+    }
+
+    .cards-container-content{
+        margin-top: 5.8rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(271px, 1fr));
+        gap: 7rem 2rem;
+        flex-wrap: wrap;
+        transition: .5s ease;
+        
+        &.inline{
+            
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            transition: .5s ease;
+        }
+    }
+}

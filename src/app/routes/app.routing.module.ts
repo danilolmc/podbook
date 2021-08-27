@@ -8,7 +8,12 @@ const routes: Routes = [
     {
         path: 'explore',
         loadChildren: () => import('@pages/explore/explore.module').then(explore => explore.ExploreModule)
-    }
+    },
+    {
+        path: 'studio',
+        loadChildren: () => import('@pages/studio/studio.module').then(studio => studio.StudioModule)
+    },
+
 ];
 
 @NgModule({

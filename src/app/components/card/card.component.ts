@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardProperties, CardTypes, CardTypeStyleStratergy } from './types/CardTypes';
+import { CardStyleMappingEnum } from '@enums/cardComponent/CardSstyleMappingEnum';
+import { CardTypeStyleStratergy } from '@stratergy/CardComponent/cardStratergy';
+
+import { CardProperties, CardTypes } from './types/CardTypes';
 
 @Component({
   selector: 'pod-card',
@@ -23,7 +26,7 @@ export class CardComponent implements CardProperties {
   width = 'auto';
 
   @Input()
-  cardType: CardTypes = 'inline';
+  cardType: CardTypes = CardStyleMappingEnum.DEFAULT;
 
   imgUrl = '';
 

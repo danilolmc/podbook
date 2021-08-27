@@ -63,13 +63,22 @@
                 width: 100%;
                 height: 171px;
             }
+
+            .badge-wrapper{
+                margin-top: 3rem;
+            }
         }
         
         &.--inline{
             border: 1px solid global.$primary;
             padding: 1rem 4rem;
-            display: block;                        
-            
+            display: block;                                
+            transition: box-shadow .5s ease;
+
+            &:hover{
+                
+                box-shadow: 0 10px 10px #8348ff1a;
+            }
 
             figure, figcaption{
                 

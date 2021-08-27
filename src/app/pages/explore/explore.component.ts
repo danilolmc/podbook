@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
+
 
 @Component({
   selector: 'pod-explore',
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.scss']
 })
-export class ExploreComponent implements OnInit {
+export class ExploreComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  listStyle = ListStatesEnum.GRID;
 
   call(){
     console.log('explore')
+  }
+
+  changeStyleList(style: ListStatesEnum){
+      this.listStyle = style;
   }
 
 }

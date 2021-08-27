@@ -10,7 +10,8 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 15rem;
-        
+        margin-bottom: 6rem;
+
         .title{
             color: global.$text;
             font-size: 6.3rem;
@@ -49,7 +50,14 @@
         }
     }
 
-    @extend .cards-container;
+    section{
+        header{
+            display: flex;
+            justify-content: flex-end;
+            transform: translateY(29px);
+        }
+    }
+
 }
 
 pod-float-button{
@@ -57,4 +65,9 @@ pod-float-button{
     position: fixed;
     bottom: 7.5rem;
     right: 12vw;
+}
+
+pod-cards-container{
+    display: block;
+    padding-bottom: 15rem;
 }

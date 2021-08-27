@@ -3,22 +3,21 @@ import { NgModule } from "@angular/core";
 import { CardModule } from "@components/card/card.module";
 import { CardsContainerModule } from "@components/cards-container/cards-container.module";
 import { FloatButtonModule } from "@components/float-button/float-button.module";
-import { FormFieldModule } from "@components/form-field/form-field.module";
 import { StyleListModule } from "@components/style-list/style-list.module";
-import { ExploreRoutingModule } from "@routes/explore.routing.module";
-import { ExploreComponent } from "./explore.component";
+import { StudioRoutingModule } from "@routes/studio.routing.module";
+import { StudioComponent } from "./studio.component";
+
 
 @NgModule({
-    declarations: [ExploreComponent],
+    declarations: [StudioComponent],
     imports: [
         CommonModule,
         CardModule,
         FloatButtonModule,
         StyleListModule,
-        ExploreRoutingModule,
-        FormFieldModule,
-        CardsContainerModule
+        CardsContainerModule,
+        StudioRoutingModule
     ],
-    exports: [ExploreComponent]
+    exports: [StudioComponent]
 })
-export class ExploreModule { }
+export class StudioModule { }

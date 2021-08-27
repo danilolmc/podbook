@@ -11,6 +11,8 @@
       "@types/*": ["app/types/*"],
       "@routes/*": ["app/routes/*"],
       "@enums/*": ["app/enums/*"],
+      "@services/*": ["app/services/*"],
+      "@stratergy/*": ["app/stratergy/*"],
       "@assets/*": ["assets/*"],
     },
     "outDir": "./dist/out-tsc",

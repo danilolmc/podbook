@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { CardStyleMappingEnum } from '@enums/cardComponent/CardSstyleMappingEnum';
 import { CardComponent } from './card.component';
 
 
@@ -25,7 +26,7 @@ describe('CardComponent', () => {
   });
 
   it('card should have class --default when cardType its default', () => {
-    component.cardType = 'default';
+    component.cardType = CardStyleMappingEnum.DEFAULT;
 
     const selector = `.${component.selector}`;    
     const cardWrapper : HTMLDivElement = fixture.debugElement.query(By.css(selector)).nativeElement;
@@ -37,7 +38,7 @@ describe('CardComponent', () => {
   });
 
   it('card should have class --inline when cardType its inline', () => {
-    component.cardType = 'inline';
+    component.cardType = CardStyleMappingEnum.INLINE;
 
     const selector = `.${component.selector}`;    
     const cardWrapper : HTMLDivElement = fixture.debugElement.query(By.css(selector)).nativeElement;

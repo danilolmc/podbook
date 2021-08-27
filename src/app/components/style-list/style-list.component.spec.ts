@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ListStatesEnum } from './enums/ListStateEnum';
+import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 
 import { StyleListComponent } from './style-list.component';
 

@@ -21,6 +21,12 @@
             margin: 8rem 0;
         }
     }
+
+    .list-container-header{
+        display: flex;
+        justify-content: flex-end;
+        transform: translateY(27px);
+    }
 }
 
 pod-float-button{
@@ -28,4 +34,9 @@ pod-float-button{
     position: fixed;
     bottom: 7.5rem;
     right: 12vw;
+}
+
+pod-cards-container{
+    display: block;
+    margin-bottom: 10rem;
 }
