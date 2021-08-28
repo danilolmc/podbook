@@ -4,6 +4,7 @@ import { CardModule } from "@components/card/card.module";
 import { CardsContainerModule } from "@components/cards-container/cards-container.module";
 import { FloatButtonModule } from "@components/float-button/float-button.module";
 import { StyleListModule } from "@components/style-list/style-list.module";
+import { TabModule } from "@components/tab/tab.module";
 import { StudioRoutingModule } from "@routes/studio.routing.module";
 import { StudioComponent } from "./studio.component";
 
@@ -16,7 +17,8 @@ import { StudioComponent } from "./studio.component";
         FloatButtonModule,
         StyleListModule,
         CardsContainerModule,
-        StudioRoutingModule
+        StudioRoutingModule,
+        TabModule
     ],
     exports: [StudioComponent]
 })

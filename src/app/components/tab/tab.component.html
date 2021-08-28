@@ -1,0 +1,15 @@
+
+<ng-template #tabHeader>
+    <ul *ngIf="tabs">
+        <li 
+            *ngFor="let tab of tabs" 
+            [ngClass]="{'--selected': tab.selected}" 
+            (click)="selectTab(tab)"
+        >{{tab.title}}</li>
+    </ul>
+</ng-template>
+
+
+<ng-container *ngTemplateOutlet="tabHeader"></ng-container>
+
+<ng-content></ng-content>

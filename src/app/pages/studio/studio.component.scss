@@ -1,0 +1,133 @@
+@use '/src/app/global/global' as global; 
+
+.studio-container{
+    min-height: 100vh;
+
+    .tabs{
+        // max-width: 15rem;
+        margin: 10rem auto 0;
+
+        .studio{
+
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20rem;
+
+            button{
+                border: none;
+                cursor: pointer;
+            }
+
+            .microphone{
+                background-color: global.$primary;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                height: 20.4rem;
+                width: 20.4rem;
+
+                @keyframes recordingStatus{
+                    from {
+                        opacity: 0;
+                    }
+                    to{
+                        opacity: 1;
+                        width: inherit;
+                        height: inherit;
+                    }
+                }
+
+                &::after,&::before, span::after{
+                    content: "";
+                    position: absolute;
+                    border-radius: 50%;
+                    display: block;
+                    // border: 10px solid global.$primary;
+                    background-color: global.$primary;
+                    z-index: 0;
+                    pointer-events: none;
+                }
+
+                &::before{
+                    height: 25rem;
+                    width: 25rem;
+                    
+                }
+                
+                &::after{
+                    height: 30rem;
+                    width: 30rem;
+                    // opacity: .5;
+
+                }
+
+                span{
+                    position: relative;
+                    width: inherit;
+                    height: inherit;
+                    display: inherit;
+                    align-items: inherit;
+                    justify-content: inherit;
+                    
+
+                    &::after{
+                        height: 35rem;
+                        width: 35rem;
+                        // animation-delay: 1s;
+                    }
+                        
+                    img{
+                        filter: invert(100%);
+                        transform: scale(4.5);
+                        z-index: 5;
+
+                    }
+                }
+                
+                &.--recording{
+                
+                    &::after,&::before,span::after{
+                        animation: recordingStatus 1.2s ease-in-out infinite reverse;
+                    }
+                    
+                    &::after{
+                        // animation-delay: .1s;
+                        opacity: 0;
+                    }
+                    
+                    span::after{
+                        // animation-delay: .1s;
+                        opacity: 0;
+                    }
+                }
+
+                &.--stopped{
+                
+                    &::after,&::before,span::after{
+                        animation: none;
+                        opacity: 0;
+                    }
+                }
+
+
+            }
+
+            footer{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 8rem;
+                margin-top: 20rem;
+
+                button{
+                    background-color: global.$primary;
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
