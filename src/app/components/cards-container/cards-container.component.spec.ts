@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from '@components/card/card.module';
 import { FormFieldModule } from '@components/form-field/form-field.module';
 import { StyleListModule } from '@components/style-list/style-list.module';
@@ -12,7 +13,7 @@ describe('CardsContainerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardsContainerComponent],
-      imports: [StyleListModule, FormFieldModule, CardModule]
+      imports: [StyleListModule, FormFieldModule, CardModule, BrowserAnimationsModule]
     })
       .compileComponents();
   });

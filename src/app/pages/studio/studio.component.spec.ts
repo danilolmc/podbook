@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ButtonControlModule } from '@components/button-control/button-control.module';
+import { CardsContainerModule } from '@components/cards-container/cards-container.module';
 import { TabModule } from '@components/tab/tab.module';
-
 import { StudioComponent } from './studio.component';
-import { RecordingStatus } from './types/studioPage';
+
 
 describe('StudioComponent', () => {
   let component: StudioComponent;
@@ -12,7 +13,11 @@ describe('StudioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ StudioComponent ],
-      imports: [TabModule, ButtonControlModule]
+      imports: [
+        TabModule, 
+        ButtonControlModule, 
+        CardsContainerModule, 
+        RouterTestingModule]
     })
     .compileComponents();
   });
@@ -26,20 +31,4 @@ describe('StudioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should start record', () => {
-    component.recordingStatus = RecordingStatus.STOPPED;
-
-    component.toggleRecordingStatus();
-
-    expect(component.recordingStatus).toBe(RecordingStatus.RECORDING);
-  })
-
-  it('should stop recording', () => {
-    component.recordingStatus = RecordingStatus.RECORDING;
-
-    component.toggleRecordingStatus();
-
-    expect(component.recordingStatus).toBe(RecordingStatus.STOPPED);
-  })
 });

@@ -1,0 +1,44 @@
+@use '/src/app/global/global' as global; 
+
+        .my-podbooks{
+            margin-top: 10rem;
+
+            header{
+                text-align: center;
+                display: flex;
+                justify-content: center;
+
+                h2{
+                    color: global.$primary;
+                    font-size: 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    column-gap: 2rem;
+                    
+
+                    &::after, &::before{
+                        content: "";
+                        height: 1px;
+                        width: 5rem;
+                        display: block;
+                        background-color: global.$primary;
+                        animation: lineAnimation .3s ease forwards;
+
+                        @keyframes lineAnimation {
+                            from {
+                                width: 0;
+                            }
+                            to{
+                                width: 5rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .my-podbooks-container{
+                margin-top: 5rem;
+            }
+
+        }

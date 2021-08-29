@@ -50,6 +50,11 @@ export class MenuComponent implements OnDestroy {
       itemToActive === item.text ? item.active = true : item.active = false;
     });
 
+    console.log(this.currentUrl); 
+  }
+
+  activeItemByUrl(item: MenuType){
+    return this.currentUrl.includes(item.link);
   }
 
   ngOnDestroy() {

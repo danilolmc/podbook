@@ -2,10 +2,7 @@
     <header>
         <h2>{{title}}</h2>
     </header>
-    <div [class]="['cards-container-content', getlistStyle()]">
-        <pod-card [cardType]="getlistStyle()"></pod-card>
-        <pod-card [cardType]="getlistStyle()"></pod-card>
-        <pod-card [cardType]="getlistStyle()"></pod-card>
-        <pod-card [cardType]="getlistStyle()"></pod-card>
+    <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation]>
+        <pod-card *ngFor="let item of cardsList "[cardType]="getlistStyle()"></pod-card>
     </div>
 </section>

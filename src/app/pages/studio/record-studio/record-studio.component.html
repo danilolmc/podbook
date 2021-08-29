@@ -1,0 +1,37 @@
+<div class="studio">
+
+    <button [ngClass]="['microphone', getRecordingStatusClass()]" (click)="toggleRecordingStatus()">
+        <span>
+            <img src="assets/icons/microphone-icon.svg" alt="Microphone icon">
+        </span>
+    </button>
+
+    <footer>
+        <pod-button-control 
+            [callback]="call('button1')"
+            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
+            class="control-button"
+            ></pod-button-control>
+        <pod-button-control 
+            [callback]="call('button1')"
+            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
+            class="control-button"
+            ></pod-button-control>
+        <pod-button-control 
+            [callback]="call('button1')"
+            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
+            class="control-button"
+            ></pod-button-control>
+        <pod-button-control 
+            [callback]="call('button1')"
+            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
+            class="control-button"
+            ></pod-button-control>
+        <pod-button-control 
+            [callback]="call('button1')"
+            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
+            class="control-button"
+            ></pod-button-control>
+    </footer>
+
+</div>

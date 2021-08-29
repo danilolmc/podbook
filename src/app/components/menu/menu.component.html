@@ -9,7 +9,7 @@
                 [routerLink]="[item.link]"
                 [class]="item.className"
                 (click)="selectItem(item.text)"
-                podMenu [active]="item.active || currentUrl === item.link"
+                podMenu [active]="item.active || activeItemByUrl(item)"
             >
                 <button class="button">{{item.text}}</button>
             </li>

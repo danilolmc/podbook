@@ -1,25 +1,8 @@
 <div class="studio-container">
-    <pod-tab class="tabs">
-        <pod-tab-item title="studio">
-            <div class="studio">
-
-                <button [ngClass]="['microphone', getRecordingStatusClass()]" (click)="toggleRecordingStatus()">
-                    <span>
-                        <img src="assets/icons/microphone-icon.svg" alt="Microphone icon">
-                    </span>
-                </button>
-
-                <footer>
-                    <pod-button-control [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon.svg']"></pod-button-control>
-                    <pod-button-control [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon.svg']"></pod-button-control>
-                    <pod-button-control [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon.svg']"></pod-button-control>
-                    <pod-button-control [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon.svg']"></pod-button-control>
-                    <pod-button-control [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon.svg']"></pod-button-control>
-                </footer>
-
-            </div>
-        </pod-tab-item>
-        <pod-tab-item title="my podbooks"></pod-tab-item>
+    <pod-tab class="tabs" [currentPageUrl]="currentPageUrl">
+        <pod-tab-item title="studio" urlAnchor='/studio'></pod-tab-item>
+        <pod-tab-item title="my podbooks" urlAnchor='/studio/podbooks'></pod-tab-item>
+        <router-outlet></router-outlet>
     </pod-tab>
     
 </div>

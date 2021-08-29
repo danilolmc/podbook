@@ -8,10 +8,12 @@ import { StyleListModule } from "@components/style-list/style-list.module";
 import { TabModule } from "@components/tab/tab.module";
 import { StudioRoutingModule } from "@routes/studio.routing.module";
 import { StudioComponent } from "./studio.component";
+import { RecordStudioComponent } from './record-studio/record-studio.component';
+import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
 
 
 @NgModule({
-    declarations: [StudioComponent],
+    declarations: [StudioComponent, RecordStudioComponent, MyPodbooksComponent],
     imports: [
         CommonModule,
         CardModule,
@@ -20,7 +22,8 @@ import { StudioComponent } from "./studio.component";
         CardsContainerModule,
         StudioRoutingModule,
         TabModule,
-        ButtonControlModule
+        ButtonControlModule,
+        CardsContainerModule
 
     ],
     exports: [StudioComponent]

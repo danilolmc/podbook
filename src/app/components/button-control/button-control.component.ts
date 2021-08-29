@@ -1,12 +1,13 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlButtonStyleStrategy } from '@stratergy/Control-button/control-button-strategy';
+import { ButtonControl } from './types/ButtonControl';
 
 @Component({
   selector: 'pod-button-control',
   templateUrl: './button-control.component.html',
   styleUrls: ['./button-control.component.scss']
 })
-export class ButtonControlComponent implements OnInit {
+export class ButtonControlComponent implements ButtonControl {
 
 
   private callbackFn: Function = () => {}
@@ -25,8 +26,8 @@ export class ButtonControlComponent implements OnInit {
     this.callbackFn = fun;
   }
 
-  toggleControl(){
-    this.isOn = this.isOn ? false : true;
+  get callBackFunction(){
+    return this.callbackFn;
   }
 
   get currentIcon(): string{
@@ -34,9 +35,11 @@ export class ButtonControlComponent implements OnInit {
   }
   
   get currentStyleClass(): string{
-    console.log(Number(this.isOn))
     return ControlButtonStyleStrategy[Number(this.isOn)];
+  }
 
+  toggleControl(){
+    this.isOn = this.isOn ? false : true;
   }
 
   executeCallback(){
@@ -44,9 +47,5 @@ export class ButtonControlComponent implements OnInit {
     this.toggleControl();
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

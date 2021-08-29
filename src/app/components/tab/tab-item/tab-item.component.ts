@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TabItem } from '../types/TabItem';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pod-tab-item',
@@ -9,7 +8,10 @@ import { TabItem } from '../types/TabItem';
 export class TabItemComponent {
 
   @Input()
-  title = ''
+  title = '';
+
+  @Input()
+  urlAnchor = '';
 
   selected = false;
 
