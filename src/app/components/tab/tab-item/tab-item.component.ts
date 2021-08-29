@@ -6,7 +6,7 @@ import { TabItem } from '../types/TabItem';
   templateUrl: './tab-item.component.html',
   styleUrls: ['./tab-item.component.scss']
 })
-export class TabItemComponent implements TabItem {
+export class TabItemComponent {
 
   @Input()
   title = ''

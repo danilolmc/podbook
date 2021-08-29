@@ -13,6 +13,7 @@
       "@enums/*": ["app/enums/*"],
       "@services/*": ["app/services/*"],
       "@stratergy/*": ["app/stratergy/*"],
+      "@mocks/*": ["app/mocks/*"],
       "@assets/*": ["assets/*"],
     },
     "outDir": "./dist/out-tsc",

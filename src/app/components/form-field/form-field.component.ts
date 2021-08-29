@@ -18,7 +18,7 @@ export class FormFieldComponent implements FormFieldProperties {
 
   @Input()
   type: formFieldTypes = 'text';
-  
+
   @Input()
   placeholder = '';
 
@@ -27,5 +27,4 @@ export class FormFieldComponent implements FormFieldProperties {
 
     return iconData;
   }
-
 }

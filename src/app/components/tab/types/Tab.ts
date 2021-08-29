@@ -6,4 +6,6 @@ export abstract class Tab{
     tabs!: QueryList<TabItemComponent>;
     
     abstract selectTab(tab: TabItemComponent) : void;
+
+    abstract setInitialState() : void;
 }

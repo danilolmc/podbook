@@ -39,7 +39,8 @@
       "^@services/(.*)$": "<rootDir>/src/app/services/$1",
       "^@components/(.*)$": "<rootDir>/src/app/components/$1",
       "^@enums/(.*)$": "<rootDir>/src/app/enums/$1",
-      "^@stratergy/(.*)$": "<rootDir>/src/app/stratergy/$1"
+      "^@stratergy/(.*)$": "<rootDir>/src/app/stratergy/$1",
+      "^@mocks/(.*)$": "<rootDir>/src/app/mocks/$1"
     },
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [

@@ -27,6 +27,7 @@
                 border-radius: 50%;
                 height: 20.4rem;
                 width: 20.4rem;
+                margin-top: 2rem;
 
                 @keyframes recordingStatus{
                     from {
@@ -44,7 +45,6 @@
                     position: absolute;
                     border-radius: 50%;
                     display: block;
-                    // border: 10px solid global.$primary;
                     background-color: global.$primary;
                     z-index: 0;
                     pointer-events: none;
@@ -59,7 +59,7 @@
                 &::after{
                     height: 30rem;
                     width: 30rem;
-                    // opacity: .5;
+
 
                 }
 
@@ -75,7 +75,6 @@
                     &::after{
                         height: 35rem;
                         width: 35rem;
-                        // animation-delay: 1s;
                     }
                         
                     img{
@@ -93,12 +92,10 @@
                     }
                     
                     &::after{
-                        // animation-delay: .1s;
                         opacity: 0;
                     }
                     
                     span::after{
-                        // animation-delay: .1s;
                         opacity: 0;
                     }
                 }
@@ -118,15 +115,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                column-gap: 8rem;
-                margin-top: 20rem;
-
-                button{
-                    background-color: global.$primary;
-                    width: 4rem;
-                    height: 4rem;
-                    border-radius: 50%;
-                }
+                column-gap: 7rem;
+                margin-top: 23rem;
             }
         }
     }

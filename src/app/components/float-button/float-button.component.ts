@@ -10,6 +10,9 @@ export class FloatButtonComponent{
   private callbackFn: Function = () => {}
 
   @Input()
+  src = '';
+
+  @Input()
   set callback(fun: Function) {
 
     this.callbackFn = fun;

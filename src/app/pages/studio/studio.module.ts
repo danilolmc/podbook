@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { ButtonControlModule } from "@components/button-control/button-control.module";
 import { CardModule } from "@components/card/card.module";
 import { CardsContainerModule } from "@components/cards-container/cards-container.module";
 import { FloatButtonModule } from "@components/float-button/float-button.module";
@@ -18,7 +19,9 @@ import { StudioComponent } from "./studio.component";
         StyleListModule,
         CardsContainerModule,
         StudioRoutingModule,
-        TabModule
+        TabModule,
+        ButtonControlModule
+
     ],
     exports: [StudioComponent]
 })

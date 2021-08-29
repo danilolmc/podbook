@@ -1,6 +1,9 @@
-import { Component, ContentChildren, QueryList } from '@angular/core';
+import { Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { TabItemComponent } from './tab-item/tab-item.component';
 import { Tab } from './types/Tab';
+
+
+
 
 @Component({
   selector: 'pod-tab',
@@ -12,19 +15,23 @@ export class TabComponent implements Tab {
   @ContentChildren(TabItemComponent)
   tabs!: QueryList<TabItemComponent>;
 
-  titleMaxWidth = '7rem';
-
   ngAfterContentInit(): void {
-
-    const theresTabSelected = this.tabs.find(tab => tab.selected);
-
-    if (!theresTabSelected) this.selectTab(this.tabs.first);
+    this.setInitialState();
 
   }
 
-  selectTab(clickedTab: TabItemComponent){
-      this.tabs.forEach(tab => tab.selected = false);
+  setInitialState(){
 
-      clickedTab.selected = true;
+    const theresTabSelected = this.tabs.some(tab => tab.selected);
+
+    if (!theresTabSelected) this.tabs.forEach((tabItem, index) => {
+      if (index === 0) tabItem.selected = true;
+    });
+  }
+
+  selectTab(clickedTab: TabItemComponent) {
+    this.tabs.forEach(tab => tab.selected = false);
+
+    clickedTab.selected = true;
   }
 }

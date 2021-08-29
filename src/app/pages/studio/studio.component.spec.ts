@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ButtonControlModule } from '@components/button-control/button-control.module';
 import { TabModule } from '@components/tab/tab.module';
 
 import { StudioComponent } from './studio.component';
@@ -11,7 +12,7 @@ describe('StudioComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ StudioComponent ],
-      imports: [TabModule]
+      imports: [TabModule, ButtonControlModule]
     })
     .compileComponents();
   });
