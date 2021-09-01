@@ -53,6 +53,5 @@ describe('ButtonControlComponent', () => {
     component.isOn = true;
     component.toggleControl();
     expect(component.isOn).toBeFalsy();
-
   })
 });

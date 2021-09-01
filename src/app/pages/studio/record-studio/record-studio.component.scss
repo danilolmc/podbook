@@ -1,11 +1,12 @@
 @use '/src/app/global/global' as global; 
+@use "sass:math";
 
-        .studio{
+ .studio{
 
             display: flex;
             align-items: center;
             flex-direction: column;
-            margin-top: 15rem;
+            margin-top: 17rem;
 
             button{
                 border: none;
@@ -138,7 +139,7 @@
                     @for $i from 0 to 6 {
                         
                         &:nth-child(#{$i}){
-                            animation-delay: #{$i / 10}s;
+                            animation-delay: #{math.div($i, 10)}s;
                         }
                     }
                 }

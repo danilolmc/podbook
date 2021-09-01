@@ -1,3 +1,5 @@
+import { TabItem } from "@components/tab/types/TabItem";
+
 export enum RecordingStatus {
     RECORDING = 'recording',
     STOPPED = 'stopped'
@@ -9,6 +11,38 @@ export abstract class Studio {
 
     abstract toggleRecordingStatus(): void;
 
-    abstract getRecordingStatusClass() : string;
+    abstract getRecordingStatusClass(): string;
 
+}
+
+
+export class TabRoutedCreator {
+
+    static currentActiveTab: TabItem;
+
+    private tabItem: TabItem = {} as TabItem;
+
+    private urlMapping: string = '';
+
+    get tab() {
+        return this.tabItem;
+    }
+
+    set tab(tab: TabItem) {
+        this.tabItem = tab;
+    }
+
+    get url() {
+        return this.urlMapping;
+    }
+
+    set url(url: string) {
+        this.urlMapping = url;
+    }
+
+    constructor(tab: TabItem, url: string) {
+
+        this.tabItem = tab;
+        this.urlMapping = url;
+    };
 }

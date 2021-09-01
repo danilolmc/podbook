@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { TabItemComponent } from './tab-item/tab-item.component';
 import { Tab } from './types/Tab';
 
@@ -9,14 +9,13 @@ import { Tab } from './types/Tab';
   styleUrls: ['./tab.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent implements Tab {
+export class TabComponent implements Tab, AfterContentInit {
 
   @ContentChildren(TabItemComponent)
   tabs!: QueryList<TabItemComponent>;
 
-
   @Input()
-  currentPageUrl = '';
+  currentPageUrl = new BehaviorSubject('');
 
   @Input()
   urlBased = false;
@@ -26,38 +25,25 @@ export class TabComponent implements Tab {
 
   }
 
-  constructor(private router: Router) { }
-
 
   selectTab(clickedTab: TabItemComponent) {
-    
-    if (!!this.currentPageUrl) {
-      this.router.navigateByUrl(clickedTab.urlAnchor)
-    };
-    
-    this.tabs.forEach(tab => tab.selected = false);
-    
-    clickedTab.selected = true;    
+
+    clickedTab.callBackFunction();
+
+    this.tabs.forEach(tab => tab.selectItem = false);
+
+    clickedTab.selectItem = true;
   }
 
   setInitialState() {
-    
-    if (!!this.currentPageUrl) {
+
+    const thereItemActive = this.tabs.some(tab => tab.selectedItem);
+
+    if(!thereItemActive){
       this.tabs.forEach((tabItem, index) => {
-        if (this.currentPageUrl === tabItem.urlAnchor) {
-          tabItem.selected = true
-          this.router.navigateByUrl(tabItem.urlAnchor)
-        };
+        if (index === 0) tabItem.selectItem = true;
       });
-      
-
-      return;
     }
-
-    this.tabs.forEach((tabItem, index) => {
-      if (index === 0) tabItem.selected = true;
-    });
-
-
   }
+
 }
