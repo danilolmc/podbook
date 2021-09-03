@@ -3,6 +3,6 @@
         <h2>{{title}}</h2>
     </header>
     <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation]>
-        <pod-card *ngFor="let item of cardsList "[cardType]="getlistStyle()"></pod-card>
+        <pod-card *ngFor="let item of cardsList" [cardType]="getlistStyle()" [callback]="item.callback || itemsCallbackFunction"></pod-card>
     </div>
 </section>

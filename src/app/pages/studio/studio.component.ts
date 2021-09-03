@@ -1,9 +1,6 @@
-import { AfterContentChecked, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { TabItem } from '@components/tab/types/TabItem';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { TabRoutedCreator } from './types/studioPage';
 
 @Component({
   selector: 'pod-studio',
@@ -16,11 +13,11 @@ export class StudioComponent implements OnDestroy, OnInit {
 
   tabStudioCallback = () => {
     this.route.navigate(['/studio'])
-    localStorage.setItem('tag', '/studio')
+    this.currentUrl = '/studio'
   };
   tabPodbooksCallback = () => {
     this.route.navigate(['/studio/podbooks']);
-    localStorage.setItem('tag', '/studio/podbooks');
+    this.currentUrl = '/studio/podbooks'
   };
 
   currentUrl = '';
@@ -40,11 +37,11 @@ export class StudioComponent implements OnDestroy, OnInit {
     }
   ];
 
-  constructor(private route: Router, private router: ActivatedRoute) { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
-
-    localStorage.setItem('tab','/studio');
+    
+      this.tabStudioCallback();
   }
 
   ngOnDestroy() {
@@ -53,9 +50,6 @@ export class StudioComponent implements OnDestroy, OnInit {
   }
 
   isSelected(url: string) {
-
-    return localStorage.getItem('tag') === url;
+    return this.currentUrl === url;
   }
-
-
 }

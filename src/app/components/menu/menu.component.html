@@ -1,14 +1,13 @@
 <header>
     <div>
-        <a [routerLink]="['/']" (click)="selectItem('')">
+        <a [routerLink]="['/']" (click)="selectItem('','')">
             <img src="assets/logo/logo.svg" alt="Logo" class="logo">
         </a>
         <ul>
             <li 
                 *ngFor="let item of menuItems" 
-                [routerLink]="[item.link]"
                 [class]="item.className"
-                (click)="selectItem(item.text)"
+                (click)="selectItem(item.text, item.link)"
                 podMenu [active]="item.active || activeItemByUrl(item)"
             >
                 <button class="button">{{item.text}}</button>

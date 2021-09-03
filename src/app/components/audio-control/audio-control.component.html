@@ -1,0 +1,29 @@
+<div class="audio-control-container">
+
+    <div class="audio-control-inner">
+        <div class="control">
+            <div>
+                <button [ngClass]="['play-pause-button']" (click)="toggleAudio()">
+                    <img [src]="currentIcon" alt="audio control">
+                </button>
+
+                <div class="audio">
+                    <header>
+                        <span class="audio-name">my audio</span>
+                        <span class="audio-timing">0:55 / 2:30</span>
+                    </header>
+                    <footer>
+                        <div class="audio-bar-container">
+                            <span class="audio-progress-bar"></span>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <div class="audio-controls">
+                <button class="mute-unmute-button">m/u</button>
+                <button class="repeat-button">r</button>
+            </div>
+        </div>
+    </div>
+</div>

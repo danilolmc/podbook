@@ -45,12 +45,13 @@ export class MenuComponent implements OnDestroy {
       .subscribe(event => event instanceof NavigationEnd ? this.currentUrl = event.url : '');
   }
 
-  selectItem(itemToActive: string) {
+  selectItem(itemToActive: string, itemLink: string) {
     this.menuItems.map(item => {
       itemToActive === item.text ? item.active = true : item.active = false;
     });
 
-    console.log(this.currentUrl); 
+    this.route.navigate([itemLink]);
+
   }
 
   activeItemByUrl(item: MenuType){

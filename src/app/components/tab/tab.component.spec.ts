@@ -41,6 +41,6 @@ describe('TabComponent', () => {
 
     component.selectTab(myTab);
 
-    expect(myTab.selected).toBeTruthy();
+    expect(myTab.selectedItem).toBeTruthy();
   });
 });

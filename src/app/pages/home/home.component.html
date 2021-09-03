@@ -1,5 +1,5 @@
 <div class="home-page-container">
-     <header class="banner">
+    <header class="banner">
         <div class="banner-text-container">
             <h1 class="title">The best place to talk about books world</h1>
             <h3 class="second-text">Into an immersive experience</h3>
@@ -12,7 +12,8 @@
         <header>
             <pod-style-list (stateListChanges)="changeStyleList($event)"></pod-style-list>
         </header>
-        <pod-cards-container title="Recent podbooks" [listStyle]="listStyle"></pod-cards-container>
+        <pod-cards-container title="Recent podbooks" [listStyle]="listStyle" [cardsList]="homeCards"
+            [itemsCallbackFunction]="callbackTest"></pod-cards-container>
     </section>
 
 </div>

@@ -6,6 +6,7 @@ import { HomeModule } from '@pages/home/home.module';
 import { AppRoutingModule } from '@routes/app.routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AudioControlModule } from '@components/audio-control/audio-control.module';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HomeModule,
     MenuModule,
+    AudioControlModule,
     FooterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

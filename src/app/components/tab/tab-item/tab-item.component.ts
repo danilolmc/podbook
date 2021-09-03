@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './tab-item.component.html',
   styleUrls: ['./tab-item.component.scss']
 })
-export class TabItemComponent implements OnInit{
+export class TabItemComponent{
 
 
   private callbackFn: Function = () => {}
@@ -21,19 +21,18 @@ export class TabItemComponent implements OnInit{
     this.callbackFn = fun;
   }
 
+  get callBackFunction(){
+    return this.callbackFn;
+  }
+
   get selectedItem(){
     return this.selected;
   }
-
-  ngOnInit(){}
 
   @Input()
   set selectItem(status: boolean){
     this.selected = status;
   }
 
-  get callBackFunction(){
-    return this.callbackFn;
-  }
 
 }

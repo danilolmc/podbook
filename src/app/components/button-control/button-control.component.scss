@@ -34,7 +34,7 @@
             width: 7rem;
             height: 7rem;
             background-color: global.$primary;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
             inset: -15px;
             animation: controlStatus .5s ease-in-out reverse forwards;

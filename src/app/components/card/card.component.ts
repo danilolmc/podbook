@@ -11,6 +11,8 @@ import { CardProperties, CardTypes } from './types/CardTypes';
 })
 export class CardComponent implements CardProperties {
 
+  private callbackFunction : Function = () => { };
+
   selector = 'card';
 
   @Input()
@@ -30,9 +32,18 @@ export class CardComponent implements CardProperties {
 
   imgUrl = '';
 
-  getCardTypeClass(): string{
-    
+  getCardTypeClass(): string {
+
     return CardTypeStyleStratergy[this.cardType] || CardTypeStyleStratergy.default;
+  }
+
+  @Input()
+  set callback(fn: Function) {
+    this.callbackFunction = fn;
+  }
+
+  get callback() {
+    return this.callbackFunction;
   }
 
 

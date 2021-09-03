@@ -1,6 +1,6 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
-import { CardProperties } from '@components/card/types/CardTypes';
+import { CardProperties, CardPropertiesDTO } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
 
@@ -22,15 +22,24 @@ import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
 })
 export class CardsContainerComponent {
 
+  private itemsCallback!: Function
+  private styleList: ListStatesEnum = ListStatesEnum.GRID;
+
   @Input()
   title = '';
 
-  cards: CardProperties = {} as CardProperties
+  @Input()
+  cardsList: CardPropertiesDTO[] = [];
+
+  get itemsCallbackFunction() {
+    return this.itemsCallback;
+  }
 
   @Input()
-  cardsList: CardProperties[] = [this.cards, this.cards, this.cards, this.cards, this.cards, this.cards];
+  set itemsCallbackFunction(fun: Function) {
 
-  private styleList: ListStatesEnum = ListStatesEnum.GRID;
+    this.itemsCallback = fun;
+  }
 
   @Input()
   set listStyle(style: ListStatesEnum) {

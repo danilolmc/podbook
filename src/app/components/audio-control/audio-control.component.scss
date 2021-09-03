@@ -1,0 +1,68 @@
+@use '/src/app/global/global' as global; 
+
+.audio-control-container{
+    display: flex;
+    align-items: center;
+    background-color: global.$light-gray;
+    padding: 0rem 2rem;
+    height: 100%;
+    
+    .audio-control-inner{
+        max-width: 120rem;
+        margin: auto;
+        width: 100%;
+        
+        .control{
+            display: flex;
+            align-items: center;
+            column-gap: 5rem;
+
+            div{
+                display: inherit;
+                align-items: inherit;
+                column-gap: 3rem;
+            }
+
+            .audio{
+
+                justify-content: center;
+                flex-direction: column;
+                row-gap: .7rem;
+                transform: translateY(-.8rem);
+
+                header, footer{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .audio-bar-container{
+                    width: 51rem;
+                    background: global.$medium-gray;
+                    height: 3px;
+                    display: block;
+
+                    .audio-progress-bar{
+                        display: block;
+                        width: 35%;
+                        height: 100%;
+                        background-color: global.$primary;
+                    }
+                }
+            }
+
+            .play-pause-button{
+                border: 1px solid global.$primary;
+                width: 4rem;
+                height: 4rem;
+                display: grid;
+                place-content: center;
+                border-radius: 50%;
+                background: global.$primary;
+                transition: .5s ease;
+                position: relative;
+                cursor: pointer;    
+            }
+        }
+    }
+}
