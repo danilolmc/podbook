@@ -8,42 +8,72 @@ import { AudioComponent, AudioStatus } from './types/AudioControl';
 })
 export class AudioControlComponent implements AudioComponent {
 
-  currentAudioStatus = AudioStatus.paused;
+  private audioStatus = AudioStatus;
 
-  isPlaying = false;
+  currentAudioStatus = this.audioStatus.paused;
 
   audioIsOpen = false;
 
+  repeat = false;
+
   private audioIsOpenEventEmmiter = new EventEmitter();
 
-  @Input()
-  playPauseIcons: [string, string] = ['', ''];
+  playPauseIcons: [string, string] = ['assets/icons/play-icon-white.svg','assets/icons/pause-icon-white.svg'];
+
+  muteUnmuteIcons: [string, string] = ['assets/icons/muted-icon.svg', 'assets/icons/unmuted-icon.svg'];
+
+  repeatNotRepeatIcons: [string, string] = ['assets/icons/repeat-icon.svg', 'assets/icons/not-repeat-icon.svg'];
 
 
-  get currentIcon(): string {
-    return this.playPauseIcons[Number(this.isPlaying)];
+  get playPauseCurrentIcon(): string {
+
+    const isPlaying = this.audioStatus.playing === this.currentAudioStatus;
+
+    return this.playPauseIcons[Number(isPlaying)];
   }
+
+  get mutedUnmutedCurrentIcon(): string {
+
+    const isMuted = this.audioStatus.muted === this.currentAudioStatus;
+
+    return this.muteUnmuteIcons[Number(isMuted)];
+  }
+  
+  get repeatNotRepeatCurrentIcon(): string {
+
+    const isToRepeat = this.repeat;
+
+    return this.repeatNotRepeatIcons[Number(isToRepeat)];
+  }
+
 
   toggleAudio() {
 
-    const audiostatus = AudioStatus;
+    const isPlaying = this.currentAudioStatus == this.audioStatus.playing;
     
-    this.isPlaying ? this.currentAudioStatus = audiostatus.paused : audiostatus.playing;
-    this.isPlaying = this.isPlaying ? false : true;
-    
+    isPlaying ? this.pause() : this.play();
   }
+  
+  toggleMute() {
+    const isMuted = this.currentAudioStatus == this.audioStatus.muted;
+
+    isMuted ? this.unmute() : this.mute();
+  }
+
+  toggleRepeating() {
+    this.repeat ? this.disableRepeating() : this.enableRepeating();
+  }
+
 
   pause(){
     const audiostatus = AudioStatus;
 
-    this.isPlaying = false;
     this.currentAudioStatus = audiostatus.paused;
   }
   
   play(){
     const audiostatus = AudioStatus;
     
-    this.isPlaying = true;
     this.currentAudioStatus = audiostatus.playing;
   }
   
@@ -57,6 +87,14 @@ export class AudioControlComponent implements AudioComponent {
     const audiostatus = AudioStatus;
 
     this.currentAudioStatus = audiostatus.unmuted;
+  }
+
+  enableRepeating(){
+    this.repeat = true;
+  }
+  
+  disableRepeating(){
+    this.repeat = false;
   }
 
   closeAudio(){

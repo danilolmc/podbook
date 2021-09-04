@@ -11,11 +11,14 @@
         max-width: 120rem;
         margin: auto;
         width: 100%;
+        display: flex;
+        align-items: center;
         
         .control{
             display: flex;
             align-items: center;
             column-gap: 5rem;
+            flex: 1;
 
             div{
                 display: inherit;
@@ -62,6 +65,35 @@
                 transition: .5s ease;
                 position: relative;
                 cursor: pointer;    
+            }
+
+            .mute-unmute-button,.repeat-button{
+                border: 0;
+                background: none;
+                display: grid;
+                place-content: center;
+                overflow: hidden;
+                width: 1.5rem;
+            }
+
+            .repeat-button{
+                
+                img{
+                    width: 80%;
+                    margin-top: .2rem;
+                }
+            }
+
+        }
+
+        & > button{
+
+            background: none;
+            border: 0;
+            cursor: pointer;
+
+            img{
+                width: 20%;
             }
         }
     }

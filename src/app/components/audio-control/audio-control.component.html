@@ -4,7 +4,7 @@
         <div class="control">
             <div>
                 <button [ngClass]="['play-pause-button']" (click)="toggleAudio()">
-                    <img [src]="currentIcon" alt="audio control">
+                    <img [src]="playPauseCurrentIcon" alt="audio control">
                 </button>
 
                 <div class="audio">
@@ -21,9 +21,16 @@
             </div>
 
             <div class="audio-controls">
-                <button class="mute-unmute-button">m/u</button>
-                <button class="repeat-button">r</button>
+                <button class="mute-unmute-button" (click)="toggleMute()">
+                    <img [src]="mutedUnmutedCurrentIcon" alt="muted icon">
+                </button>
+                <button class="repeat-button" (click)="toggleRepeating()">
+                    <img [src]="repeatNotRepeatCurrentIcon" alt="repeat icon">
+                </button>
             </div>
         </div>
+        <button (click)="closeAudio()">
+            <img src="assets/icons/close-icon.svg" alt="close icon">
+        </button>
     </div>
 </div>

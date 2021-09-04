@@ -1,3 +1,5 @@
-<button  [ngClass]="['button-control', currentStyleClass]" (click)="executeCallback()">
+<button [ngClass]="['button-control', currentStyleClass]"
+    (click)="executeCallback()">
     <img [src]="currentIcon" [alt]="name + ' ' + 'control'">
+    <span></span>
 </button>

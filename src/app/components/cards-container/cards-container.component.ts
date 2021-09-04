@@ -16,7 +16,7 @@ import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
           stagger(50, [
             animate('.7s  ease', style({ opacity: 1, transform: 'translateY(0px)' }))
           ])
-        ])
+        ], { optional: true })
       ])
     ])]
 })
