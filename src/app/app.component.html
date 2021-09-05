@@ -4,7 +4,8 @@
 
 <div class="app-container">
     <router-outlet></router-outlet>
-    <pod-audio-control 
+    <pod-audio-control
+        (audioIsOpenEventEmmiter)="toggleAudioBar($event)"
         class="audio-control-bar"></pod-audio-control>
 </div>
 

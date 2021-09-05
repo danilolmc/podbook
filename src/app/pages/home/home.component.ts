@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardProperties, CardPropertiesDTO } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
+import { AudioControlService } from '@services/audio-control.service';
 
 @Component({
   selector: 'pod-home',
@@ -19,10 +20,12 @@ export class HomeComponent{
     imgUrl: '',
     title: '',
     width: '',
-    callback: () => alert("callback customizado")
+    callback: () => this.audioControlService.openAudioBar()
   }
 
-  homeCards : CardPropertiesDTO[] = [this.card,this.card,this.card,this.card];
+  constructor(private audioControlService: AudioControlService){}
+
+  homeCards : CardPropertiesDTO[] = [this.cardCustom,this.cardCustom,this.cardCustom,this.cardCustom];
 
   call(){
     console.log('asdasd')

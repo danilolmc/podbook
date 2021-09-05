@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'podbook';
+
+  audioBarStatus = 'closed';
+
+
+  toggleAudioBar(event: Event){
+    // event ? this.audioBarStatus = 
+  }
 }

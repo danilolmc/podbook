@@ -1,11 +1,31 @@
 @use '/src/app/global/global' as global; 
 
+:host{
+    overflow: hidden;
+    transition: .5s ease;
+    
+    &.closed{
+        
+        pointer-events: none;
+        height: 0;
+    }
+}
+
 .audio-control-container{
     display: flex;
     align-items: center;
     background-color: global.$light-gray;
     padding: 0rem 2rem;
     height: 100%;
+    transition: .5s ease;
+
+    &.--opend{
+        transform: translateY(0%);
+    }
+
+    &.--closed{
+        transform: translateY(100%);
+    }
     
     .audio-control-inner{
         max-width: 120rem;
@@ -20,10 +40,18 @@
             column-gap: 5rem;
             flex: 1;
 
-            div{
+            & div{
                 display: inherit;
                 align-items: inherit;
+            }
+            
+            > div{
+                column-gap: 10rem;
+            }
+
+            div.audio-controls{
                 column-gap: 3rem;
+                margin-left: 5rem;
             }
 
             .audio{
@@ -66,21 +94,25 @@
                 position: relative;
                 cursor: pointer;    
             }
-
-            .mute-unmute-button,.repeat-button{
-                border: 0;
-                background: none;
-                display: grid;
-                place-content: center;
-                overflow: hidden;
-                width: 1.5rem;
-            }
-
+            
             .repeat-button{
                 
                 img{
                     width: 80%;
                     margin-top: .2rem;
+                }
+            }
+            
+            .mute-unmute-button,.repeat-button{
+                border: 0;
+                background: none;
+                overflow: hidden;
+                width: 1.5rem;
+                cursor: pointer;    
+
+                img{
+
+                    margin: 0 auto;
                 }
             }
 
@@ -93,7 +125,7 @@
             cursor: pointer;
 
             img{
-                width: 20%;
+                width: 50%;
             }
         }
     }

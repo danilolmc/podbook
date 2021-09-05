@@ -1,3 +1,5 @@
+import { Observer } from "rxjs";
+
 type AudioPlayingStatus = 'playing' | 'paused';
 type AudioSongStatus = 'muted' | 'unmuted';
 
@@ -15,12 +17,11 @@ export enum AudioStatus {
 
 export interface AudioComponent {
 
-    audioIsOpen: boolean,
-    currentAudioStatus: AudioStatus
-    play: Function,
-    pause: Function,
-    mute: Function,
-    unmute: Function,
+    audioIsOpen: Observer<boolean>,
     closeAudio: Function,
-    toggleAudio: Function
+}
+
+export abstract class Audio{
+
+    abstract toggle(): void
 }

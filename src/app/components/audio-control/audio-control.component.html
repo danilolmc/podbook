@@ -1,10 +1,10 @@
-<div class="audio-control-container">
+<div class="audio-control-container" [class]="(audioIsOpen | async) ? '--open' : '--closed'">
 
     <div class="audio-control-inner">
         <div class="control">
             <div>
-                <button [ngClass]="['play-pause-button']" (click)="toggleAudio()">
-                    <img [src]="playPauseCurrentIcon" alt="audio control">
+                <button  [ngClass]="['play-pause-button']" (click)="playingInstance.toggle()">
+                    <img [src]="playingInstance.playPauseCurrentIcon" alt="audio control">
                 </button>
 
                 <div class="audio">
@@ -21,11 +21,11 @@
             </div>
 
             <div class="audio-controls">
-                <button class="mute-unmute-button" (click)="toggleMute()">
-                    <img [src]="mutedUnmutedCurrentIcon" alt="muted icon">
+                <button class="mute-unmute-button" (click)="muteInstance.toggle()">
+                    <img [src]="muteInstance.mutedUnmutedCurrentIcon" alt="muted icon">
                 </button>
-                <button class="repeat-button" (click)="toggleRepeating()">
-                    <img [src]="repeatNotRepeatCurrentIcon" alt="repeat icon">
+                <button class="repeat-button" (click)="repeatInstance.toggle()">
+                    <img [src]="repeatInstance.repeatNotRepeatCurrentIcon" alt="repeat icon">
                 </button>
             </div>
         </div>
