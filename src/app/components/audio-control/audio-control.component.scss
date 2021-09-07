@@ -97,6 +97,9 @@
             
             .repeat-button{
                 
+                display: grid;
+                place-content: center;
+
                 img{
                     width: 80%;
                     margin-top: .2rem;

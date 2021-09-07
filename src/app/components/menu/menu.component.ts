@@ -25,14 +25,8 @@ export class MenuComponent implements OnDestroy {
       active: false
     },
     {
-      text: 'Sign Up',
-      link: '/signup',
-      active: false,
-      className: '--signin'
-    },
-    {
       text: 'Sign In',
-      link: '/signin',
+      link: '/account',
       active: false,
       className: '--signin'
     }];

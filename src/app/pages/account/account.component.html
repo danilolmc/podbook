@@ -1,0 +1,7 @@
+<div class="account-container">
+    <pod-tab class="tabs">
+        <pod-tab-item title="sign in" [callback]="tabSignInCallback" [selectItem]="isSelected('/account/sign-in')"></pod-tab-item>
+        <pod-tab-item title="sign up" [callback]="tabSignUpCallback" [selectItem]="isSelected('/account/sign-up')"></pod-tab-item>
+    </pod-tab>
+</div>
+<router-outlet></router-outlet>

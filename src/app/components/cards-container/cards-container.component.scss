@@ -21,7 +21,6 @@
         grid-template-columns: repeat(auto-fit,minmax(271px, 1fr));
         gap: 7rem 3rem;
         flex-wrap: wrap;
-        transition: .5s ease;
         
         &.inline{
             

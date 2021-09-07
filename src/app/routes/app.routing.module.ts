@@ -13,6 +13,10 @@ const routes: Routes = [
         path: 'studio',
         loadChildren: () => import('@pages/studio/studio.module').then(studio => studio.StudioModule)
     },
+    {
+        path: 'account',
+        loadChildren: () => import('@pages/account/account.module').then(account => account.AccountModule)
+    },
 
 ];
 
