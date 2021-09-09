@@ -1,0 +1,57 @@
+@use '/src/app/global/global' as global; 
+
+.form-field-wrapper{
+    
+    min-width: 35.5rem;
+    width: auto;
+
+    label{
+        display: inline;
+        color: global.$dark-gray;
+        font-size: 1.2rem;
+    }
+    span{
+        background-color: global.$light-gray;
+        display: flex;
+        column-gap: 1rem;
+        align-items: center;
+        margin-top: 1rem;
+        min-height: 5rem;
+        border-radius: 5px;
+        overflow: hidden;
+        padding: 1rem 2rem;
+        cursor: text;
+        border: 1px solid transparent;
+
+        
+        &:focus-within{
+            border:1px solid  global.$primary;
+        }
+        
+        input{
+            outline: none;
+            border: 0;
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            font-size: 1.6rem;
+            color: global.$text;
+
+            &::-webkit-input-placeholder{
+                color: global.$dark-gray;
+                font-weight: 300;
+            }
+        }
+    }
+
+    button{
+        border: 0;
+        background: 0;
+        height: auto;
+
+        img{
+            width: 20px;
+        }
+    }
+    
+}

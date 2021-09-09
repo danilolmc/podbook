@@ -1,9 +1,0 @@
-<label [for]="id">
-    <div class="form-field-wrapper" formFieldType="search">
-        <label *ngIf="labelText" [for]="id">{{labelText}}</label>
-        <span>
-            <input [id]="id" [placeholder]="placeholder">
-            <img *ngIf="getFormFieldIcon()" [src]="'assets/icons/' + getFormFieldIcon()?.icon + '.svg'" [alt]="getFormFieldIcon()?.name">
-        </span>
-    </div>
-</label>

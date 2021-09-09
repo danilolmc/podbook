@@ -1,0 +1,39 @@
+@use '/src/app/global/global' as global; 
+
+        // ::after{
+        //     content: "";
+        //     position: absolute;
+        //     border-radius: 50%;
+        //     display: block;
+        //     width: 7rem;
+        //     height: 7rem;
+        //     background-color: global.$primary;
+        //     z-index: -1;
+        //     pointer-events: none;
+        //     inset: -15px;
+        // }
+
+        // @keyframes controlStatus{
+        //     from {
+        //         opacity: 0;
+        //     }
+        //     to{
+        //         opacity: .5;
+        //         width: inherit;
+        //         height: inherit;
+        //         inset: 0;
+        //     }
+        // }
+        
+        // ::after{
+        //     animation: controlStatus .5s ease-in-out reverse forwards;
+        // }
+
+
+        
+@keyframes appearAnimation {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

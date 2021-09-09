@@ -1,0 +1,55 @@
+<ng-template #signinAnchor>
+
+    <footer>
+        <button class="already-have-account">I already have an account, <a
+                [routerLink]="['/sign-in']">signin</a></button>
+    </footer>
+</ng-template>
+
+<ng-template #firstStep>
+    <div class="form-container">
+        <form>
+            <pod-form-field class="name" labelText="Name"></pod-form-field>
+            <pod-form-field class="email" labelText="Email"></pod-form-field>
+            <button class="next" (click)="nextStep($event)">Next</button>
+        </form>
+        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
+    </div>
+</ng-template>
+
+
+<ng-template #secondStep>
+    <div class="form-container">
+        <form>
+            <pod-form-field class="password" labelText="Password" type="password"></pod-form-field>
+            <pod-form-field class="repeat-passowrd" labelText="Confirm passowrd" type="password"></pod-form-field>
+            <button class="submit">Sign up</button>
+        </form>
+        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
+        <button class="back" (click)="prevStep($event)">
+            <img src="assets/icons/arrow-left.svg" alt="back icon">
+            Back
+        </button>
+    </div>
+</ng-template>
+
+<div class="signup">
+
+    <div class="steps">
+        <span [ngClass]="{'back-bar': true, '--active-bar': currentStep > 1}" [attr.position]="currentStep"></span>
+        <div class="step" *ngFor="let step of steps; index as activeStep" [attr.name]="step.name"
+            [ngClass]="{'--active': step.active}">
+            <span class="step-number">{{activeStep + 1}}</span>
+            <span class="step-text">{{step.name}}</span>
+        </div>
+    </div>
+
+    <div [ngSwitch]="currentStep">
+        <div *ngSwitchCase="1">
+            <ng-container *ngTemplateOutlet="firstStep"></ng-container>
+        </div>
+        <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="secondStep"></ng-container>
+        </div>
+    </div>
+</div>

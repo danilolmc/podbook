@@ -1,0 +1,55 @@
+@use '/src/app/global/global' as global; 
+@use '/src/app//global/shared-styles/shared' as shared; 
+
+
+.signin{
+
+    margin: 33rem auto 25rem;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: appearAnimation .5s ease-in-out forwards;
+    
+    .form-container{
+        margin: 0 auto;
+        display: block;
+        max-width: 43rem;
+        
+        button{
+            border: 0;
+            cursor: pointer;
+            background: none;
+            transition: .5s;
+
+            &:hover{
+                opacity: .9;
+            }
+        }
+        
+        form{
+            
+            .submit{
+                border-radius: 5px;
+                width: 100%;
+                padding: 1.4rem 2rem;
+                background-color: global.$primary;
+                color: global.$white;
+            }
+            
+            .email,.password,.submit{
+                margin: 3rem 0;
+                display: block;
+            }
+            
+            .forgot-password{
+                display: block;
+                margin: 2rem 0 3rem auto;
+            }
+            
+        }
+        
+        .forgot-password, .create-account{
+            color: global.$dark-gray;
+            font-weight: 300;
+        }
+    }
+}
