@@ -1,18 +1,14 @@
-import express from 'express'
+import express from 'express';
+import { createConnection } from 'typeorm';
+import routes from './routes';
 
-import { Router, Request, Response } from 'express';
 
-const app = express();
+createConnection().then(connection => {
 
-const route = Router()
+  const app = express();
 
-app.use(express.json())
+  app.use(express.json())
+  app.use('/', routes)
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world with Typescript' })
+  app.listen(3333)
 })
-
-app.use(route)
-
-
-app.listen(3333, () => 'server running on port 3333')
