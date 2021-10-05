@@ -9,8 +9,8 @@
 <ng-template #firstStep>
     <div class="form-container">
         <form>
-            <pod-form-field class="name" labelText="Name"></pod-form-field>
-            <pod-form-field class="email" labelText="Email"></pod-form-field>
+            <pod-form-field class="name" labelText="Name" type="text" [validations]="fieldsValidators.name"></pod-form-field>
+            <pod-form-field class="email" labelText="Email" type="email" [validations]="fieldsValidators.email"></pod-form-field>
             <button class="next" (click)="nextStep($event)">Next</button>
         </form>
         <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>

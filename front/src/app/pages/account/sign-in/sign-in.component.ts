@@ -7,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
+  fieldsValidators = {
+    email: [{
+      validationName: 'required',
+      validationErrorMessage: 'Campo obrigatório'
+    },
+    {
+      validationName: 'email',
+      validationErrorMessage: 'Email inválido'
+    }],
+    passowrd: [{
+      validationName: 'required',
+      validationErrorMessage: 'Campo obrigatório'
+    }],
+  };
+
   constructor() { }
 
   ngOnInit(): void {

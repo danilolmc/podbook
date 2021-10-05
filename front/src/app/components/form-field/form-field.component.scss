@@ -10,6 +10,7 @@
         color: global.$dark-gray;
         font-size: 1.2rem;
     }
+
     span{
         background-color: global.$light-gray;
         display: flex;
@@ -25,7 +26,7 @@
 
         
         &:focus-within{
-            border:1px solid  global.$primary;
+            border:1px solid global.$primary;
         }
         
         input{
@@ -54,4 +55,23 @@
         }
     }
     
+
+    &.invalid{
+
+        label{
+            color: global.$red;
+        }
+
+        & span{
+            border-color: global.$red;
+        }
+
+    }
+}
+
+.error-message{
+    color: global.$red;
+    display: block;
+    height: 2rem;
+    line-height: 3rem;
 }
