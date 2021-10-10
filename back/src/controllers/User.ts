@@ -23,13 +23,13 @@ class UserController implements Controller {
         const userRepository = new UserRepository();
 
         try {
-            const user = await userRepository.createUser(req.body);
+            const { id, name, email } = await userRepository.createUser(req.body);
 
-            if (user.id) {
+            if (id) {
 
-                const token = genToken({ user_id: user.id, email: user.email }, '2h');
+                const token = genToken({ user_id: id, email: email }, '2h');
 
-                const resp = { user, auth: true, token }
+                const resp = { user: { id, name, email }, auth: true, token }
 
                 res.status(201).json(resp)
                 return;
@@ -74,7 +74,7 @@ class UserController implements Controller {
         const userRepository = new UserRepository();
 
         const user = await userRepository.findUserById(req.body.id);
-        
+
         res.send(user)
     }
 
