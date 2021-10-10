@@ -1,21 +1,42 @@
-import { ValidatorFn, Validators } from "@angular/forms";
+import { FormControl, ValidatorFn, Validators } from "@angular/forms";
+
+const validationFunctions = ['minLength'];
 
 const formValidations: {
-    [key: string]: ValidatorFn,
+    [key: string]: ValidatorFn | Function,
 } = {
     email: Validators.email,
-    required: Validators.required
+    required: Validators.required,
+    minLength: (length: number) => Validators.minLength(length)
 }
 
-export const getValidations = (keys?: string[]) => {
+export const checkNoWhiteSpaceValidation = (value: string, input: FormControl) => {
+
+    const validationWithNoSpace = value.replace(/^\s*|\s*$/g, '').length === 0 || input.getError('required');
+
+    if (validationWithNoSpace) {
+      input.setErrors({ required: true })};
+}
+
+export const getValidations = (keys?: { key: string, parameter: any }[]) => {
 
     let validators: ValidatorFn[] = [];
 
     if (!keys) return null;
 
-    keys.forEach(key => {
+    keys.forEach(({ key, parameter }) => {
 
-        if(formValidations.hasOwnProperty(key)) validators = [...validators, formValidations[key]];
+        const isValidationFuncion = validationFunctions.includes(key);
+
+        let validationItem;
+
+        if (isValidationFuncion) {
+            validationItem = formValidations[key](parameter)
+        } else {
+            validationItem = formValidations[key]
+        }
+
+        if (formValidations.hasOwnProperty(key)) validators = [...validators, validationItem];
     })
 
     return validators;
@@ -23,5 +44,6 @@ export const getValidations = (keys?: string[]) => {
 
 export interface Validations {
     validationName: string,
+    validatorRequiredParameter?: any,
     validationErrorMessage: string
 }

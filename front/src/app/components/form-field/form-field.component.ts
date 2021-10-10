@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, first, last, switchMap, take, takeLast, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { FormFieldIconData, FormFieldProperties, formFieldTypes, IconProperties } from './types/FormField';
-import { getValidations, Validations } from './types/Validators';
+import { checkNoWhiteSpaceValidation, getValidations, Validations } from './types/Validators';
 import { getIcon } from './utils/IconManager';
 import { UniqueId } from './utils/UniqueId';
 
@@ -13,6 +13,9 @@ import { UniqueId } from './utils/UniqueId';
   styleUrls: ['./form-field.component.scss']
 })
 export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestroy {
+
+  @Output() change = new EventEmitter<string>();
+  @ViewChild('inputRef') fieldRef!: ElementRef<HTMLInputElement>;
 
   passowrdIsVisible = false;
 
@@ -33,9 +36,13 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
   placeholder = '';
 
   @Input()
+  value = '';
+
+  @Input()
   validations: Validations[] = [{
     validationName: '',
-    validationErrorMessage: ''
+    validatorRequiredParameter: '',
+    validationErrorMessage: '',
   }];
 
 
@@ -43,11 +50,25 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
 
   ngOnInit() {
 
-    const validators = getValidations(this.validations.map(key => key.validationName));
+    const validators = getValidations(
+      this.validations.map(keyItem =>
+      ({
+        key: keyItem.validationName,
+        parameter: keyItem.validatorRequiredParameter
+      })
+      ));
 
     if (!!validators) {
 
-      this.input = new FormControl(null, validators);
+      this.input = new FormControl(this.value, validators);
+
+    } else {
+
+      this.validations.forEach(key => {
+        throw new Error(`key ${key} not found in formValidations`);
+      })
+
+
     }
 
     this.input
@@ -55,19 +76,20 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
       .pipe(
         debounceTime(200),
         distinctUntilChanged(),
-        switchMap(value => [value]),
         takeUntil(this.notifier))
-      .subscribe(() => {
+      .subscribe((value: string) => {
 
-        const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName))
+        this.change.emit(value);
+
+        checkNoWhiteSpaceValidation(value, this.input);
+
+        const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
 
         if (!message.length) return;
 
         this.validationCurrentErrorMessage = message[0].validationErrorMessage;
-      })
 
-
-
+      });
   }
 
 
@@ -90,10 +112,6 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
     }
 
     return passowrdObject;
-  }
-
-  inputChanges() {
-    console.log(this.input.value)
   }
 
   ngOnDestroy() {
