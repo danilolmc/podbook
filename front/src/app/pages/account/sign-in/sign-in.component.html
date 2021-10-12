@@ -2,14 +2,26 @@
 
     <div class="form-container">
         <form>
-            <pod-form-field class="email" labelText="Email"></pod-form-field>
-            <pod-form-field class="password" labelText="Password" type="password"></pod-form-field>
-            <button class="forgot-password">Forgot password?</button>
-            <button class="submit">Login</button>
+            <pod-form-field 
+                #email
+                class="email" 
+                labelText="Email" 
+                type="email"
+                [validations]="fieldsValidators.email">
+            </pod-form-field>
+            <pod-form-field 
+                #password
+                class="password" 
+                labelText="Password" 
+                type="password"
+                [validations]="fieldsValidators.password">
+            </pod-form-field>
+            <!-- <button class="forgot-password">Forgot password?</button> -->
+            <button class="submit" (click)="submit($event,[email,password])">Login</button>
         </form>
 
         <footer>
-            <button class="create-account" [routerLink]="['/sign-up']">Create my account</button>
+            <button class="create-account" [routerLink]="['/sign-up']">Create my <span>account</span></button>
         </footer>
     </div>
 

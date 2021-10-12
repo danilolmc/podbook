@@ -1,18 +1,30 @@
-import express from 'express'
 
-import { Router, Request, Response } from 'express';
+import * as dotenv from 'dotenv';
+import { createConnection } from 'typeorm';
+import App from './App';
+import UserController from './controllers/User';
+import { authenticate, verifyToken } from './middlewares/auth';
 
-const app = express();
 
-const route = Router()
+dotenv.config({ path: `${__dirname}/../../.env` });
 
-app.use(express.json())
+createConnection().then(() => {
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world with Typescript' })
+  const controllers = [
+    new UserController()
+  ];
+
+  const middlewares = [
+    authenticate,
+    verifyToken
+  ];
+
+  const app = new App({
+    port: 3333,
+    controllers: controllers,
+    middlewares: []
+  });
+
+  app.listen();
+
 })
-
-app.use(route)
-
-
-app.listen(3333, () => 'server running on port 3333')

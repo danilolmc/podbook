@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { FormFieldIconData, FormFieldProperties, formFieldTypes, IconProperties } from './types/FormField';
+import { checkNoWhiteSpaceValidation, getValidations, Validations } from './types/Validators';
 import { getIcon } from './utils/IconManager';
 import { UniqueId } from './utils/UniqueId';
 
@@ -9,11 +12,16 @@ import { UniqueId } from './utils/UniqueId';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss']
 })
-export class FormFieldComponent implements FormFieldProperties, OnInit {
+export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestroy {
+
+  @Output() change = new EventEmitter<string>();
+  @ViewChild('inputRef') fieldRef!: ElementRef<HTMLInputElement>;
 
   passowrdIsVisible = false;
 
-  input : FormControl = {} as FormControl;
+  input: FormControl = {} as FormControl;
+
+  notifier = new Subject();
 
   @Input()
   id = UniqueId.getId();
@@ -28,14 +36,64 @@ export class FormFieldComponent implements FormFieldProperties, OnInit {
   placeholder = '';
 
   @Input()
-  required = false;
+  value = '';
 
-  ngOnInit(){ 
+  @Input()
+  validations: Validations[] = [{
+    validationName: '',
+    validatorRequiredParameter: '',
+    validationErrorMessage: '',
+  }];
 
-    const validators = [this.required ? Validators.required: ''];
 
-    this.input = new FormControl(validators);
+  validationCurrentErrorMessage = '';
+
+  ngOnInit() {
+
+    const validators = getValidations(
+      this.validations.map(keyItem =>
+      ({
+        key: keyItem.validationName,
+        parameter: keyItem.validatorRequiredParameter
+      })
+      ));
+
+    if (!!validators) {
+
+      this.input = new FormControl(this.value, validators);
+
+    } else {
+
+      this.validations.forEach(key => {
+        throw new Error(`key ${key} not found in formValidations`);
+      })
+
+
+    }
+
+    this.input
+      .valueChanges
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        takeUntil(this.notifier))
+      .subscribe((value: string) => {
+
+        this.change.emit(value);
+
+        this.value = value;
+
+        checkNoWhiteSpaceValidation(value, this.input);
+
+        const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
+
+        if (!message.length) return;
+
+        this.validationCurrentErrorMessage = message[0].validationErrorMessage;
+
+      });
   }
+
 
   getFormFieldIcon(): IconProperties | undefined {
     const iconData = getIcon(this.type, FormFieldIconData);
@@ -43,12 +101,12 @@ export class FormFieldComponent implements FormFieldProperties, OnInit {
     return iconData;
   }
 
-  showHidePassword(event: Event){
+  showHidePassword(event: Event) {
     event.preventDefault();
     this.passowrdIsVisible = this.passowrdIsVisible ? false : true;
   }
 
-  get passwordVisibilityIcon(){
+  get passwordVisibilityIcon() {
 
     const passowrdObject = {
       active_icon: this.passowrdIsVisible ? 'password-hide-icon' : 'password-show-icon',
@@ -58,7 +116,8 @@ export class FormFieldComponent implements FormFieldProperties, OnInit {
     return passowrdObject;
   }
 
-  inputChanges(){
-    console.log(this.input.value)
+  ngOnDestroy() {
+    this.notifier.next();
+    this.notifier.complete();
   }
 }

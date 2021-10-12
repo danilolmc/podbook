@@ -1,18 +1,20 @@
+import { ValidationErrors, Validators } from "@angular/forms";
 import { UniqueId } from "../utils/UniqueId";
 
 export type formFieldTypes =
     'text' |
     'textarea' |
     'search' |
-    'password';
+    'password' |
+    'email';
 
 export abstract class FormFieldProperties {
-        
+
     id = UniqueId.getId();
     labelText = '';
     type: formFieldTypes = 'text';
-    placeholder= '';
-    
+    placeholder = '';
+
     abstract getFormFieldIcon(iconName: string): IconProperties | undefined;
 
 }
@@ -25,6 +27,6 @@ export interface IconProperties {
 
 }
 
-export const FormFieldIconData : IconProperties[] = [
-    {key: 'search', icon: 'search-icon', name: 'search'},
+export const FormFieldIconData: IconProperties[] = [
+    { key: 'search', icon: 'search-icon', name: 'search' },
 ];

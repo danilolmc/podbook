@@ -1,144 +1,140 @@
-@use '/src/app/global/global' as global; 
-@use '/src/app//global/shared-styles/shared' as shared; 
+@use "/src/app/global/global" as global;
+@use "/src/app//global/shared-styles/shared" as shared;
 
-.signup{
+.signup {
+  margin: 23rem auto 25rem;
 
-    margin: 23rem auto 25rem;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: appearAnimation 0.5s ease-in-out forwards;
 
-    opacity: 0;
-    transform: translateY(100px);
-    animation: appearAnimation .5s ease-in-out forwards;
-    
-    .steps{
-        margin: 0 auto;
-        max-width: fit-content;
-        column-gap: 6rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        
-        .back-bar{
-            display: block;
-            height: 2px;
-            width: 70%;
-            transform: translateY(-1.7rem);
-            position: absolute;
-            background: global.$medium-gray;
-            z-index: 0;
-            transition: .5s ease;
+  .steps {
+    margin: 0 auto;
+    max-width: fit-content;
+    column-gap: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
-            &.--active-bar{
-                background: global.$primary;
-            }
-        }
-        
-        .step{
+    .back-bar {
+      display: block;
+      height: 2px;
+      width: 70%;
+      transform: translateY(-1.7rem);
+      position: absolute;
+      background: global.$medium-gray;
+      z-index: 0;
+      transition: 0.5s ease;
 
-            z-index: 1;
-            
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-
-            .step-number{
-                margin: 0 auto;
-                width: 4rem;
-                height: 4rem;
-                display: block;
-                background: global.$medium-gray;
-                padding: 13px 16px;
-                border-radius: 50%;
-                color: global.$white;
-                font-size: 1.3rem;
-                transition: .5s ease;
-                cursor: pointer;
-                
-            }
-            
-            .step-text{
-                margin-top: 2rem;
-                color: global.$medium-gray;
-                font-size: 1rem;
-            }
-
-            
-            &.--active{
-                
-                .step-number{
-
-                    background: global.$primary;
-                }
-
-                .step-text{
-
-                    color: global.$primary;
-                }
-
-            }
-                
-
-        }
-
+      &.--active-bar {
+        background: global.$primary;
+      }
     }
 
-    .form-container{
+    .step {
+      z-index: 1;
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      .step-number {
         margin: 0 auto;
+        width: 4rem;
+        height: 4rem;
         display: block;
-        max-width: 43rem;
-        margin-top: 12rem;
-        
-        
-        button{
-            border: 0;
-            cursor: pointer;
-            background: none;
-            transition: .5s;
+        background: global.$medium-gray;
+        padding: 13px 16px;
+        border-radius: 50%;
+        color: global.$white;
+        font-size: 1.3rem;
+        transition: 0.5s ease;
+        cursor: pointer;
+      }
 
-            &:hover{
-                opacity: .9;
-            }
-        }
-        
-        form{
-            
-            .submit, .next{
-                border-radius: 5px;
-                width: 100%;
-                padding: 1.4rem 2rem;
-                background-color: global.$primary;
-                color: global.$white;
-            }
-            
-            .email,.password,.submit{
-                margin: 3rem 0;
-                display: block;
-            }
-            
-            margin-bottom: 3rem;
-        }
-        
-        .already-have-account{
-            color: global.$dark-gray;
-            font-weight: 300;
+      .step-text {
+        margin-top: 2rem;
+        color: global.$medium-gray;
+        font-size: 1rem;
+      }
 
-
-            a{
-                text-decoration: none;
-                color: global.$primary;
-            }
+      &.--active {
+        .step-number {
+          background: global.$primary;
         }
-        
-        .back{
-            margin-top: 6rem;
-            color: global.$primary;
-            display: flex;
-            align-items: center;
 
-            img{
-                margin-right: 1rem;
-                transform: translateY(1px);
-            }
+        .step-text {
+          color: global.$primary;
         }
+      }
     }
+  }
+
+  .form-container {
+    margin: 0 auto;
+    display: block;
+    max-width: 43rem;
+    margin-top: 12rem;
+
+    button {
+      border: 0;
+      cursor: pointer;
+      background: none;
+      transition: 0.5s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    form {
+      .submit,
+      .next {
+        border-radius: 5px;
+        width: 100%;
+        padding: 1.4rem 2rem;
+        background-color: global.$primary;
+        color: global.$white;
+      }
+
+      .email,
+      .password,
+      .submit {
+        margin: 3rem 0 2rem;
+        display: block;
+      }
+
+      margin-bottom: 3rem;
+
+      .passwordsNotMatch {
+        color: global.$red;
+        display: block;
+        height: 2rem;
+        line-height: 3rem;
+      }
+    }
+
+    .already-have-account {
+      color: global.$dark-gray;
+      font-weight: 300;
+
+      a {
+        text-decoration: none;
+        color: global.$primary;
+      }
+    }
+
+    .back {
+      margin-top: 6rem;
+      color: global.$primary;
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 1rem;
+        transform: translateY(1px);
+      }
+    }
+  }
 }

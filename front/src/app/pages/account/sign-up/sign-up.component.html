@@ -1,38 +1,3 @@
-<ng-template #signinAnchor>
-
-    <footer>
-        <button class="already-have-account">I already have an account, <a
-                [routerLink]="['/sign-in']">signin</a></button>
-    </footer>
-</ng-template>
-
-<ng-template #firstStep>
-    <div class="form-container">
-        <form>
-            <pod-form-field class="name" labelText="Name"></pod-form-field>
-            <pod-form-field class="email" labelText="Email"></pod-form-field>
-            <button class="next" (click)="nextStep($event)">Next</button>
-        </form>
-        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
-    </div>
-</ng-template>
-
-
-<ng-template #secondStep>
-    <div class="form-container">
-        <form>
-            <pod-form-field class="password" labelText="Password" type="password"></pod-form-field>
-            <pod-form-field class="repeat-passowrd" labelText="Confirm passowrd" type="password"></pod-form-field>
-            <button class="submit">Sign up</button>
-        </form>
-        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
-        <button class="back" (click)="prevStep($event)">
-            <img src="assets/icons/arrow-left.svg" alt="back icon">
-            Back
-        </button>
-    </div>
-</ng-template>
-
 <div class="signup">
 
     <div class="steps">
@@ -53,3 +18,63 @@
         </div>
     </div>
 </div>
+
+<ng-template #firstStep>
+    <div class="form-container">
+        <form>
+            <pod-form-field #name class="name" labelText="Name" type="text" [validations]="fieldsValidators.name"
+                [value]="formValues.name">
+            </pod-form-field>
+            <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email"
+                [value]="formValues.email">
+            </pod-form-field>
+            <button class="next" (click)="nextStep($event,[name,email])">Next</button>
+        </form>
+        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
+    </div>
+</ng-template>
+
+
+<ng-template #secondStep>
+    <div class="form-container">
+        <form>
+            <pod-form-field 
+                #password 
+                class="password" 
+                labelText="Password" 
+                type="password"
+                [validations]="fieldsValidators.password" 
+                [value]="formValues.password"
+                (change)="checkPasswordMatch($event,formValues.repeatedPassword)">
+            </pod-form-field>
+
+            <pod-form-field 
+                #repeatPassword 
+                class="repeat-passowrd" 
+                labelText="Confirm password" 
+                type="password"
+                [validations]="fieldsValidators.password" 
+                [value]="formValues.repeatedPassword"
+                (change)="checkPasswordMatch(formValues.password,$event)"
+                >
+            </pod-form-field>
+
+            <span class="passwordsNotMatch" *ngIf="passwordDoNotMatch">Passwords do not match</span>
+            <button class="submit" (click)="submit($event, [password,repeatPassword])">Sign up</button>
+        </form>
+        <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
+        <button class="back" (click)="prevStep($event)">
+            <img src="assets/icons/arrow-left.svg" alt="back icon">
+            Back
+        </button>
+    </div>
+</ng-template>
+
+
+<ng-template #signinAnchor>
+
+    <footer>
+        <button class="already-have-account">I already have an account, <a
+                [routerLink]="['/sign-in']">signin</a></button>
+    </footer>
+</ng-template>

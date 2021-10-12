@@ -8,7 +8,7 @@
       "@globals/*": ["app/globals/*"],
       "@pages/*": ["app/pages/*"],
       "@interfaces/*": ["app/interfaces/*"],
-      "@types/*": ["app/types/*"],
+      "@typing/*": ["app/typing/*"],
       "@routes/*": ["app/routes/*"],
       "@enums/*": ["app/enums/*"],
       "@services/*": ["app/services/*"],
