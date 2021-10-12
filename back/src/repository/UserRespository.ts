@@ -18,11 +18,10 @@ export default class UserRepository {
 
     async findUserByEmail(email: string) {
 
-        return await this.repository.find({ email });
+        return await this.repository.findOne({ email });
     }
 
     async findUserById(id: number) {
-
-        return await this.repository.findOne(id);
+        return await this.repository.findOne({ id });
     }
 }

@@ -8,7 +8,7 @@ import { authenticate, verifyToken } from './middlewares/auth';
 
 dotenv.config({ path: `${__dirname}/../../.env` });
 
-createConnection().then(connection => {
+createConnection().then(() => {
 
   const controllers = [
     new UserController()

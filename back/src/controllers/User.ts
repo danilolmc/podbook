@@ -15,7 +15,7 @@ class UserController implements Controller {
     async initRoutes() {
         this.router.post('/sign-up', this.createUser)
         this.router.post('/sign-in', this.login)
-        this.router.post('/me', await verifyToken, this.me)
+        this.router.get('/me', await verifyToken, this.me)
     }
 
     async createUser(req: Request, res: Response) {
@@ -64,18 +64,35 @@ class UserController implements Controller {
 
 
         } catch (error) {
-            console.log(error)
-            res.status(500).send({ message: 'erro ao tentar realizar login, tente novamente' })
+            res.status(500).send({ message: 'erro ao tentar realizar login' })
         }
     }
 
     async me(req: Request, res: Response) {
 
+        
+        console.log(req.headers)
         const userRepository = new UserRepository();
 
-        const user = await userRepository.findUserById(req.body.id);
+        try {
 
-        res.send(user)
+            const user = await userRepository.findUserById(req.body.id);
+
+            if (!!user) {
+
+                const { id, name, email } = user;
+
+                res.send({ id, name, email });
+
+                return;
+            }
+
+            res.status(404).send({ message: `usuário com código ${req.body.id} não foi encontrado` })
+
+        } catch (error) {
+            res.status(500).send({ message: 'erro ao buscar dados do perfil' })
+        }
+
     }
 
 }
