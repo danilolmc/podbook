@@ -7,7 +7,7 @@ export const environment = {
   apiRequest: {
     host: 'http://localhost',
     port: 3333,
-    url: '/podbook/api/'
+    url: '/podbook/api'
   }
 };
 

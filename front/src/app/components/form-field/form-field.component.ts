@@ -81,6 +81,8 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
 
         this.change.emit(value);
 
+        this.value = value;
+
         checkNoWhiteSpaceValidation(value, this.input);
 
         const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))

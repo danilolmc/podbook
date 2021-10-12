@@ -1,14 +1,18 @@
-import { isNgContainer } from '@angular/compiler';
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { SignupService } from '@services/signup/signup.service';
+import { FieldsValidators } from '@typing/fieldsValidators/fieldsValidators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'pod-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
+
+  private unsubscriber = new Subject();
 
   formValues = {
     name: '',
@@ -29,7 +33,7 @@ export class SignUpComponent implements OnInit {
     { active: false, name: 'Password' },
   ]
 
-  fieldsValidators = {
+  fieldsValidators: FieldsValidators = {
     name: [{
       validationName: 'required',
       validationErrorMessage: 'Campo obrigatório'
@@ -65,17 +69,19 @@ export class SignUpComponent implements OnInit {
 
     if (!this.validateBeforeGoToNextStep(event, fields)) return;
 
-    if(this.passwordDoNotMatch) return;
+    if (this.passwordDoNotMatch) return;
 
-    const [password, repeatedPassword] = fields.map(field => field.input.value);
+    const [password, repeatedPassword] = fields.map(field => field.value);
 
     this.formValues = { ...this.formValues, password, repeatedPassword };
 
-    const { name, email, password : pass } = this.formValues
+    const { name, email, password: pass } = this.formValues;
 
     const signupData = { name, email, password: pass };
 
-    this.signupService.signup(signupData).subscribe(user => console.log(user));
+    // TODO: finish user flow after signin up 
+
+    this.signupService.signup(signupData).pipe(takeUntil(this.unsubscriber)).subscribe(user => console.log(user));
 
   }
 
@@ -114,7 +120,7 @@ export class SignUpComponent implements OnInit {
 
     goToNextStep();
 
-    const [name, email] = fields.map(field => field.input.value);
+    const [name, email] = fields.map(field => field.value);
 
     this.formValues = { ...this.formValues, name, email };
   }
@@ -123,15 +129,11 @@ export class SignUpComponent implements OnInit {
 
     event.preventDefault()
 
-    const allFieldsIsValid = fields.every(field => field.input.valid);
+    const someFieldIsInvalid = fields.filter(field => field.input.invalid);
 
-    const invalidField = fields.filter(field => field.input.invalid);
+    if (!!someFieldIsInvalid.length) someFieldIsInvalid[0].fieldRef.nativeElement.focus();
 
-    if (!!invalidField.length) invalidField[0].fieldRef.nativeElement.focus();
-
-    if (!allFieldsIsValid) return false;
-
-    return allFieldsIsValid;
+    return !someFieldIsInvalid.length;
   }
 
   prevStep(event: Event) {
@@ -153,5 +155,10 @@ export class SignUpComponent implements OnInit {
 
   disableStep(step: number) {
     this.steps[step - 1].active = false;
+  }
+
+  ngOnDestroy() {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 }
