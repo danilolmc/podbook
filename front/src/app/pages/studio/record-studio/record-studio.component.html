@@ -1,5 +1,7 @@
 <div class="studio">
 
+    <span [ngClass]="['alert', alert.type]">{{alert.message}}</span>
+
     <button [ngClass]="['microphone', getRecordingStatusClass()]" (click)="toggleRecordingStatus()">
         <span>
             <img src="assets/icons/microphone-icon.svg" alt="Microphone icon">

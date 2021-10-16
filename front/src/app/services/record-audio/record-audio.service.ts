@@ -18,12 +18,17 @@ export class RecordAudioService {
   }
 
   async recordAudio() {
+    
+    const devices = await navigator.mediaDevices.enumerateDevices()
+
+    const audioInputDevices = devices.filter(device => device.kind === 'audioinput');
+
+    if(!(audioInputDevices.length > 0)) throw {message: 'Microfone not found'};
 
     const userMedia = await navigator.mediaDevices.getUserMedia({ audio: true });
 
     const mediaRecorder = new MediaRecorder(userMedia);
 
-    
     mediaRecorder.addEventListener('dataavailable', (event: any) => {
       event.data.size > 0 && this.audioChunks.push(event.data);
     });

@@ -123,11 +123,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.activeStep(this.currentStep)
     }
 
-    goToNextStep();
-
-    const [name, email] = fields.map(field => field.value);
-
+    
+    const [name, email] = fields.map(field => field.input.value);
+    
     this.formValues = { ...this.formValues, name, email };
+
+    goToNextStep();
   }
 
   validateBeforeGoToNextStep(event: Event, fields: FormFieldComponent[]) {
