@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { LoginModel } from "../model/UserModel";
 import UserRepository from "../repository/UserRespository";
@@ -19,7 +19,6 @@ export const verifyToken = (req: any, res: Response, next: any) => {
     const token = 
         req.body.token || 
         req.query.token || 
-        req.headers['authorization']?.replace('Bearer ', '') || 
         req.headers['x-auth-token'];
 
     if (!token) {
@@ -43,7 +42,7 @@ export const authenticate = async (loginData: LoginModel) => {
 
     const { email, password } = loginData;
 
-    if (!(email && password)) return ({ statusCode: 400, message: 'Email and password is required' });
+    if (!(email && password)) return ({ statusCode: 401, message: 'Email and password is required' });
 
     const userExist = await userRepository.findUserByEmail(email);
 
@@ -58,7 +57,7 @@ export const authenticate = async (loginData: LoginModel) => {
 
     const authenticationSuccess = userExist && passowrdIsCorrect;
 
-    if (!authenticationSuccess) return ({ statusCode: 400, message: 'Email or password invalid' });
+    if (!authenticationSuccess) return ({ statusCode: 401, message: 'Email or password invalid' });
 
     const token = genToken({ user_id: userExist.id, email: userExist.email }, '2h');
 

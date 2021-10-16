@@ -50,6 +50,7 @@ class UserController implements Controller {
 
     async login(req: Request, res: Response) {
 
+
         try {
             const userCredentials: LoginModel = req.body;
 
@@ -60,8 +61,11 @@ class UserController implements Controller {
                 return;
             }
 
-            res.status(200).send(authentication);
-
+            res.header({
+                'access-control-expose-headers': 'x-auth-token',
+                'x-auth-token': authentication.token
+            });
+            res.status(200).send({ authenticated: authentication.auth });
 
         } catch (error) {
             res.status(500).send({ message: 'erro ao tentar realizar login' })
@@ -70,7 +74,7 @@ class UserController implements Controller {
 
     async me(req: Request, res: Response) {
 
-        
+
         console.log(req.headers)
         const userRepository = new UserRepository();
 

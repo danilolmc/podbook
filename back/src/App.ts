@@ -12,7 +12,7 @@ class App {
         const app = express();
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
-        app.use(cors({ origin: 'http://localhost:4200' }));
+        app.use(cors());
 
         this.app = app;
         this.port = appInit.port;
