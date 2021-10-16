@@ -1,5 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
+import { TabItemComponent } from '@components/tab/tab-item/tab-item.component';
+import { TabComponent } from '@components/tab/tab.component';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -9,39 +11,27 @@ import { Subject } from 'rxjs';
 })
 export class StudioComponent implements OnDestroy, OnInit {
 
+  @ViewChild(TabComponent) tab!:  TabComponent;
+  @ViewChildren(TabItemComponent) tabitems = new QueryList<TabItemComponent>()
+
   notifier = new Subject();
 
   tabStudioCallback = () => {
-    this.route.navigate(['/studio'])
-    this.currentUrl = '/studio'
+    this.currentUrl = '/podbooks/studio'
+    this.route.navigate(['/podbooks/studio'])
   };
   tabPodbooksCallback = () => {
-    this.route.navigate(['/studio/podbooks']);
-    this.currentUrl = '/studio/podbooks'
+    this.currentUrl = '/podbooks'
+    this.route.navigate(['/podbooks']);
   };
 
   currentUrl = '';
 
-  tabItems = [
-    {
-      title: 'studio',
-      callback: this.tabStudioCallback,
-      route: '/studio',
-      selected: true,
-    },
-    {
-      title: 'my podbooks',
-      callback: this.tabPodbooksCallback,
-      route: '/studio/podbooks',
-      selected: false,
-    }
-  ];
-
   constructor(private route: Router) { }
 
   ngOnInit() {
-    
-      this.tabStudioCallback();
+
+    this.tabPodbooksCallback();
   }
 
   ngOnDestroy() {
@@ -51,5 +41,9 @@ export class StudioComponent implements OnDestroy, OnInit {
 
   isSelected(url: string) {
     return this.currentUrl === url;
+  }
+
+  openStudio() {
+    this.tab.selectTab(this.tabitems.last);
   }
 }

@@ -9,7 +9,7 @@
     </header>
 
     <section>
-        <header>
+        <header *ngIf="homeCards.length > 0">
             <pod-style-list (stateListChanges)="changeStyleList($event)"></pod-style-list>
         </header>
         <pod-cards-container title="Recent podbooks" [listStyle]="listStyle" [cardsList]="homeCards"
@@ -17,5 +17,3 @@
     </section>
 
 </div>
-
-<pod-float-button [callback]="call" src="assets/icons/plus-icon.svg"></pod-float-button>

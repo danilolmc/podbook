@@ -164,3 +164,11 @@
         // }
     }
 }
+
+pod-float-button{
+    display: block;
+    position: fixed;
+    bottom: 8rem;
+    right: 12vw;
+    z-index: 10;
+}

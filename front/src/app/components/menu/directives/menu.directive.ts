@@ -7,10 +7,20 @@ export class MenuDirective {
 
 
   @Input() active = false;
+  @Input() visible: boolean | undefined | null = false;
 
 
-  @HostBinding('class.--active') get isActive(){
+  @HostBinding('class.--active') get isActive() {
     return this.active;
+  }
+
+  @HostBinding('class.--visible') get isVisible() {
+
+    return this.visible === undefined || this.visible;
+  }
+
+  @HostBinding('class.--hidden') get isHidden() {
+    return this.visible !== undefined && !this.visible;
   }
 
 }

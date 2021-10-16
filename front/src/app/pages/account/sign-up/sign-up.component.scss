@@ -51,6 +51,11 @@
         font-size: 1.3rem;
         transition: 0.5s ease;
         cursor: pointer;
+
+        .finished-step{
+          width: 1.5rem;
+          transform: translate(-3px,0);
+        }
       }
 
       .step-text {

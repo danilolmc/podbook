@@ -11,11 +11,11 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: RecordStudioComponent
+                component: MyPodbooksComponent
             },
             {
-                path: 'podbooks',
-                component: MyPodbooksComponent
+                path: 'studio',
+                component: RecordStudioComponent
             }
         ]
     },

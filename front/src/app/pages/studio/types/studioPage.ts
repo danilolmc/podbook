@@ -15,6 +15,18 @@ export abstract class Studio {
 
 }
 
+export interface Navigator {
+    getUserMedia(
+        options: { video?: boolean; audio?: boolean; },
+        success: (stream: any) => void,
+        error?: (error: string) => void
+    ): void;
+}
+
+export interface RecordedAudio {
+    audioBlob: Blob,
+    audioUrl: string
+}
 
 export class TabRoutedCreator {
 

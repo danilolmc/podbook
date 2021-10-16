@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { AudioControlService } from '@services/audio-control/audio-control.service';
+import { RecordAudioService } from '@services/record-audio/record-audio.service';
 import { recordingStatusStratergy } from '@stratergy/StudioPage/studioStratergy';
-import { RecordingStatus, Studio } from '../types/studioPage';
+import { RecordedAudio, RecordingStatus, Studio } from '../types/studioPage';
+
 
 @Component({
   selector: 'pod-record-studio',
@@ -12,18 +15,48 @@ export class RecordStudioComponent implements Studio {
 
   recordingStatus = RecordingStatus.STOPPED;
 
-  toggleRecordingStatus(){
-    this.recordingStatus = this.recordingStatus == RecordingStatus.STOPPED 
-        ? RecordingStatus.RECORDING 
-        : RecordingStatus.STOPPED;
+  private recorder = this.recordingService.recordAudio();
+
+  constructor(
+    private recordingService: RecordAudioService,
+    private audioControlService: AudioControlService) {
   }
 
-  getRecordingStatusClass(){
+  toggleRecordingStatus() {
+
+    this.recordingStatus == RecordingStatus.STOPPED
+      ? this.startRecordingAudio()
+      : this.stopRecordingAudio();
+  }
+
+  async startRecordingAudio() {
+    this.recordingStatus = RecordingStatus.RECORDING;
+
+    const { start } = await this.recorder;
+
+    start();
+  }
+
+  async stopRecordingAudio() {
+
+    this.recordingStatus = RecordingStatus.STOPPED;
+
+    const { stop } = await this.recorder;
+
+    const getRecordedAudio = (recordedAudio: RecordedAudio) => {
+
+      this.audioControlService.audioData.next(recordedAudio);
+    }
+
+    await stop(getRecordedAudio);
+  }
+
+  getRecordingStatusClass() {
     return recordingStatusStratergy[this.recordingStatus];
   }
-  
-  
-  call(text: string){
+
+
+  call(text: string) {
 
     return () => console.log(text)
   }

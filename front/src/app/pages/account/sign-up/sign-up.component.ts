@@ -29,8 +29,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
 
   steps = [
-    { active: true, name: 'Personal Data' },
-    { active: false, name: 'Password' },
+    { active: true, name: 'Personal Data', finished: false },
+    { active: false, name: 'Password', finished: false },
   ]
 
   fieldsValidators: FieldsValidators = {
@@ -79,6 +79,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     const signupData = { name, email, password: pass };
 
+    this.finishCurrentStep();
+
     // TODO: finish user flow after signin up 
 
     this.signupService.signup(signupData).pipe(takeUntil(this.unsubscriber)).subscribe(user => console.log(user));
@@ -113,7 +115,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     if (!this.validateBeforeGoToNextStep(event, fields)) return;
 
+    this.finishCurrentStep();
+    
     const goToNextStep = () => {
+
       this.currentStep += 1;
       this.activeStep(this.currentStep)
     }
@@ -143,6 +148,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
       this.currentStep -= 1;
       this.activeStep(this.currentStep)
+      this.steps[this.currentStep - 1].finished = false;
     }
 
     this.disableStep(this.currentStep);
@@ -156,6 +162,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
   disableStep(step: number) {
     this.steps[step - 1].active = false;
   }
+
+  finishCurrentStep(){
+    this.steps[this.currentStep - 1].finished = true;
+  }
+  
 
   ngOnDestroy() {
     this.unsubscriber.next();

@@ -8,6 +8,7 @@ import { MenuModule } from '@components/menu/menu.module';
 import { HomeModule } from '@pages/home/home.module';
 import { AppRoutingModule } from '@routes/app.routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HomeModule,
     MenuModule,
+    CoreModule,
     AudioControlModule,
     FooterModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

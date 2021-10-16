@@ -6,12 +6,10 @@
 
 
     <div class="list-container">
-        <header class="list-container-header">
+        <header class="list-container-header" *ngIf="exploreCards.length > 0">
             <pod-style-list (stateListChanges)="changeStyleList($event)"></pod-style-list>
         </header>
         <pod-cards-container title="Action" [listStyle]="listStyle"></pod-cards-container>
         <pod-cards-container title="Adventure" [listStyle]="listStyle"></pod-cards-container>
     </div>
 </div>
-
-<pod-float-button [callback]="call" src="assets/icons/plus-icon.svg"></pod-float-button>

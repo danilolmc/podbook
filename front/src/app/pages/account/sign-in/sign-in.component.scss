@@ -2,7 +2,7 @@
 @use "/src/app//global/shared-styles/shared" as shared;
 
 .signin {
-  margin: 35rem auto 25rem;
+  margin: 20rem auto 25rem;
   opacity: 0;
   transform: translateY(100px);
   animation: appearAnimation 0.5s ease-in-out forwards;
@@ -11,6 +11,12 @@
     margin: 0 auto;
     display: block;
     max-width: 43rem;
+
+    img{
+      display: block;
+      margin: 0 auto;
+      width: 7rem;
+    }
 
     button {
       border: 0;
@@ -24,6 +30,9 @@
     }
 
     form {
+
+      margin-top: 12rem;
+
       .email,
       .password,
       .submit {
@@ -40,9 +49,20 @@
         border-radius: 5px;
         width: 100%;
         padding: 1.4rem 2rem;
-        margin-top: 4rem;
+        margin-top: 2rem;
         background-color: global.$primary;
         color: global.$white;
+      }
+
+      .password{
+        margin-bottom: 0;
+      }
+      .authentication-error{
+        color: global.$red;
+        transition: .5s ease;
+        display: block;
+        margin-top: 1.5rem;
+        height: 1.5rem;
       }
     }
 

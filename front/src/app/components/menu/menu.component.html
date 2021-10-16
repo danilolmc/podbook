@@ -1,17 +1,36 @@
 <header>
-    <div>
+    <div class="menu-container">
         <a [routerLink]="['/']" (click)="selectItem('','')">
             <img src="assets/logo/logo.svg" alt="Logo" class="logo">
         </a>
         <ul>
-            <li 
-                *ngFor="let item of menuItems" 
-                [class]="item.className"
-                (click)="selectItem(item.text, item.link)"
-                podMenu [active]="item.active || activeItemByUrl(item)"
-            >
+            <li *ngFor="let item of menuItems" [class]="item.className" (click)="selectItem(item.text, item.link)"
+                podMenu [active]="item.active || activeItemByUrl(item)" [visible]="!!item.visible">
                 <button class="button">{{item.text}}</button>
             </li>
+            <div podMenu [visible]="!(userAuthenticated | async)?.user_id">
+                <li [class]="['--signup']" (click)="selectItem('Sign Up', 'sign-up')">
+                    <button class="button">Sign Up</button>
+                </li>
+
+                <li [class]="['--signin']" (click)="selectItem('Sign In', 'sign-in')">
+                    <button class="button">Sign In</button>
+                </li>
+            </div>
+
+            <div class="authenticated-user" podMenu [visible]="!!(userAuthenticated | async)?.user_id">
+                <header class="authenticated-user-title">
+                    <span>Danio Lima Costa</span>
+                    <img src="">
+                </header>
+                <div class="authenticated-user-body">
+
+                    <ul class="items">
+                        <li>Profile</li>
+                        <li (click)="logout()">Sair</li>
+                    </ul>
+                </div>
+            </div>
         </ul>
     </div>
 </header>

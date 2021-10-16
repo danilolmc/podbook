@@ -1,10 +1,16 @@
 <div class="signup">
 
+ 
     <div class="steps">
         <span [ngClass]="{'back-bar': true, '--active-bar': currentStep > 1}" [attr.position]="currentStep"></span>
         <div class="step" *ngFor="let step of steps; index as activeStep" [attr.name]="step.name"
             [ngClass]="{'--active': step.active}">
-            <span class="step-number">{{activeStep + 1}}</span>
+            <span class="step-number">
+                <img class="finished-step" *ngIf="step.finished" src="/assets/icons/check-icon.svg" alt="check icon">
+                <label *ngIf="!step.finished">{{activeStep + 1}}</label>
+            </span>
+            <span class="step-finished">
+            </span>
             <span class="step-text">{{step.name}}</span>
         </div>
     </div>

@@ -31,8 +31,9 @@
 pod-float-button{
     display: block;
     position: fixed;
-    bottom: 7rem;
+    bottom: 8rem;
     right: 12vw;
+    z-index: 10;
 }
 
 pod-cards-container{

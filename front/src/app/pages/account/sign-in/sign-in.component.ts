@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { SigninService } from '@services/signin/signin.service';
 import { FieldsValidators } from '@typing/fieldsValidators/fieldsValidators';
@@ -10,9 +11,13 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
 
   private unsubscriber = new Subject();
+
+  private fromUrl = '';
+
+  authenticationErrorMessage = '';
 
   fieldsValidators: FieldsValidators = {
     email: [{
@@ -29,7 +34,16 @@ export class SignInComponent {
     }],
   };
 
-  constructor(private signinService: SigninService) { }
+  constructor(
+    private signinService: SigninService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.activatedRoute
+      .queryParams
+      .subscribe(params => this.fromUrl = params['fromUrl']);
+  }
 
   submit(event: Event, credentials: FormFieldComponent[]) {
 
@@ -43,13 +57,15 @@ export class SignInComponent {
 
 
     // TODO: make user flow after signin up 
-    
+
     this.signinService
       .signin({ email, password })
-      .pipe(takeUntil(this.unsubscriber))
       .subscribe(response => {
         console.log(response)
-      });
+        this.router.navigate(['/podbooks'])
+      },
+      ({error}) => this.authenticationErrorMessage = error.message
+      );
   }
 
 

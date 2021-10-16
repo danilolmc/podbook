@@ -23,5 +23,7 @@ export interface AudioComponent {
 
 export abstract class Audio{
 
+    static audio = new window.Audio();
+
     abstract toggle(): void
 }

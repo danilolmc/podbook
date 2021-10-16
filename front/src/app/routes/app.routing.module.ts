@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "@pages/home/home.component";
+import { AuthGuard } from "app/core/auth/auth.guard";
+import { LoginGuard } from "app/core/auth/login.guard";
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -10,8 +12,9 @@ const routes: Routes = [
         loadChildren: () => import('@pages/explore/explore.module').then(explore => explore.ExploreModule)
     },
     {
-        path: 'studio',
-        loadChildren: () => import('@pages/studio/studio.module').then(studio => studio.StudioModule)
+        path: 'podbooks',
+        loadChildren: () => import('@pages/studio/studio.module').then(studio => studio.StudioModule),
+        canActivate: [AuthGuard]
     },
     {
         path: 'sign-up',
@@ -19,7 +22,8 @@ const routes: Routes = [
     },
     {
         path: 'sign-in',
-        loadChildren: () => import('@pages/account/sign-in/signin.module').then(account => account.SignInModule)
+        loadChildren: () => import('@pages/account/sign-in/signin.module').then(account => account.SignInModule),
+        canActivate: [LoginGuard]
     },
 
 ];

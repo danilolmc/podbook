@@ -6,6 +6,9 @@ export class Repeat extends Audio {
 
     repeatNotRepeatIcons: [string, string] = ['assets/icons/not-repeat-icon.svg', 'assets/icons/repeat-icon.svg'];
 
+
+    private audio = Audio.audio;
+
     get repeatNotRepeatCurrentIcon(): string {
 
         const isToRepeat = this.repeat;
@@ -19,10 +22,12 @@ export class Repeat extends Audio {
 
     enableRepeating() {
         this.repeat = true;
+        this.audio.loop = true;
     }
 
     disableRepeating() {
         this.repeat = false;
+        this.audio.loop = false;
     }
 
 

@@ -1,46 +1,69 @@
-@use '/src/app/global/global' as global; 
+@use "/src/app/global/global" as global;
 
-:host{
+:host {
+  display: block;
 
+  .ribbon {
+    $height: 6rem;
+
+    background: global.$white;
     display: block;
-   
-    footer{
-        width: 100%;
-        background-color: global.$primary;
+    width: 1.7rem;
+    height: $height;
+    position: absolute;
+    left: 12vw;
 
-        .footer-wrapper{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 5rem 0;
-            min-height: 22rem;
-            gap: 3rem;
-
-            img{
-                width: 13.3rem;
-            }
-
-            ul{
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 5rem 9.6rem;
-                align-items: center;
-
-                li{
-                    flex: 1 auto;
-                    cursor: pointer;
-
-                    .button{
-                        cursor: inherit;
-                        color: global.$white;
-                        border: 0;
-                        background: none;
-                        font-size: 1.6rem;
-                    }
-                }
-            }
-        }
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      background: global.$white;
+      border-color: transparent transparent global.$primary transparent;
+      border-style: solid;
+      border-width: 8.5px;
+      display: block;
+      transform: translateY($height);
     }
+  }
+
+  footer {
+    width: 100%;
+    background-color: global.$primary;
+    padding: 0 10rem;
+
+    .footer-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 5rem 0;
+      min-height: 22rem;
+      gap: 3rem;
+
+      img {
+        width: 13.3rem;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5rem 9.6rem;
+        align-items: center;
+
+        li {
+          flex: 1 auto;
+          cursor: pointer;
+
+          .button {
+            cursor: inherit;
+            color: global.$white;
+            border: 0;
+            background: none;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+  }
 }

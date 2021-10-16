@@ -11,10 +11,12 @@ export class ExploreComponent {
 
   listStyle = ListStatesEnum.GRID;
 
+  exploreCards = [];
+
   call(){}
 
-  changeStyleList(style: ListStatesEnum){
-      this.listStyle = style;
+  changeStyleList(style: ListStatesEnum) {
+    this.listStyle = style;
   }
 
 }
