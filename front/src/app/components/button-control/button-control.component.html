@@ -3,3 +3,5 @@
     <img [src]="currentIcon" [alt]="name + ' ' + 'control'">
     <span></span>
 </button>
+
+<span *ngIf="name" class="tooltip">{{name}}</span>

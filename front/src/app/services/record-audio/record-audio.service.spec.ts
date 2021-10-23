@@ -6,7 +6,9 @@ describe('RecordiAudioService', () => {
   let service: RecordAudioService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [MediaRecorder]
+    });
     service = TestBed.inject(RecordAudioService);
   });
 

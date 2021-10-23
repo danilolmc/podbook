@@ -15,6 +15,15 @@ export abstract class Studio {
 
 }
 
+export interface Podbook {
+
+    bannerImage: string
+    bannerTitle: string
+    description: string
+    category: string
+    audio: Blob;
+}
+
 export interface Navigator {
     getUserMedia(
         options: { video?: boolean; audio?: boolean; },

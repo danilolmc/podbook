@@ -15,6 +15,8 @@ export class CardComponent implements CardProperties {
 
   selector = 'card';
 
+  contextMenu = false;
+
   @Input()
   title = 'Creating reading habit';
 
@@ -46,6 +48,9 @@ export class CardComponent implements CardProperties {
     return this.callbackFunction;
   }
 
-
+  alerta($event: any){
+    $event.preventDefault()
+    this.contextMenu = true;
+  }
 
 }

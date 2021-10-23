@@ -1,0 +1,51 @@
+@use "/src/app/global/global" as global;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+
+  .button {
+    background-color: global.$primary;
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    transition: 0.5s ease;
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    border: 0;
+
+    &:hover {
+      & + .tooltip {
+        opacity: 1;
+        transform: translateY(50px);
+      }
+    }
+
+    span{
+      color: global.$white;
+    }
+  }
+
+  .tooltip {
+    position: absolute;
+    text-align: center;
+    display: block;
+    margin-top: 1.5rem;
+    padding: 0.3rem 0.5rem;
+    opacity: 0;
+    background-color: global.$primary;
+    transition: 0.3s ease;
+    display: block;
+    color: global.$white;
+    min-height: 1.3rem;
+    width: 100%;
+    text-overflow: ellipsis;
+    width: 7rem;
+    border-radius: 2px;
+    transform: translateY(65px);
+  }
+}

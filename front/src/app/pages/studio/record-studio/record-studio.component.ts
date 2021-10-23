@@ -1,8 +1,9 @@
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { RecordAudioService } from '@services/record-audio/record-audio.service';
 import { recordingStatusStratergy } from '@stratergy/StudioPage/studioStratergy';
-import { RecordedAudio, RecordingStatus, Studio } from '../types/studioPage';
+import { Podbook, RecordedAudio, RecordingStatus, Studio } from '../types/studioPage';
 
 
 @Component({
@@ -11,7 +12,9 @@ import { RecordedAudio, RecordingStatus, Studio } from '../types/studioPage';
   styleUrls: ['./record-studio.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RecordStudioComponent implements Studio, OnDestroy {
+export class RecordStudioComponent implements Studio {
+
+  modalIsVisible = false
 
   recordingStatus = RecordingStatus.STOPPED;
 
@@ -44,13 +47,19 @@ export class RecordStudioComponent implements Studio, OnDestroy {
 
       this.alert = { type: 'success', message: 'recording started' }
 
-      setTimeout(() => this.alert = { message: '', type: '' }, 4000);
-
     } catch (error: any) {
+
       this.recordingStatus = RecordingStatus.STOPPED;
       this.alert = { type: 'error', message: error.message }
-      console.log(this.alert)
     }
+
+    this.resetMessageBoxInSeconds(4000)
+
+  }
+
+  private resetMessageBoxInSeconds(seconds: number = 0) {
+
+    setTimeout(() => this.alert = { message: '', type: '' }, seconds);
 
   }
 
@@ -69,8 +78,37 @@ export class RecordStudioComponent implements Studio, OnDestroy {
 
       await stop(getRecordedAudio);
 
+    } catch (error: any) {
+      this.alert = { type: 'error', message: error.message };
+      this.resetMessageBoxInSeconds(4000);
+    }
+  }
+
+  openModal() {
+    this.modalIsVisible = true;
+  }
+
+  closeModal($event?: any) {
+
+    if($event?.target?.id != 'modal') return;
+
+    this.modalIsVisible = false;
+  }
+
+  toggleModal() {
+    this.modalIsVisible ? this.closeModal() : this.openModal();
+  }
+
+  saveRecordedAudio(fields: FormFieldComponent[]) {
+
+    try {
+
+      const [title, category, description] = fields.map(field => field.value);
+
+      // this.recordingStatus.saveRecordedAudio();
+
     } catch (error) {
-      console.log(error)
+
     }
 
 
@@ -78,17 +116,6 @@ export class RecordStudioComponent implements Studio, OnDestroy {
 
   getRecordingStatusClass() {
     return recordingStatusStratergy[this.recordingStatus];
-  }
-
-
-  call(text: string) {
-
-    return () => console.log(text)
-  }
-
-  ngOnDestroy(){
-    this.stopRecordingAudio();
-    this.audioControlService.closeAudioBar();
   }
 
 }

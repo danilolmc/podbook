@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { SigninService } from '@services/signin/signin.service';
@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
 
   private unsubscriber = new Subject();
 
@@ -76,5 +76,10 @@ export class SignInComponent implements OnInit {
     if (!!someFieldIsInvalid.length) someFieldIsInvalid[0].fieldRef.nativeElement.focus();
 
     return !someFieldIsInvalid.length;
+  }
+
+  ngOnDestroy(){
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 }

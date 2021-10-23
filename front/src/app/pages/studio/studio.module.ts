@@ -10,6 +10,8 @@ import { StudioRoutingModule } from "@routes/studio.routing.module";
 import { StudioComponent } from "./studio.component";
 import { RecordStudioComponent } from './record-studio/record-studio.component';
 import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
+import { ButtonModule } from "@components/button/button.module";
+import { FormFieldModule } from "@components/form-field/form-field.module";
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
         StudioRoutingModule,
         TabModule,
         ButtonControlModule,
-        CardsContainerModule
+        CardsContainerModule,
+        ButtonModule,
+        FormFieldModule
 
     ],
     exports: [StudioComponent]

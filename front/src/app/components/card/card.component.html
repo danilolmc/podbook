@@ -1,5 +1,13 @@
-<div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width" (click)="callback()">
-    <figure>
+<div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width">
+    <header>
+        <div class="context-menu">
+            <span class="ellipsis-icon">
+                <img src="assets/icons/ellipsis-icon.svg" alt="ellipsis icon">
+            </span>
+            <ng-container [ngTemplateOutlet]="context_menu"></ng-container>
+        </div>
+    </header>
+    <figure (click)="callback()">
         <img src="https://i.pinimg.com/originals/c8/c7/ff/c8c7ff0070dc0cbd59345630675a2f84.jpg">
         <figcaption>
             <div class="card-text">
@@ -12,3 +20,12 @@
         </figcaption>
     </figure>
 </div>
+
+<ng-template #context_menu>
+    <ul>
+        <li>
+            <span>share podbook</span>
+            <span title="share podbook"><img src="assets/icons/share-icon.svg" alt="share icon"></span>
+        </li>
+    </ul>
+</ng-template>

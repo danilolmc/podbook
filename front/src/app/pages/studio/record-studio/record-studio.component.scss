@@ -3,37 +3,37 @@
 
 .studio {
   .alert {
-      position: fixed;
-      top: 20rem;
-      right: 4rem;
-      font-size: 1rem;
-      min-width: 18rem;
-      min-height: 55px;
-      background: global.$white;
-      padding: 2rem;
-      border-radius: 2px;
-      text-align: center;
-      box-shadow:  0 5px 10px rgba($color: global.$red, $alpha: .1);
-      display: block;
-      z-index: 20;
-      opacity: 0;
-      transform: translateY(4rem);
-      transition: .3s ease;
-      cursor: pointer;
-      
-     &.error{
-          opacity: 1;
-          transform: translateY(0rem);
-          border: 1px solid global.$red;
-          color: global.$red;
-      }
-      
-     &.success{
-          opacity: 1;
-          transform: translateY(0rem);
-          border: 1px solid global.$green;
-          color: global.$green;
-      }
+    position: fixed;
+    top: 20rem;
+    right: 4rem;
+    font-size: 1rem;
+    min-width: 18rem;
+    min-height: 55px;
+    background: global.$white;
+    padding: 2rem;
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba($color: global.$red, $alpha: 0.1);
+    display: block;
+    z-index: 20;
+    opacity: 0;
+    transform: translateY(4rem);
+    transition: 0.3s ease;
+    cursor: pointer;
+
+    &.error {
+      opacity: 1;
+      transform: translateY(0rem);
+      border: 1px solid global.$red;
+      color: global.$red;
+    }
+
+    &.success {
+      opacity: 1;
+      transform: translateY(0rem);
+      border: 1px solid global.$green;
+      color: global.$green;
+    }
   }
 
   display: flex;
@@ -164,12 +164,114 @@
       transform: translateY(50px);
       transition: 0.5s ease;
       animation: staggerAnimation 1s cubic-bezier(0.68, -0.6, 0.32, 3) forwards;
+      position: relative;
+
+      //   &::before {
+      //     content: attr(tooltip-text);
+      //
+      // }
+
+      // &:hover::before {
+      //     opacity: 1;
+      //     transform: translate(-9px, 56px);
+      //   }
 
       @for $i from 0 to 6 {
         &:nth-child(#{$i}) {
           animation-delay: #{math.div($i, 10)}s;
         }
       }
+    }
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color: #000, $alpha: 0.5);
+  z-index: 10;
+  transition: 0.5s ease;
+
+  .modal-content {
+    padding: 3rem 3rem 5rem;
+    background-color: global.$white;
+    border-radius: 2px;
+    transition: .3s ease;
+
+
+    h1 {
+      color: global.$primary;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid global.$medium-gray;
+    }
+
+    .modal-body {
+      display: grid;
+      column-gap: 3rem;
+      grid-template-columns: 400px 450px;
+      margin-top: 4rem;
+
+      & > label {
+        display: flex;
+        width: 100%;
+        cursor: pointer;
+        background: global.$light-gray;
+        transition: 0.5s ease;
+
+        img {
+          width: 40%;
+          height: 40%;
+          display: block;
+          margin: auto;
+        }
+
+        input {
+          display: none;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .save-button {
+        margin-top: 1rem;
+        transition: 0.5s ease;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+      .text-fields {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+      }
+    }
+  }
+
+  &[visibility="false"] {
+    pointer-events: none;
+    opacity: 0;
+
+    .modal-content {
+      transform: translateY(100px);
+    }
+  }
+
+  &[visibility="true"] {
+    pointer-events: all;
+    opacity: 1;
+
+    .modal-content {
+      transform: translateY(0px);
     }
   }
 }
