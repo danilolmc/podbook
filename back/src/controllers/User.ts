@@ -21,7 +21,6 @@ class UserController implements Controller {
     async createUser(req: Request, res: Response) {
 
         const userRepository = new UserRepository();
-
         try {
             const { id, name, email } = await userRepository.createUser(req.body);
 
@@ -74,8 +73,6 @@ class UserController implements Controller {
 
     async me(req: Request, res: Response) {
 
-
-        console.log(req.headers)
         const userRepository = new UserRepository();
 
         try {

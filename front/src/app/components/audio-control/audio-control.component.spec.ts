@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AudioControlComponent } from './audio-control.component';
 import { AudioStatus } from './types/AudioControl';
-import { Mute } from './types/Mute';
 import { Playing } from './types/Playing';
 import { Repeat } from './types/Repeat';
+import { Volume } from './types/Volume';
+
 
 describe('AudioControlComponent', () => {
   let component: AudioControlComponent;
   let fixture: ComponentFixture<AudioControlComponent>;
 
   let playInstance: Playing;
-  let mutedInstance: Mute;
+  let mutedInstance: Volume;
   let repeatInstance: Repeat;
 
   beforeEach(async () => {
@@ -28,7 +28,7 @@ describe('AudioControlComponent', () => {
     fixture.detectChanges();
 
     playInstance = component.playingInstance;
-    mutedInstance = component.muteInstance;
+    mutedInstance = component.volumeInstance;
     repeatInstance = component.repeatInstance;
   });
 
@@ -71,7 +71,7 @@ describe('AudioControlComponent', () => {
   it('should unmute audio', () => {
 
     mutedInstance.unmute();
-    
+
     const currentIcon = mutedInstance.mutedUnmutedCurrentIcon;
 
     expect(currentIcon).toBe(mutedInstance.muteUnmuteIcons[1])

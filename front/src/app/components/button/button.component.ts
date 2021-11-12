@@ -13,7 +13,7 @@ export class ButtonComponent implements OnInit {
   icon = ''
 
   @Input()
-  callback = () => { }
+  callback = function () { }
 
   @Input()
   name = '';

@@ -1,22 +1,20 @@
 import { Audio, AudioStatus } from "./AudioControl";
 
-export class Playing extends Audio {
+export class Playing {
 
     private audioStatus = AudioStatus;
 
-    private currentStatus = AudioStatus.paused
+    private currentStatus = AudioStatus.paused;
 
     playPauseIcons: [string, string] = ['assets/icons/play-icon-white.svg', 'assets/icons/pause-icon-white.svg'];
 
-    constructor() {
-        super();
-        this.audio.addEventListener('ended', () => {
-            this.audio.currentTime = 0;
+    constructor(private htmlAudio: Audio) {
+
+        this.htmlAudio.audio.addEventListener('ended', () => {
+            this.htmlAudio.currentTime = 0;
             this.pause();
         })
     }
-
-    private audio = Audio.audio;
 
     get playPauseCurrentIcon(): string {
 
@@ -41,13 +39,13 @@ export class Playing extends Audio {
     pause() {
 
         this.currentStatus = this.audioStatus.paused;
-        this.audio.pause();
+        this.htmlAudio.audio.pause();
     }
 
     play() {
 
         this.currentStatus = this.audioStatus.playing;
-        this.audio.play();
+        this.htmlAudio.audio.play();
     }
 
 }

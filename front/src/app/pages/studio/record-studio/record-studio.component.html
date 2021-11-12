@@ -9,18 +9,18 @@
     </button>
 
     <footer>
-        <pod-button name="salvar" class="control-button" (click)="openModal()"
+        <pod-button [attr.disabled]="actionButtonsDisabled"  name="salvar" class="control-button" (click)="openModal()"
             icon="assets/icons/save-icon-white.svg" borderRadius='50px'>
         </pod-button>
-        <pod-button name="compartilhar" class="control-button"
+        <pod-button [attr.disabled]="actionButtonsDisabled" name="compartilhar" class="control-button"
             icon="assets/icons/share-icon-white.svg" borderRadius='50px'>
         </pod-button>
 
-        <pod-button name="descartar" class="control-button"
+        <pod-button [attr.disabled]="actionButtonsDisabled"  name="descartar" class="control-button"
             icon="assets/icons/delete-icon-white.svg" borderRadius='50px'>
         </pod-button>
 
-        <pod-button name="repetir" class="control-button"
+        <pod-button [attr.disabled]="actionButtonsDisabled"  name="repetir" class="control-button"
             icon="assets/icons/repeat-recording-icon-white.svg" borderRadius='50px'>
         </pod-button>
     </footer>
@@ -38,16 +38,16 @@
         <div class="modal-body">
 
             <label for="upload-file">
-                <img src="assets/illustrations/gallery.svg" alt="">
-                <input type="file" id="upload-file">
+                <img src="assets/illustrations/gallery.svg" alt="preview image" #preview class="prev" [attr.havePreview]="false">
+                <input type="file" accept="image/png, image/jpeg" id="upload-file" (change)="setImage($event)">
             </label>
 
 
             <div class="text-fields">
 
-                <pod-form-field class="field-title" #title labelText='podbook title'></pod-form-field>
-                <pod-form-field class="field-category" #category labelText='podbook category'></pod-form-field>
-                <pod-form-field class="field-description" #description labelText='podbook description'></pod-form-field>
+                <pod-form-field class="field-title" #title labelText='podbook title' [validations]="modalFieldsValidators.title"></pod-form-field>
+                <pod-form-field class="field-category" #category labelText='podbook category' [validations]="modalFieldsValidators.category"></pod-form-field>
+                <pod-form-field class="field-description" #description labelText='podbook description' [validations]="modalFieldsValidators.description"></pod-form-field>
 
                 <pod-button class="save-button" contentText="save podbook" width='100%' height="50px"
                     borderRadius="5px"></pod-button>

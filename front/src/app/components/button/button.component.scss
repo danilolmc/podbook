@@ -4,6 +4,17 @@
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
+  cursor: pointer;
+  
+  &[disabled]{
+    pointer-events: none;
+  
+    button{
+      opacity: .5;
+      pointer-events: inherit;
+    }
+  }
+
 
   .button {
     background-color: global.$primary;
@@ -28,6 +39,7 @@
     span{
       color: global.$white;
     }
+
   }
 
   .tooltip {

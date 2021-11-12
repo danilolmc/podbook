@@ -21,9 +21,12 @@
             </div>
 
             <div class="audio-controls">
-                <button class="mute-unmute-button" (click)="muteInstance.toggle()">
-                    <img [src]="muteInstance.mutedUnmutedCurrentIcon" alt="muted icon">
-                </button>
+                <div>
+                    <button class="mute-unmute-button" (click)="toggleVolume()">
+                        <img [src]="volumeInstance.mutedUnmutedCurrentIcon" alt="muted icon">
+                    </button>
+                    <input type="range" #range (change)="changeVolume($event)" class="range-input">
+                </div>
                 <button class="repeat-button" (click)="repeatInstance.toggle()">
                     <img [src]="repeatInstance.repeatNotRepeatCurrentIcon" alt="repeat icon">
                 </button>

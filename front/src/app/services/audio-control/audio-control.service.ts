@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AudioStatus } from "@components/audio-control/types/AudioControl";
 import { RecordedAudio } from "@pages/studio/types/studioPage";
 import { BehaviorSubject, Subject } from "rxjs";
 
@@ -11,6 +12,12 @@ export class AudioControlService {
 
     audioData = new Subject<RecordedAudio>();
 
+    playingStatus = new BehaviorSubject(AudioStatus.paused);
+    
+    set setAudioPlayingStatus(audioStatus: AudioStatus){
+        this.playingStatus.next(audioStatus);
+    } 
+
     openAudioBar() {
         this.barStatus.next(true);
     }
@@ -18,5 +25,6 @@ export class AudioControlService {
     closeAudioBar() {
         this.barStatus.next(false);
     }
+
 
 }

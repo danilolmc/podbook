@@ -1,7 +1,7 @@
 @use "/src/app/global/global" as global;
+@use "/src/app/global/shared-styles/shared" as shared;
 
 :host {
-  overflow: hidden;
   transition: 0.5s ease;
 
   &.closed {
@@ -49,8 +49,39 @@
       }
 
       div.audio-controls {
-        column-gap: 3rem;
+        column-gap: 2rem;
         margin-left: 5rem;
+        position: relative;
+
+        & > div {
+       
+          display: flex;
+          align-items: center;
+          grid-column-gap: 1rem;
+          flex-direction: column;
+          column-gap: 1rem;
+          transition: 1s ease;
+
+          &:hover {
+            & .range-input {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        
+        }   
+
+        @include shared.custom-input-range();
+
+        .range-input {
+          width: 150%;
+          opacity: 0;
+          transition: 0.5s ease;
+          transform: rotateZ(-90deg) translateX(50px);
+          position: absolute;
+          visibility: hidden;
+        }
+
       }
 
       .audio {
@@ -109,15 +140,25 @@
         border: 0;
         background: none;
         overflow: hidden;
-        width: 1.5rem;
         cursor: pointer;
         display: grid;
+        width: 1.5rem;
         place-content: center;
 
         img {
           margin: 0 auto;
         }
       }
+
+      .mute-unmute-button {
+        transition: 0.5s ease;
+      }
+
+      .repeat-button {
+        transition: 1s ease;
+      }
+
+   
     }
 
     & > button {

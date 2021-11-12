@@ -11,11 +11,20 @@ class PodbookController implements Controller {
 
     async initRoutes() {
         this.router.get('/recents', this.recentPodbooks);
+        this.router.post('/podbooks', this.save);
     }
 
 
-    async recentPodbooks(req: Request, res: Response){
-        res.send({teste: 'teste'})
+    async recentPodbooks(req: Request, res: Response) {
+        console.log(req.body.teste)
+        res.send({ teste: 'teste' })
+    }
+
+    async save(req: Request, res: Response) {
+
+        console.log(req.body.teste);
+
+        res.send({ teste: 'recebido' })
     }
 }
 
