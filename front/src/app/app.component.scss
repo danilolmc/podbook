@@ -1,8 +1,5 @@
 @use "/src/app/global/global" as global;
 
-:host {
-  overflow-x: hidden;
-}
 
 .footer-wrapper,
 .header-wrapper {
@@ -37,7 +34,6 @@
 .app-container {
   max-width: 120rem;
   margin: 0 auto;
-  overflow-x: hidden;
 
   .audio-control-bar {
     display: block;

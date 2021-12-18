@@ -55,7 +55,7 @@ export class MenuComponent implements OnDestroy {
 
   logout(){
     this.userService.logout();
-    this.route.navigate(['']);
+    this.route.navigate(['/sign-in']);
   }
 
   ngOnDestroy() {

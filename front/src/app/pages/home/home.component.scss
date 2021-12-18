@@ -31,10 +31,11 @@
             background: global.$primary;
             cursor: pointer;
             border: none;
-            padding: 1.2rem 4rem;
+            padding: .5rem 2rem;
             border-radius: 10px;
             font-size: 2rem;
-            width: 15.2rem;
+            max-width: 15.2rem;
+            width: 100%;
             transition: .5s ease;
                 
             &:hover{

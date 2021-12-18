@@ -8,7 +8,9 @@
         </div>
     </header>
     <figure (click)="callback()">
-        <img src="https://i.pinimg.com/originals/c8/c7/ff/c8c7ff0070dc0cbd59345630675a2f84.jpg">
+        <div class="img-container">
+            <img [src]="imgUrl">
+        </div>
         <figcaption>
             <div class="card-text">
                 <h5 class="card-title">{{ title }}</h5>

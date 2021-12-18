@@ -28,19 +28,24 @@ class UserController implements Controller {
 
                 const token = genToken({ user_id: id, email: email }, '2h');
 
-                const resp = { user: { id, name, email }, auth: true, token }
+                const resp = { user: { id, name, email }, auth: !!token}
+
+                res.header({
+                    'access-control-expose-headers': 'x-auth-token',
+                    'x-auth-token': token
+                });
 
                 res.status(201).json(resp)
                 return;
             }
 
-            res.status(400).send({
+            res.status(400).json({
                 message: "erro ao tentar cadastrar usuario, tente novamente"
             })
 
         } catch (error) {
 
-            res.status(500).send({
+            res.status(500).json({
                 message: "erro ao tentar cadastrar usuario, tente novamente",
             })
         }
@@ -56,7 +61,7 @@ class UserController implements Controller {
             const authentication = await authenticate(userCredentials);
 
             if (!authentication?.auth) {
-                res.status(Number(authentication.statusCode)).send({ message: authentication.message })
+                res.status(Number(authentication.statusCode)).json({ message: authentication.message })
                 return;
             }
 
@@ -64,10 +69,10 @@ class UserController implements Controller {
                 'access-control-expose-headers': 'x-auth-token',
                 'x-auth-token': authentication.token
             });
-            res.status(200).send({ authenticated: authentication.auth });
+            res.status(200).json({ authenticated: authentication.auth });
 
         } catch (error) {
-            res.status(500).send({ message: 'erro ao tentar realizar login' })
+            res.status(500).json({ message: 'erro ao tentar realizar login' })
         }
     }
 
@@ -79,19 +84,19 @@ class UserController implements Controller {
 
             const user = await userRepository.findUserById(req.body.id);
 
-            if (!!user) {
+            if (!user) {
 
-                const { id, name, email } = user;
-
-                res.send({ id, name, email });
-
+                res.status(404).json({ message: `usuário com código ${req.body.id} não foi encontrado` })
+                
                 return;
             }
 
-            res.status(404).send({ message: `usuário com código ${req.body.id} não foi encontrado` })
+            const { id, name, email } = user;
+
+            res.json({ id, name, email });
 
         } catch (error) {
-            res.status(500).send({ message: 'erro ao buscar dados do perfil' })
+            res.status(500).json({ message: 'erro ao buscar dados do perfil' })
         }
 
     }

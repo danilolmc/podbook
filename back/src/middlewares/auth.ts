@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { LoginModel } from "../model/UserModel";
 import UserRepository from "../repository/UserRespository";

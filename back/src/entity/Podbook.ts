@@ -17,4 +17,7 @@ export class Podbook {
 
     @Column({ nullable: false })
     category: string
+
+    @Column({ nullable: false })
+    audio: string
 }

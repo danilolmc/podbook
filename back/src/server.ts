@@ -4,7 +4,6 @@ import { createConnection } from 'typeorm';
 import App from './App';
 import PodbookController from './controllers/Podbook';
 import UserController from './controllers/User';
-import { authenticate, verifyToken } from './middlewares/auth';
 
 
 dotenv.config({ path: `${__dirname}/../../.env` });
@@ -16,13 +15,8 @@ const controllers = [
 
 createConnection().then(() => {
 
-  const middlewares = [
-    authenticate,
-    verifyToken
-  ];
-
   const app = new App({
-    port: 3333,
+    port: Number(process.env.SERVER_PORT),
     controllers: controllers,
     middlewares: []
   });

@@ -2,23 +2,27 @@ import { getRepository } from "typeorm";
 import { Podbook } from "../entity/Podbook";
 import { PodbookModel } from "../model/PodbookModel";
 
-export default class UserRepository {
+export default class PodbookRepository {
 
     private repository = getRepository(Podbook);
 
-    async createPodbook(userData: PodbookModel) {
+    createPodbook(userData: PodbookModel) {
 
         const user = { ...userData }
 
         return this.repository.save(user);
     }
 
-    async getPodbooks(email: string) {
+    getPodbooks(email: string) {
 
-        return await this.repository;
+        return this.repository;
     }
 
-    async findUserById(id: number) {
-        return await this.repository.findOne({ id });
+    findUserById(id: number) {
+        return this.repository.findOne({ id });
+    }
+
+    getRecents(limit: number = 8) {
+        return this.repository.find({ take: limit });
     }
 }

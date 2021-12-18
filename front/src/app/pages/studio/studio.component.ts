@@ -31,7 +31,7 @@ export class StudioComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
 
-    this.tabPodbooksCallback();
+    // this.tabPodbooksCallback();
   }
 
   ngOnDestroy() {

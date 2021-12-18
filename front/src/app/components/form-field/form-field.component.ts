@@ -79,6 +79,8 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
         takeUntil(this.notifier))
       .subscribe((value: string) => {
 
+        this.validationCurrentErrorMessage = '';
+
         this.change.emit(value);
 
         this.value = value;

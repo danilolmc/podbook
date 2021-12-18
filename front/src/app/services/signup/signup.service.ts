@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignupRequestData, SignupResponseData } from './types/signup.service.types';
 import { environment } from '../../../environments/environment';
+import { tap } from 'rxjs/operators';
+import { UserService } from '@services/user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,9 @@ import { environment } from '../../../environments/environment';
 export class SignupService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private userService: UserService) { }
 
   signup(userData: SignupRequestData) {
 
@@ -17,7 +21,15 @@ export class SignupService {
 
     const requestUrl = `${host}:${port}${url}/sign-up`
 
-    return this.http.post<SignupResponseData>(requestUrl, userData);
+    return this.http
+      .post<SignupResponseData>(requestUrl, userData, { observe: 'response' })
+      .pipe(tap(res => {
+
+        const authToken = <string> res.headers.get('x-auth-token');
+
+        this.userService.setToken(authToken);
+
+      }));
   }
 
 }

@@ -1,6 +1,6 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
-import { CardProperties, CardPropertiesDTO } from '@components/card/types/CardTypes';
+import { CardProperties } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
 
@@ -29,7 +29,7 @@ export class CardsContainerComponent {
   title = '';
 
   @Input()
-  cardsList: CardPropertiesDTO[] = [];
+  cardsList: CardProperties[] = [];
 
   get itemsCallbackFunction() {
     return this.itemsCallback;

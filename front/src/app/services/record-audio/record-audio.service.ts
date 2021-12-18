@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Podbook, RecordedAudio } from '@pages/studio/types/studioPage';
+import { PodbookData, RecordedAudio } from '@pages/studio/types/studioPage';
 import { environment } from '../../../environments/environment';
 
 
@@ -45,11 +45,11 @@ export class RecordAudioService {
 
       mediaRecorder.addEventListener('stop', () => {
 
-        const audioBlob = new Blob(this.audioChunks);
+        const audioBlob = new Blob(this.audioChunks, { type: 'audio/mp3' });
 
         const audioUrl = URL.createObjectURL(audioBlob);
 
-        const recordedAudio: RecordedAudio = { audioBlob, audioUrl };
+        const recordedAudio: RecordedAudio = { audioBlob, audioUrl, audioName: '' };
 
         callbackFn(recordedAudio)
       });
@@ -62,15 +62,13 @@ export class RecordAudioService {
   }
 
 
-  uploadAudio(podbook: Podbook) {
+  uploadPodbook(podbookData: PodbookData) {
 
     const { host, port, url } = environment.apiRequest;
 
     const requestUrl = `${host}:${port}${url}/podbooks`;
 
-    const validData = podbook.audio && podbook.bannerTitle && podbook.description && podbook.description;
-
-    if (!validData) throw { message: 'No recordings to send' };
+    const { user_id, podbook } = podbookData;
 
     const formData = new FormData();
 
@@ -81,7 +79,9 @@ export class RecordAudioService {
       formData.append(key, value);
     })
 
-    this.http.post(requestUrl, formData)
+    formData.append('user_id', user_id.toString());
+
+    return this.http.post(requestUrl, formData, { observe: 'response' }).toPromise();
 
   }
 

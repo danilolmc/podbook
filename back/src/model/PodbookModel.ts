@@ -4,5 +4,5 @@ export interface PodbookModel {
     bannerTitle: string
     description: string
     category: string
-    audio: Blob;
+    audio: string;
 }

@@ -10,6 +10,8 @@ export class MyPodbooksComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("carregou");
+    
   }
 
 }

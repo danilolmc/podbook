@@ -3,13 +3,13 @@
     <div class="audio-control-inner">
         <div class="control">
             <div>
-                <button  [ngClass]="['play-pause-button']" (click)="playingInstance.toggle()">
+                <button [ngClass]="['play-pause-button']" (click)="playingInstance.toggle()">
                     <img [src]="playingInstance.playPauseCurrentIcon" alt="audio control">
                 </button>
 
                 <div class="audio">
                     <header>
-                        <span class="audio-name">my audio</span>
+                        <span class="audio-name">{{audioTitle}}</span>
                         <span class="audio-timing">0:55 / 2:30</span>
                     </header>
                     <footer>

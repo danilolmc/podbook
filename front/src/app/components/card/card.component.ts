@@ -18,13 +18,13 @@ export class CardComponent implements CardProperties {
   contextMenu = false;
 
   @Input()
-  title = 'Creating reading habit';
+  title = '';
 
   @Input()
-  description = 'Learn how to create an reading habit...';
+  description = '';
 
   @Input()
-  badgeText = 'habits';
+  badgeText = '';
 
   @Input()
   width = 'auto';
@@ -32,6 +32,7 @@ export class CardComponent implements CardProperties {
   @Input()
   cardType: CardTypes = CardStyleMappingEnum.DEFAULT;
 
+  @Input()
   imgUrl = '';
 
   getCardTypeClass(): string {
@@ -40,7 +41,13 @@ export class CardComponent implements CardProperties {
   }
 
   @Input()
-  set callback(fn: Function) {
+  set click(fn: Function | undefined) {
+
+    if(!fn) {
+      this.callbackFunction = () => {}
+      return;
+    }
+
     this.callbackFunction = fn;
   }
 

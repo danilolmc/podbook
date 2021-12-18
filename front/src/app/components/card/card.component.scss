@@ -36,10 +36,9 @@
         list-style: none;
         width: max-content;
         max-width: 120px;
-        padding-top: 1rem;
         transition: 0.2s ease;
         pointer-events: none;
-        
+
         li {
           border-radius: 2px;
           background-color: global.$white;
@@ -110,12 +109,14 @@
       font-size: 1.4rem;
       color: global.$text-medium-gray;
       max-width: 19rem;
+      position: relative;
     }
 
     .badge-wrapper {
       background-color: rgba($color: global.$primary, $alpha: 0.21);
       font-size: 0.76rem;
-      width: 6rem;
+      width: fit-content;
+      max-width: 11rem;
       height: 2rem;
       display: grid;
       place-items: center;
@@ -124,8 +125,17 @@
 
       .badge {
         font-size: 1rem;
+        text-align: center;
         color: global.$primary;
         transition: inherit;
+        padding: 0 1rem;
+        width: inherit;
+        max-width: inherit;
+        display: inline-block;
+        transition: inherit;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
 
@@ -148,13 +158,43 @@
       min-height: 289px;
       display: block;
 
-      img {
-        width: 100%;
-        height: 171px;
+      .card-text {
+        position: relative;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 47%;
+          background: linear-gradient(180deg, transparent, #ffffff);
+          position: absolute;
+          top: 75px;
+          left: 0;
+          z-index: 0;
+        }
+      }
+
+      .img-container {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 250px;
+        }
       }
 
       .badge-wrapper {
         margin-top: 3rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      ul {
+        padding-top: 1rem;
       }
     }
 
@@ -180,15 +220,15 @@
           display: flex;
           align-items: center;
           margin-top: 0;
+          padding-top: 0;
 
           li span:first-child {
             display: none;
           }
 
           li {
-
             padding: 0;
-            
+
             span {
               width: 30px;
               height: 30px;
@@ -197,7 +237,7 @@
               display: grid;
               place-content: center;
               padding: 1rem;
-              transition: .5s ease;
+              transition: 0.5s ease;
 
               img {
                 width: 15px;
@@ -205,8 +245,8 @@
                 border-radius: 0;
               }
 
-              &:hover{
-                  background-color: rgba($color: global.$primary, $alpha: .1);
+              &:hover {
+                background-color: rgba($color: global.$primary, $alpha: 0.1);
               }
             }
           }
@@ -252,7 +292,10 @@
       .card-title,
       .card-description {
         margin: 0.7rem 0;
-        max-width: none;
+        max-width: 40rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       figure {

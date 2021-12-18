@@ -5,6 +5,7 @@ export enum RecordingStatus {
     STOPPED = 'stopped'
 }
 
+
 export abstract class Studio {
 
     recordingStatus: RecordingStatus = RecordingStatus.STOPPED;
@@ -17,11 +18,25 @@ export abstract class Studio {
 
 export interface Podbook {
 
+    bannerImage: File
+    bannerTitle: string
+    description: string
+    category: string
+    audio: File;
+}
+export interface PodbookResponse {
+
     bannerImage: string
     bannerTitle: string
     description: string
     category: string
-    audio: Blob;
+    audio: string;
+}
+
+export interface PodbookData {
+
+    user_id: number 
+    podbook: Podbook
 }
 
 export interface Navigator {
@@ -33,8 +48,9 @@ export interface Navigator {
 }
 
 export interface RecordedAudio {
-    audioBlob: Blob,
-    audioUrl: string
+    audioBlob?: Blob,
+    audioUrl?: string
+    audioName: string;
 }
 
 export class TabRoutedCreator {

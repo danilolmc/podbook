@@ -74,6 +74,11 @@
         }
       }
     }
+
+
+    & + div{
+      height: 350px;
+    }
   }
 
   .form-container {
@@ -103,16 +108,17 @@
         color: global.$white;
       }
 
-      .email,
       .password,
-      .submit {
+      .submit,
+      .name,
+      .next {
         margin: 3rem 0 2rem;
         display: block;
       }
 
       margin-bottom: 3rem;
 
-      .passwordsNotMatch {
+      .errorMessage {
         color: global.$red;
         display: block;
         height: 2rem;

@@ -37,9 +37,9 @@
 
         <div class="modal-body">
 
-            <label for="upload-file">
+            <label for="upload-file" #previewLabel>
                 <img src="assets/illustrations/gallery.svg" alt="preview image" #preview class="prev" [attr.havePreview]="false">
-                <input type="file" accept="image/png, image/jpeg" id="upload-file" (change)="setImage($event)">
+                <input type="file" accept="image/png, image/jpeg" id="upload-file" (change)="setImagePreview($event)" #file>
             </label>
 
 
@@ -49,8 +49,18 @@
                 <pod-form-field class="field-category" #category labelText='podbook category' [validations]="modalFieldsValidators.category"></pod-form-field>
                 <pod-form-field class="field-description" #description labelText='podbook description' [validations]="modalFieldsValidators.description"></pod-form-field>
 
-                <pod-button class="save-button" contentText="save podbook" width='100%' height="50px"
-                    borderRadius="5px"></pod-button>
+                <pod-button 
+                    class="save-button" 
+                    contentText="save podbook" 
+                    width='100%' 
+                    height="50px"
+                    borderRadius="5px"
+                    [attr.disabled]="buttonIsDisabled"
+                    (click)="saveRecordedAudio([title,category,description], file)"
+                >
+                <div role="progressbar" class="loader" *ngIf="loading"></div>
+                <span  role="text" *ngIf="!loading" #textButton>save</span>
+                </pod-button>
             </div>
         </div>
     </div>

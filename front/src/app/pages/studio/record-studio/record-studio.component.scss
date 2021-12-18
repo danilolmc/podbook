@@ -12,12 +12,14 @@
     top: 20rem;
     right: 4rem;
     font-size: 1rem;
-    min-width: 18rem;
+    max-width: 22rem;
+    width: 100%;
     min-height: 55px;
     background: global.$white;
     padding: 2rem;
     border-radius: 2px;
     text-align: center;
+    word-wrap: break-word;
     box-shadow: 0 5px 10px rgba($color: global.$red, $alpha: 0.1);
     display: block;
     z-index: 20;
@@ -170,16 +172,7 @@
       transition: 0.5s ease;
       animation: staggerAnimation 1s cubic-bezier(0.68, -0.6, 0.32, 3) forwards;
       position: relative;
-
-      //   &::before {
-      //     content: attr(tooltip-text);
-      //
-      // }
-
-      // &:hover::before {
-      //     opacity: 1;
-      //     transform: translate(-9px, 56px);
-      //   }
+      width: 4rem;
 
       @for $i from 0 to 6 {
         &:nth-child(#{$i}) {
@@ -200,7 +193,7 @@
   align-items: center;
   justify-content: center;
   background: rgba($color: #000, $alpha: 0.5);
-  z-index: 10;
+  z-index: 14;
   transition: 0.5s ease;
 
   .modal-content {
@@ -252,6 +245,22 @@
         &:hover {
           opacity: 0.6;
         }
+
+        @keyframes spinner {
+          to {
+            transform: rotatez(360deg);
+          }
+        }
+
+        .loader {
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          border-width: 3px;
+          border-style: solid;
+          border-color: transparent transparent transparent global.$white;
+          animation: spinner 0.7s linear infinite;
+        }
       }
 
       .text-fields {
@@ -260,10 +269,11 @@
         row-gap: 1.5rem;
         justify-content: space-between;
 
-        .field-title,.field-category,.field-description{
+        .field-title,
+        .field-category,
+        .field-description {
           height: 94px;
         }
-
       }
     }
   }

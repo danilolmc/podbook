@@ -26,6 +26,8 @@ export class AudioControlComponent implements AudioComponent, OnDestroy {
 
   audioIsOpen = this.audioControlService.barStatus;
 
+  audioTitle = ''
+
   @HostBinding('class.closed')
   get audioCurrentStatus() {
     return !this.audioControlService.barStatus.value;
@@ -38,8 +40,13 @@ export class AudioControlComponent implements AudioComponent, OnDestroy {
     })
 
     this.audioControlService.audioData.asObservable().pipe(takeUntil(this.unsubscribe)).subscribe(audio => {
+      
+      if(!audio.audioUrl) return;
+
       this.audio.source = audio.audioUrl;
       this.audio.volume = parseFloat(this.rangeAudioVolume.nativeElement.value) / 100;
+      this.audioTitle = audio.audioName;
+      this.audio.currentTime;
 
       if (audio.audioUrl.length > 0) this.audioControlService.openAudioBar();
 

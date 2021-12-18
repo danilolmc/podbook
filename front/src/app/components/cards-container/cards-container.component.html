@@ -3,7 +3,14 @@
         <h2>{{title}}</h2>
     </header>
     <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation] *ngIf="cardsList.length; else noData">
-        <pod-card *ngFor="let item of cardsList" [cardType]="getlistStyle()" [callback]="item.callback || itemsCallbackFunction"></pod-card>
+        <pod-card 
+            *ngFor="let item of cardsList" 
+            [cardType]="getlistStyle()" 
+            [badgeText]="item.badgeText"
+            [title]="item.title"
+            [imgUrl]="item.imgUrl"
+            [description]="item.description"
+            [click]="item.click"></pod-card>
     </div>
 </section>
 

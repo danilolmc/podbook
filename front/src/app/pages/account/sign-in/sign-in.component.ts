@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { SigninService } from '@services/signin/signin.service';
 import { FieldsValidators } from '@typing/fieldsValidators/fieldsValidators';
+import { validateFields } from 'app/core/validation/validation.utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -55,30 +56,23 @@ export class SignInComponent implements OnInit, OnDestroy {
 
     const [email, password] = credentials.map(field => field.value);
 
-
-    // TODO: make user flow after signin up 
-
     this.signinService
       .signin({ email, password })
+      .pipe(takeUntil(this.unsubscriber))
       .subscribe(response => {
-        console.log(response)
-        this.router.navigate(['/podbooks'])
+        if(response.body.authenticated) this.router.navigate(['/podbooks'])
       },
-      ({error}) => this.authenticationErrorMessage = error.message
+        ({ error }) => this.authenticationErrorMessage = error.message
       );
   }
 
 
   validateSignInValues(fields: FormFieldComponent[]) {
 
-    const someFieldIsInvalid = fields.filter(field => field.input.invalid);
-
-    if (!!someFieldIsInvalid.length) someFieldIsInvalid[0].fieldRef.nativeElement.focus();
-
-    return !someFieldIsInvalid.length;
+    return validateFields(fields);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.unsubscriber.next();
     this.unsubscriber.complete();
   }
