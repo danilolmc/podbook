@@ -3,8 +3,8 @@ import { CardProperties } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 import { PodbookResponse } from '@pages/studio/types/studioPage';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
+import { PodbookCommonService } from '@services/common/common.service';
 import { HomeService } from '@services/home/home.service';
-import { environment } from 'environments/environment';
 
 @Component({
   selector: 'pod-home',
@@ -18,33 +18,27 @@ export class HomeComponent implements OnInit {
   listStyle = ListStatesEnum.GRID;
 
   constructor(
-    private audioControlService: AudioControlService,
     private homeService: HomeService,
+    private commonService: PodbookCommonService
   ) { }
 
   homeCards: CardProperties[] = [];
 
   ngOnInit() {
 
-    this.homeService.recentPodbooks(8).subscribe((podbooks: PodbookResponse[]) => {
+    const recordLimit = 8;
 
-      const { host, port } = environment.fileServer;
+    this.homeService.recentPodbooks(recordLimit).subscribe((podbooks: PodbookResponse[]) => {
 
-      const recentPodbooks = podbooks.map(podbook => (
-        {
-          imgUrl: `${host}:${port}${podbook.bannerImage}`,
-          badgeText: podbook.category,
-          description: podbook.description,
-          title: podbook.bannerTitle,
-          width: '',
-          click: () => this.audioControlService.startCardAudio(`${host}:${port}${podbook.audio}`, podbook.bannerTitle)
-        })
-      )
+      if(!podbooks.length) {
+        this.homeCards = []
+        return;
+      }
 
-        console.log(recentPodbooks);
-        
+      this.homeCards = this.commonService.preparePodBookData(podbooks) || [];
 
-      this.homeCards = recentPodbooks;
+      console.log(podbooks);
+      
 
     });
 

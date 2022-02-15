@@ -1,29 +1,40 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AudioStatus } from '@components/audio-control/types/AudioControl';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
+import { SelectComponent } from '@components/select/select.component';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { RecordAudioService } from '@services/record-audio/record-audio.service';
+import { RecordFormService } from '@services/record-form/record-form.service';
 import { StudioService } from '@services/studio/studio.service';
 import { UserService } from '@services/user/user.service';
 import { recordingStatusStratergy } from '@stratergy/StudioPage/studioStratergy';
-import { FieldsValidators } from '@typing/fieldsValidators/fieldsValidators';
+import { FieldsValidators, FormFieldCommon } from '@typing/fieldsValidators/fieldsValidators';
 import { validateFields, validateFile } from 'app/core/validation/validation.utils';
-import { first } from 'rxjs/operators';
-import { PodbookData, RecordedAudio, RecordingStatus, Studio } from '../types/studioPage';
+import { Subject } from 'rxjs';
+import { first, takeUntil, tap } from 'rxjs/operators';
+import { PodbookData, RecordedAudio, RecordingStatus, SelectOption, Studio } from '../types/studioPage';
 
+// TODO: Desacoplar o modal em um novo componente para diminuir o tamanho da classe e aumentar a coesão e restpeitar responsabilidade unica
+// TODO: Sugestão: separar o a logica de cadastro de podbook em um componente
 
 @Component({
   selector: 'pod-record-studio',
   templateUrl: './record-studio.component.html',
   styleUrls: ['./record-studio.component.scss'],
 })
-export class RecordStudioComponent implements Studio, OnInit {
+export class RecordStudioComponent implements Studio, OnInit, OnDestroy {
+
+  private unsubscriber = new Subject();
 
   @ViewChild('preview') imageElement !: ElementRef<HTMLImageElement>;
 
   @ViewChild('previewLabel') previewLabel !: ElementRef<HTMLLabelElement>;
+
+  @ViewChild('title') modalInputTitle !: FormFieldComponent;
+
+  @ViewChild('category') selectComponent !: SelectComponent;
 
   actionButtonsDisabled = true;
 
@@ -45,6 +56,8 @@ export class RecordStudioComponent implements Studio, OnInit {
     }],
   };
 
+  categoryOptions: SelectOption[] = [];
+
   modalIsVisible = false
 
   recordingStatus = RecordingStatus.STOPPED;
@@ -63,6 +76,7 @@ export class RecordStudioComponent implements Studio, OnInit {
     private renderer: Renderer2,
     private userService: UserService,
     private studioService: StudioService,
+    private recordFormService: RecordFormService,
     private router: Router) {
   }
 
@@ -81,6 +95,7 @@ export class RecordStudioComponent implements Studio, OnInit {
   }
 
   async startRecordingAudio() {
+    this.actionButtonsDisabled = true;
 
     try {
       this.recorder = this.recordingService.recordAudio()
@@ -121,11 +136,11 @@ export class RecordStudioComponent implements Studio, OnInit {
 
       const getRecordedAudio = (recordedAudio: RecordedAudio) => {
 
-        this.audioControlService.audioData.next(recordedAudio);
-
         if (recordedAudio?.audioBlob?.size == 0) return;
 
-        this.actionButtonsDisabled = false
+        this.audioControlService.audioData.next(recordedAudio);
+
+        this.actionButtonsDisabled = false;
       }
 
       stop(getRecordedAudio);
@@ -150,6 +165,19 @@ export class RecordStudioComponent implements Studio, OnInit {
 
   openModal() {
     this.modalIsVisible = true;
+
+    this.loadSelectFieldCategories();
+
+    this.modalInputTitle.fieldRef.nativeElement.focus();
+  }
+
+  loadSelectFieldCategories() {
+    if (this.categoryOptions.length > 0) return;
+
+    this.recordFormService
+      .getSelectFormCategories(15)
+      .pipe(takeUntil(this.unsubscriber), tap(categories => this.categoryOptions = categories)).subscribe();
+      
   }
 
   closeModal($event?: any) {
@@ -157,13 +185,15 @@ export class RecordStudioComponent implements Studio, OnInit {
     if ($event?.target?.id != 'modal') return;
 
     this.modalIsVisible = false;
+
+    this.selectComponent.closeCombobox();
   }
 
   toggleModal() {
     this.modalIsVisible ? this.closeModal() : this.openModal();
   }
 
-  private getReadyPodbookData(fields: FormFieldComponent[], genericField: HTMLInputElement) {
+  private getReadyPodbookData(fields: FormFieldCommon[], genericField: HTMLInputElement) {
 
     const [title, category, description] = fields.map(field => field.value);
 
@@ -202,7 +232,7 @@ export class RecordStudioComponent implements Studio, OnInit {
     return { data: podbookData, type: 'success', msg: '' };
   }
 
-  saveRecordedAudio(fields: FormFieldComponent[], genericField: HTMLInputElement) {
+  saveRecordedAudio(fields: FormFieldCommon[], genericField: HTMLInputElement) {
 
     this.loading = true;
 
@@ -219,15 +249,7 @@ export class RecordStudioComponent implements Studio, OnInit {
         this.recordingService.uploadPodbook(data)
           .then((data: HttpResponse<any>) => {
             this.alert = { type: 'success', message: data.body.message, }
-            this.buttonIsDisabled = true;
             this.resetMessageBoxInSeconds(4000);
-
-
-            setTimeout(() => {
-
-              this.router.navigate(['podbooks'])
-              this.studioService.currentActiveTab.next('podbooks');
-            }, 1000)
 
 
           })
@@ -256,6 +278,16 @@ export class RecordStudioComponent implements Studio, OnInit {
 
   getRecordingStatusClass() {
     return recordingStatusStratergy[this.recordingStatus];
+  }
+
+  async repeat() {
+    this.audioControlService.audioData.next({} as RecordedAudio);
+    await this.startRecordingAudio();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber.next();
+    this.unsubscriber.complete();
   }
 
 }

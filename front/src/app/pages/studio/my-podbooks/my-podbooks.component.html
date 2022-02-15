@@ -4,6 +4,9 @@
         <h2>PODBOOKS</h2>
     </header>
     <div class="my-podbooks-container">
-        <pod-cards-container></pod-cards-container>
+        <pod-cards-container 
+            [cardsList]="my_cards"
+            [ngStyle]="{'min-height.px': my_cards.length * 100}">
+        </pod-cards-container>
     </div>
 </div>

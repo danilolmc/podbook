@@ -28,11 +28,9 @@
 <ng-template #firstStep>
     <div class="form-container">
         <form>
-            <pod-form-field #name class="name" labelText="Name" type="text" [validations]="fieldsValidators.name"
-                [value]="formValues.name">
+            <pod-form-field #name class="name" labelText="Name" type="text" [validations]="fieldsValidators.name">
             </pod-form-field>
-            <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email"
-                [value]="formValues.email">
+            <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email">
             </pod-form-field>
             <button class="next" (click)="nextStep($event,[name,email])">Next</button>
         </form>
@@ -50,7 +48,6 @@
                 labelText="Password" 
                 type="password"
                 [validations]="fieldsValidators.password" 
-                [value]="formValues.password"
                 (change)="checkPasswordMatch($event,formValues.repeatedPassword)">
             </pod-form-field>
 
@@ -60,12 +57,11 @@
                 labelText="Confirm password" 
                 type="password"
                 [validations]="fieldsValidators.password" 
-                [value]="formValues.repeatedPassword"
                 (change)="checkPasswordMatch(formValues.password,$event)"
                 >
             </pod-form-field>
 
-            <span class="errorMessage" *ngIf="formErrorMesage">{{formErrorMesage}}</span>
+            <span class="errorMessage" *ngIf="formErrorMesage && !passwordsMatch">{{formErrorMesage}}</span>
             <button class="submit" (click)="submit($event, [password,repeatPassword])">Sign up</button>
         </form>
         <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>

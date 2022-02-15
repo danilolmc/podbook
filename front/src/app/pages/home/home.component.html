@@ -11,16 +11,17 @@
     <section>
         <header *ngIf="homeCards.length > 0">
             <pod-style-list 
-                [attr.tabindex]="0"
+                class="pod-style-list"
                 (stateListChanges)="changeStyleList($event)">
             </pod-style-list>
         </header>
-        <pod-cards-container 
+        <pod-cards-container
+            class="cards-container"
             title="Recent podbooks" 
             [listStyle]="listStyle" 
             [cardsList]="homeCards"
-            [ngStyle]="{'min-height.px': homeCards.length * 100}">
+            [ngStyle]="{'min-height.px': homeCards.length * 100}"
+            noDataMessage="No recent podbooks">
         </pod-cards-container>
     </section>
-
 </div>

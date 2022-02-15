@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Podbook, PodbookResponse } from '@pages/studio/types/studioPage';
+import { PodbookResponse } from '@pages/studio/types/studioPage';
 import { environment } from 'environments/environment';
 
 @Injectable({

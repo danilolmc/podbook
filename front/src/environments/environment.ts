@@ -9,10 +9,6 @@ export const environment = {
     port: 3333,
     url: '/podbook/api'
   },
-  fileServer: {
-    host: 'http://localhost',
-    port: 3333
-  }
 };
 
 /*

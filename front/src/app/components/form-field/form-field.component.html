@@ -1,14 +1,14 @@
 <label>
-    <div [ngClass]="{'form-field-wrapper': true, 'invalid': input.invalid && input.dirty}">
+    <div [ngClass]="{'field-wrapper': true, 'invalid': !!input.errors && input.dirty || validationCurrentErrorMessage}">
         <label *ngIf="labelText" [for]="id">{{labelText}}</label>
-        <span>
-            <input #inputRef [formControl]="input"  [id]="id" [placeholder]="placeholder" [type]="type"
+        <div>
+            <input #inputRef [formControl]="input" [id]="id" [placeholder]="placeholder" [type]="type"
                 *ngIf="type !== 'password'; else passwordInput">
             <img *ngIf="getFormFieldIcon()" [src]="'assets/icons/' + getFormFieldIcon()?.icon + '.svg'"
                 [alt]="getFormFieldIcon()?.name">
-        </span>
+        </div>
     </div>
-    <ng-container *ngIf="input.invalid && input.dirty" [ngTemplateOutlet]="error"></ng-container>
+    <ng-container *ngIf="!!input.errors && input.dirty || validationCurrentErrorMessage" [ngTemplateOutlet]="error"></ng-container>
 </label>
 
 <ng-template #passwordInput>

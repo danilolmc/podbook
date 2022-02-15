@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserService } from '@services/user/user.service';
-import { last, map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { SignInRequestData, SignInResponseData } from './types/signin.service.types';
+import { SignInRequestData } from './types/signin.service.types';
 
 @Injectable({
   providedIn: 'root'

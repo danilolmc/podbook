@@ -4,12 +4,7 @@
 
 .studio-container {
   min-height: 100vh;
-  margin: 8rem 0 5rem;
-
-  .active-link {
-    background: global.$primary;
-    color: global.$white;
-  }
+  margin: 8rem 0 20rem;
 
   .tabs-container {
     display: flex;
@@ -30,165 +25,19 @@
         border: 1px solid global.$primary;
         min-width: 8em;
         text-decoration: none;
+        color: global.$primary;
+        
+        &.active-link {
+          background: global.$primary;
+          color: global.$white;
+        }
       }
+
     }
   }
 
-  .tabs {
-    // max-width: 15rem;
+ 
 
-    // .studio{
-
-    //     display: flex;
-    //     align-items: center;
-    //     flex-direction: column;
-    //     margin-top: 20rem;
-
-    //     button{
-    //         border: none;
-    //         cursor: pointer;
-    //     }
-
-    //     .microphone{
-    //         background-color: global.$primary;
-    //         display: flex;
-    //         align-items: center;
-    //         justify-content: center;
-    //         border-radius: 50%;
-    //         height: 20.4rem;
-    //         width: 20.4rem;
-    //         margin-top: 2rem;
-
-    //         @keyframes recordingStatus{
-    //             from {
-    //                 opacity: 0;
-    //             }
-    //             to{
-    //                 opacity: 1;
-    //                 width: inherit;
-    //                 height: inherit;
-    //             }
-    //         }
-
-    //         &::after,&::before, span::after{
-    //             content: "";
-    //             position: absolute;
-    //             border-radius: 50%;
-    //             display: block;
-    //             background-color: global.$primary;
-    //             z-index: 0;
-    //             pointer-events: none;
-    //         }
-
-    //         &::before{
-    //             height: 25rem;
-    //             width: 25rem;
-
-    //         }
-
-    //         &::after{
-    //             height: 30rem;
-    //             width: 30rem;
-
-    //         }
-
-    //         span{
-    //             position: relative;
-    //             width: inherit;
-    //             height: inherit;
-    //             display: inherit;
-    //             align-items: inherit;
-    //             justify-content: inherit;
-
-    //             &::after{
-    //                 height: 35rem;
-    //                 width: 35rem;
-    //             }
-
-    //             img{
-    //                 filter: invert(100%);
-    //                 transform: scale(4.5);
-    //                 z-index: 5;
-
-    //             }
-    //         }
-
-    //         &.--recording{
-
-    //             &::after,&::before,span::after{
-    //                 animation: recordingStatus 1.2s ease-in-out infinite reverse;
-    //             }
-
-    //             &::after{
-    //                 opacity: 0;
-    //             }
-
-    //             span::after{
-    //                 opacity: 0;
-    //             }
-    //         }
-
-    //         &.--stopped{
-
-    //             &::after,&::before,span::after{
-    //                 animation: none;
-    //                 opacity: 0;
-    //             }
-    //         }
-
-    //     }
-
-    //     footer{
-    //         display: flex;
-    //         align-items: center;
-    //         justify-content: center;
-    //         column-gap: 7rem;
-    //         margin-top: 23rem;
-    //     }
-    // }
-
-    // .my-podbooks{
-    //     margin-top: 10rem;
-
-    //     header{
-    //         text-align: center;
-    //         display: flex;
-    //         justify-content: center;
-
-    //         h2{
-    //             color: global.$primary;
-    //             font-size: 2rem;
-    //             display: flex;
-    //             justify-content: space-between;
-    //             align-items: center;
-    //             column-gap: 2rem;
-
-    //             &::after, &::before{
-    //                 content: "";
-    //                 height: 1px;
-    //                 width: 5rem;
-    //                 display: block;
-    //                 background-color: global.$primary;
-    //                 animation: lineAnimation .3s ease forwards;
-
-    //                 @keyframes lineAnimation {
-    //                     from {
-    //                         width: 0;
-    //                     }
-    //                     to{
-    //                         width: 5rem;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     .my-podbooks-container{
-    //         margin-top: 5rem;
-    //     }
-
-    // }
-  }
 }
 
 pod-float-button {

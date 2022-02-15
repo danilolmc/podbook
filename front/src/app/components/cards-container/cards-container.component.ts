@@ -1,5 +1,5 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CardProperties } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
@@ -18,18 +18,24 @@ import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
           ])
         ], { optional: true })
       ])
-    ])]
+    ])],
 })
-export class CardsContainerComponent {
+export class CardsContainerComponent implements OnChanges {
 
   private itemsCallback!: Function
   private styleList: ListStatesEnum = ListStatesEnum.GRID;
 
   @Input()
-  title = '';
+  loading = false;
 
   @Input()
+  title = '';
+  
+  @Input()
   cardsList: CardProperties[] = [];
+
+  @Input()
+  noDataMessage = 'No podbooks';
 
   get itemsCallbackFunction() {
     return this.itemsCallback;
@@ -48,6 +54,10 @@ export class CardsContainerComponent {
 
   getlistStyle() {
     return StyleListStratergy[this.styleList];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log(this.loading);
   }
 
 }

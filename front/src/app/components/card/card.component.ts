@@ -60,4 +60,10 @@ export class CardComponent implements CardProperties {
     this.contextMenu = true;
   }
 
+  manageA11yContextMenuFocus(element: HTMLLIElement, alternativeElement: HTMLElement){
+    element.blur();
+    alternativeElement.focus();
+    
+  }
+
 }

@@ -15,8 +15,10 @@ import { takeUntil } from 'rxjs/operators';
 export class SignUpComponent implements OnInit, OnDestroy {
 
   private unsubscriber = new Subject();
+  passwordsMatch = false;
 
   @ViewChild('password') passwordField!: FormFieldComponent;
+  @ViewChild('repeatPassword') repeatPasswordField!: FormFieldComponent;
 
   formValues = {
     name: '',
@@ -34,7 +36,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   steps = [
     { active: true, name: 'Personal Data', finished: false },
-    { active: false, name: 'Password', finished: false },
+    { active: false, name: 'Password', finished: false }
   ]
 
   fieldsValidators: FieldsValidators = {
@@ -68,14 +70,25 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit() {
+    
+    this.steps.map((step, index) => {
+      if(index + 1 < this.currentStep){
+        step.active = true;
+        step.finished = true;
+      }
+    })
     this.activeStep(this.currentStep);
   }
 
   submit(event: Event, fields: FormFieldComponent[]) {
 
-    if (!this.validateBeforeGoToNextStep(event, fields)) return;
+    const itCanNotSubmit = [
+      !this.validateBeforeGoToNextStep(event, fields),
+      !Boolean(this.formErrorMesage === ''),
+      !this.passwordsMatch].some(condition => condition === true);
 
-    if (this.formErrorMesage !== '') return;
+
+    if (itCanNotSubmit) return;
 
     const [password, repeatedPassword] = fields.map(field => field.value);
 
@@ -97,36 +110,38 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   checkPasswordMatch(password: string | Event, repeatedPassword: string | Event) {
 
-    this.formErrorMesage = '';
-
     const isEvent = password instanceof Event || repeatedPassword instanceof Event;
 
-    if (!isEvent) {
+    if (isEvent) return;
 
+    const pass = password.toString()
+    const repeatedPass = repeatedPassword.toString();
 
-      const pass = password.toString()
-      const repeatedPass = repeatedPassword.toString();
+    const minSizeValid = (pass.length >= this.passwordMinSize && repeatedPass.length >= this.passwordMinSize);
 
-      const minSizeValid = (pass.length + repeatedPass.length) >= this.passwordMinSize * 2;
+    const passwordsMatch = pass === repeatedPass;
 
-      const passwordsMatch = pass === repeatedPass;
+    this.formValues = { ...this.formValues, password: pass, repeatedPassword: repeatedPass };
 
-      this.formValues = { ...this.formValues, password: pass, repeatedPassword: repeatedPass };
+    this.passwordsMatch = passwordsMatch;
 
-      if ([!passwordsMatch, minSizeValid].every(item => item === true)) {
-        this.formErrorMesage = 'Passwords do not match';
-      } else {
+    if (!minSizeValid || this.passwordsMatch) {
 
-        this.formErrorMesage = '';
-      }
+      this.formErrorMesage = '';
     }
+
+    if (minSizeValid && !this.passwordsMatch) {
+
+      this.formErrorMesage = 'Passwords do not match';
+    }
+
   }
 
   nextStep(event: Event, fields: FormFieldComponent[]) {
 
     if (!this.validateBeforeGoToNextStep(event, fields)) return;
 
-    this.finishCurrentStep();
+    this.finishCurrentStep(this.currentStep);
 
     const goToNextStep = () => {
 
@@ -134,7 +149,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.activeStep(this.currentStep);
       setTimeout(() => this.passwordField.fieldRef.nativeElement.focus(), 10)
     }
-
 
     const [name, email] = fields.map(field => field.input.value);
 
@@ -172,8 +186,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.steps[step - 1].active = false;
   }
 
-  finishCurrentStep() {
-    this.steps[this.currentStep - 1].finished = true;
+  finishCurrentStep(currentStep: number) {
+    this.steps[currentStep - 1].finished = true;
   }
 
 

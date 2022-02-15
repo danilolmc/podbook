@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UserService } from '@services/user/user.service';
 import { Subscription } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
 import { MenuType } from './types/MenuTypes';
 
 @Component({

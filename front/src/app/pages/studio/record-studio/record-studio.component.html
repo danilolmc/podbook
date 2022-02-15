@@ -1,4 +1,4 @@
-<div class="studio">
+<div class="studio" [attr.tabindex]="modalIsVisible ? -1 : 0">
 
     <span [ngClass]="['alert', alert.type]">{{alert.message}}</span>
 
@@ -21,7 +21,7 @@
         </pod-button>
 
         <pod-button [attr.disabled]="actionButtonsDisabled"  name="repetir" class="control-button"
-            icon="assets/icons/repeat-recording-icon-white.svg" borderRadius='50px'>
+            icon="assets/icons/repeat-recording-icon-white.svg" borderRadius='50px' (click)="repeat()">
         </pod-button>
     </footer>
 
@@ -46,8 +46,8 @@
             <div class="text-fields">
 
                 <pod-form-field class="field-title" #title labelText='podbook title' [validations]="modalFieldsValidators.title"></pod-form-field>
-                <pod-form-field class="field-category" #category labelText='podbook category' [validations]="modalFieldsValidators.category"></pod-form-field>
-                <pod-form-field class="field-description" #description labelText='podbook description' [validations]="modalFieldsValidators.description"></pod-form-field>
+                <pod-form-field class="field-category" #description labelText='podbook description' [validations]="modalFieldsValidators.description"></pod-form-field>
+                <pod-select id="categoria" labelText="podbook category" [options]="categoryOptions" #category [required]="true"></pod-select>
 
                 <pod-button 
                     class="save-button" 

@@ -1,68 +1,144 @@
-@use '/src/app/global/global' as global; 
+@use "/src/app/global/global" as global;
 
-.home-page-container{
-    min-height: 100vh;
-    padding-bottom: 0;
-
-    .banner{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 15rem;
-        margin-bottom: 6rem;
-
-        .title{
-            color: global.$text;
-            font-size: 6.3rem;
-            font-weight: bolder;
-            max-width: 58.4rem;
-        }
-        
-        .second-text{
-            font-weight: 300;
-            color: global.$text;
-            font-size: 2.4rem;
-            margin-top: 2.3rem;
-        }
-
-        .cta-button{
-            margin-top: 4.3rem;
-            color: global.$white;
-            background: global.$primary;
-            cursor: pointer;
-            border: none;
-            padding: .5rem 2rem;
-            border-radius: 10px;
-            font-size: 2rem;
-            max-width: 15.2rem;
-            width: 100%;
-            transition: .5s ease;
-                
-            &:hover{
-                opacity: .9;
-            }
-
-        }
-
-        img{
-            max-width: 58.5rem;
-            width: 100%;
-        }
-    }
-
-    section{
-        header{
-            display: flex;
-            justify-content: flex-end;
-            transform: translateY(29px);
-        }
-    }
-
+:host {
+  padding: 0 4rem;
+  display: block;
 }
 
+$breakpoint: global.getBreakPoints(tablet) - 1px;
+$breakpoint-laptop: global.getBreakPoints(small-laptop-screen) - 1px;
 
+.home-page-container {
+  min-height: 100vh;
+  padding-bottom: 0;
 
-pod-cards-container{
-    display: block;
-    padding-bottom: 15rem;
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15rem;
+    margin-bottom: 6rem;
+
+    .banner-text-container {
+      .title {
+        color: global.$text;
+        font-size: 6.3rem;
+        font-weight: bolder;
+        max-width: 58.4rem;
+      }
+
+      .second-text {
+        font-weight: 300;
+        color: global.$text;
+        font-size: 2.4rem;
+        margin-top: 2.3rem;
+      }
+
+      .cta-button {
+        margin-top: 4.3rem;
+        color: global.$white;
+        background: global.$primary;
+        cursor: pointer;
+        border: none;
+        padding: 0.5rem 2rem;
+        border-radius: 10px;
+        font-size: 2rem;
+        max-width: 15.2rem;
+        width: 100%;
+        transition: 0.5s ease;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+
+    img {
+      max-width: 58.5rem;
+      width: 100%;
+
+      @include global.getBreakpointMediaQuery(tablet, min-width) {
+        position: absolute;
+        z-index: -1;
+        left: 45%;
+      }
+  
+      @include global.getBreakpointMediaQuery(small-laptop-screen, min-width) {
+        left: 45%;
+        margin-left: 100px;
+      }
+
+      @include global.getCustomBreakpointMediaQuery(
+        $breakpoint-laptop,
+        max-width
+      ) {
+        left: 70%;
+      }
+
+      @include global.getBreakpointMediaQuery(large-desktop-screen, min-width) {
+        margin-left: 100px;
+        right: 0%;
+      }
+    }
+
+    @include global.getCustomBreakpointMediaQuery($breakpoint, max-width) {
+      .banner-text-container {
+        text-align: center;
+        display: flex;
+        margin-top: 2rem;
+        flex-direction: column;
+
+        .title {
+          font-size: 3rem;
+        }
+
+        .second-text {
+          font-size: 1.6rem;
+          margin-top: 0;
+        }
+
+        .title,
+        .second-text {
+          text-align: center;
+        }
+
+        .cta-button {
+          margin: 0 auto;
+        }
+
+        .title,
+        .second-text,
+        .cta-button {
+          margin-top: 4rem;
+        }
+      }
+
+      flex-direction: column-reverse;
+      margin-top: 13rem;
+      margin-bottom: 10rem;
+    }
+  }
+
+  section {
+    header {
+      display: flex;
+      justify-content: flex-end;
+      transform: translateY(29px);
+    }
+
+    @include global.getCustomBreakpointMediaQuery($breakpoint, max-width) {
+      header {
+        .pod-style-list {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.cards-container {
+  display: block;
+  padding-bottom: 15rem;
+  // position: relative;
+  // z-index: 1;
 }

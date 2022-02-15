@@ -2,22 +2,33 @@
     <header>
         <h2>{{title}}</h2>
     </header>
-    <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation] *ngIf="cardsList.length; else noData">
+    <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation] *ngIf="cardsList.length">
         <pod-card 
+            title=""
+            [attr.tabindex]="0"
             *ngFor="let item of cardsList" 
             [cardType]="getlistStyle()" 
             [badgeText]="item.badgeText"
             [title]="item.title"
             [imgUrl]="item.imgUrl"
             [description]="item.description"
-            [click]="item.click"></pod-card>
+            [click]="item.click"
+            (keyup.enter)="item.click && item.click()"></pod-card>
     </div>
+    <ng-container [ngTemplateOutlet]="noData"></ng-container>
+    <ng-container [ngTemplateOutlet]="isLoading"></ng-container>
 </section>
 
 
 <ng-template #noData>
-    <div class="no-content">
+    <div class="no-content" *ngIf="!loading && !cardsList.length">
         <img src="assets/illustrations/no_data.svg" alt="No data found">
-        <p>No podbooks</p>
+        <p>{{noDataMessage}}</p>
+    </div>
+</ng-template>
+
+<ng-template #isLoading>
+    <div class="loading" *ngIf="loading">
+        <div class="loading-spinner"></div>
     </div>
 </ng-template>

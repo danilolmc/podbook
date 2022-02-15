@@ -12,6 +12,7 @@ import { RecordStudioComponent } from './record-studio/record-studio.component';
 import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
 import { ButtonModule } from "@components/button/button.module";
 import { FormFieldModule } from "@components/form-field/form-field.module";
+import { SelectModule } from "@components/select/select.module";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FormFieldModule } from "@components/form-field/form-field.module";
         ButtonControlModule,
         CardsContainerModule,
         ButtonModule,
-        FormFieldModule
+        FormFieldModule,
+        SelectModule
 
     ],
     exports: [StudioComponent]

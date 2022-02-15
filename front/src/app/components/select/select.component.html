@@ -1,0 +1,36 @@
+<div 
+    class="backdrop-select" 
+    [attr.aria-hidden]="!isOpen" *ngIf="isOpen"
+    (click)="closeCombobox()"
+    tabindex="0">
+</div>
+<label>
+    <div [ngClass]="{'select-wrapper': true, 'invalid': input.invalid && input.dirty}">
+        <label *ngIf="labelText" [for]="id" [ngClass]="{'focus-within': isOpen}">{{labelText}}</label>
+        <div>
+            <input (focus)="toggleSelect()" type="text" [formControl]="input" [id]="id" role="combobox" aria-owns="options-list"
+                [attr.aria-expanded]="isOpen" #select_input autocomplete="off">
+
+            <button tabindex="-1" (click)="toggleSelect()">
+                <img [ngClass]="{'rotate-icon': isOpen }" src="assets/icons/chevron-baixo.svg">
+            </button>
+
+        </div>
+        <ul id="options-list" role="listbox" [attr.list-open]="isOpen">
+            <li
+                class="option" 
+                role="option" 
+                *ngFor="let item of options; let position = index" 
+                tabindex="0" 
+                #option
+                [value]="item.cat_id" 
+                (click)="selectOption(item)">
+            {{item.name}}</li>
+        </ul>
+    </div>
+    <ng-container *ngIf="input.invalid && input.dirty" [ngTemplateOutlet]="error"></ng-container>
+</label>
+
+<ng-template #error>
+    <span class="error-message">{{validationRequiredMessage}}</span>
+</ng-template>

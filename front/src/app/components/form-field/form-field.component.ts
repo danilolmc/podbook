@@ -1,7 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FormFieldCommon } from '@typing/fieldsValidators/fieldsValidators';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { FormFieldIconData, FormFieldProperties, formFieldTypes, IconProperties } from './types/FormField';
 import { checkNoWhiteSpaceValidation, getValidations, Validations } from './types/Validators';
 import { getIcon } from './utils/IconManager';
@@ -12,7 +13,7 @@ import { UniqueId } from './utils/UniqueId';
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss']
 })
-export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestroy {
+export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestroy, FormFieldCommon {
 
   @Output() change = new EventEmitter<string>();
   @ViewChild('inputRef') fieldRef!: ElementRef<HTMLInputElement>;
@@ -44,7 +45,6 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
     validatorRequiredParameter: '',
     validationErrorMessage: '',
   }];
-
 
   validationCurrentErrorMessage = '';
 

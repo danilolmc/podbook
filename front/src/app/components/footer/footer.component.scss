@@ -1,10 +1,12 @@
 @use "/src/app/global/global" as global;
 
+$breakpoint: global.getBreakPoints(tablet) - 1px;
+
 :host {
   display: block;
 
   .ribbon {
-    $height: 6rem;
+    $height: 2rem;
 
     background: global.$white;
     display: block;
@@ -36,9 +38,9 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      padding: 5rem 0;
+      padding: 8rem 0;
       min-height: 22rem;
-      gap: 3rem;
+      gap: 7rem 3rem;
 
       img {
         width: 13.3rem;
@@ -48,7 +50,7 @@
         list-style: none;
         display: flex;
         flex-wrap: wrap;
-        gap: 5rem 9.6rem;
+        gap: 5rem;
         align-items: center;
 
         li {
@@ -62,6 +64,23 @@
             background: none;
             font-size: 1.6rem;
           }
+        }
+      }
+    }
+
+    
+    @include global.getCustomBreakpointMediaQuery($breakpoint, max-width) {
+      padding: 0 5rem;
+
+      .footer-wrapper{
+        
+        img{
+          display: block;
+          margin: 0 auto;
+        }
+
+        ul{
+          margin: 0 auto;
         }
       }
     }

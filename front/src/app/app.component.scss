@@ -8,10 +8,16 @@
   position: sticky;
   top: 0;
   z-index: 5;
+  background-color: global.$white;
 
   & > * {
     max-width: 120rem;
     margin: 0 auto;
+    
+  }
+
+  .pod-menu{
+    padding: 0 4rem;
   }
 
   .pod-footer {
@@ -34,6 +40,7 @@
 .app-container {
   max-width: 120rem;
   margin: 0 auto;
+  overflow-x: hidden;
 
   .audio-control-bar {
     display: block;
@@ -48,4 +55,8 @@
 
 .footer-wrapper {
   background: global.$primary;
+}
+
+.header-wrapper{
+  padding: 0 4rem;
 }

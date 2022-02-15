@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FormControl, FormsModule } from "@angular/forms";
 import { CardModule } from "@components/card/card.module";
 import { CardsContainerModule } from "@components/cards-container/cards-container.module";
 import { FloatButtonModule } from "@components/float-button/float-button.module";
@@ -17,7 +18,7 @@ import { ExploreComponent } from "./explore.component";
         StyleListModule,
         ExploreRoutingModule,
         FormFieldModule,
-        CardsContainerModule
+        CardsContainerModule,
     ],
     exports: [ExploreComponent]
 })

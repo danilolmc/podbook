@@ -1,7 +1,7 @@
 <div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width">
     <header>
         <div class="context-menu">
-            <span class="ellipsis-icon">
+            <span class="ellipsis-icon" tabindex="0" #ellipsis>
                 <img src="assets/icons/ellipsis-icon.svg" alt="ellipsis icon">
             </span>
             <ng-container [ngTemplateOutlet]="context_menu"></ng-container>
@@ -16,7 +16,7 @@
                 <h5 class="card-title">{{ title }}</h5>
                 <p class="card-description">{{ description }}</p>
             </div>
-            <div class="badge-wrapper">
+            <div class="badge-wrapper" *ngIf="badgeText">
                 <span class="badge">{{ badgeText }}</span>
             </div>
         </figcaption>
@@ -25,7 +25,7 @@
 
 <ng-template #context_menu>
     <ul>
-        <li>
+        <li tabindex="0" #option (keyup.enter)="manageA11yContextMenuFocus(option, ellipsis)">
             <span>share podbook</span>
             <span title="share podbook"><img src="assets/icons/share-icon.svg" alt="share icon"></span>
         </li>

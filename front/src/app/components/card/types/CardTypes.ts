@@ -5,7 +5,6 @@ export interface CardProperties {
     title: string;
     description: string;
     badgeText: string;
-    width: string;
     click?: Function;
 }
 export type CardTypes = CardStyleMappingEnum;

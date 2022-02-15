@@ -1,4 +1,3 @@
-import { ValidationErrors, Validators } from "@angular/forms";
 import { UniqueId } from "../utils/UniqueId";
 
 export type formFieldTypes =
@@ -24,7 +23,6 @@ export interface IconProperties {
     key: string;
     icon: string;
     name: string;
-
 }
 
 export const FormFieldIconData: IconProperties[] = [

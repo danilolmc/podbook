@@ -48,7 +48,10 @@ export class AudioControlComponent implements AudioComponent, OnDestroy {
       this.audioTitle = audio.audioName;
       this.audio.currentTime;
 
-      if (audio.audioUrl.length > 0) this.audioControlService.openAudioBar();
+      if (audio.audioUrl.length > 0) {
+        this.audioControlService.openAudioBar()
+        this.audioIsOpenEventEmmiter.emit(this.audioIsOpen);
+      };
 
       
       setTimeout(() => {

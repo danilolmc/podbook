@@ -5,6 +5,7 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["app/components/*"],
+      "@directives/*": ["app/directives/*"],
       "@globals/*": ["app/globals/*"],
       "@pages/*": ["app/pages/*"],
       "@interfaces/*": ["app/interfaces/*"],

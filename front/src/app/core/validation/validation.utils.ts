@@ -1,6 +1,6 @@
-import { FormFieldComponent } from "@components/form-field/form-field.component";
+import { FormFieldCommon } from "@typing/fieldsValidators/fieldsValidators";
 
-export const validateFields = (fields: FormFieldComponent[]) => {
+export const validateFields = (fields: FormFieldCommon[]) => {
 
     const someFieldIsInvalid = fields.filter(field => field.input.invalid);
 
