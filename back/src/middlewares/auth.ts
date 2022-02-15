@@ -5,6 +5,19 @@ import UserRepository from "../repository/UserRespository";
 import { comparePassword } from "../utils/Hashing";
 
 
+export interface DecodedJwt {
+    user_id: number;
+    email: string;
+    iat: number;
+    exp: number;
+}
+
+export const decodeToken = (jwtToken: string) => {
+    const configSecret: jwt.Secret = process.env.TOKEN_KEY || '';
+
+    return jwt.verify(jwtToken, configSecret);
+}
+
 export const genToken = (tokenProperties: {}, expireTime: number | string) => {
 
     const configSecret: string = process.env.TOKEN_KEY || '';
@@ -14,11 +27,8 @@ export const genToken = (tokenProperties: {}, expireTime: number | string) => {
 
 export const verifyToken = (req: any, res: Response, next: any) => {
 
-    const configSecret: string = process.env.TOKEN_KEY || '';
-
-    const token = 
-        req.body.token || 
-        req.query.token || 
+    const token =
+        req.body.token ||
         req.headers['x-auth-token'];
 
     if (!token) {
@@ -27,8 +37,8 @@ export const verifyToken = (req: any, res: Response, next: any) => {
     };
 
     try {
-        const decoded = jwt.verify(token, configSecret);
-        req.decoded = decoded;
+        const decoded = decodeToken(token);
+        req.headers.decoded_jwt = decoded;
         next();
     } catch (error) {
         res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });

@@ -15,7 +15,7 @@ class UserController implements Controller {
     async initRoutes() {
         this.router.post('/sign-up', this.createUser)
         this.router.post('/sign-in', this.login)
-        this.router.get('/me', await verifyToken, this.me)
+        this.router.get('/me', verifyToken, this.me)
     }
 
     async createUser(req: Request, res: Response) {

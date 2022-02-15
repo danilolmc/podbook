@@ -1,12 +1,13 @@
 import { Request, Response, Router } from 'express';
 import { Controller } from "../interfaces/Controller";
-import { verifyToken } from '../middlewares/auth';
+import { DecodedJwt, decodeToken, verifyToken } from '../middlewares/auth';
 import { getPodbooksFiles } from '../middlewares/podbookResponse';
 import { afterUpload, fileUpload } from '../middlewares/upload';
+import { PageOptions, PageOptionsParams } from '../model/Pagination';
 import { PodbookModel } from '../model/PodbookModel';
 import PodbookRepository from '../repository/PodbookRespository';
-import fs from 'fs';
-import path from 'path';
+import { setupLimitAndPageErrorsCase } from '../utils/ExploreErrorsCase';
+import jwt from 'jsonwebtoken';
 
 class PodbookController implements Controller {
 
@@ -18,6 +19,7 @@ class PodbookController implements Controller {
 
     async initRoutes() {
         this.router.get('/recents', this.recentPodbooks);
+        this.router.get('/podbooks', this.explorePodbooks);
         this.router.post('/podbooks', verifyToken, fileUpload, afterUpload, this.save);
     }
 
@@ -32,7 +34,7 @@ class PodbookController implements Controller {
             const recentPodbooks = getPodbooksFiles(await podbookRepository.getRecents(limitOfRecords));
 
             if (!recentPodbooks) {
-                res.status(404).json({ message: 'não foi possível encontrar os podbooks mais recentes' })
+                res.status(200).json({ message: 'não foi possível encontrar os podbooks mais recentes' })
                 return;
             }
 
@@ -47,28 +49,71 @@ class PodbookController implements Controller {
 
             res.status(400).json({ message: error });
 
-            console.log(error);
-
         }
     }
 
-    async save(req: any, res: Response) {
+    async explorePodbooks(req: Request, res: Response) {
+        const podbookRepository = new PodbookRepository();
+
+        try {
+
+            const { limit, page } = <unknown>req.query as PageOptionsParams;
+
+
+            const pageOptions = new PageOptions(+page || 1, +limit || 15);
+
+            const setupLimitAndPageErrors = setupLimitAndPageErrorsCase({ limit, page });
+
+            const messageIndex = Object.values(setupLimitAndPageErrors.cases).findIndex(useCase => useCase == true)
+
+            if (messageIndex > -1) {
+                res.status(404).json(setupLimitAndPageErrors.messages[messageIndex]);
+                return;
+            }
+
+            const podbooks = await podbookRepository.explorePodbooks(pageOptions);
+
+            const podbooksDataWithFiles = getPodbooksFiles(podbooks.data);
+            const paginationMetadata = podbooks.paginationMetadata;
+
+            if (pageOptions.currentPage > paginationMetadata.pagesAmount) {
+
+                res.status(404).json(
+                    {
+                        message: `A página ${paginationMetadata.page} não existe`,
+                        podbooks: podbooks
+                    });
+                return;
+            }
+
+            const mergedPodbookData = podbooksDataWithFiles && { data: [...podbooksDataWithFiles], paginationMetadata: { ...paginationMetadata } };
+
+            res.status(200).json(mergedPodbookData);
+
+        } catch (error) {
+            res.status(400).json({ message: error });
+        }
+    }
+
+    async save(req: Request, res: Response) {
 
         const podbookRepository = new PodbookRepository();
 
         try {
 
-            const podbook: PodbookModel = req.body;
+            const decodedJwt = <jwt.JwtPayload>req.headers.decoded_jwt || '';
+
+            const podbook: PodbookModel = { ...req.body, user_owner: decodedJwt.user_id };
 
             const podbookSaved = await podbookRepository.createPodbook(podbook);
 
             if (!podbookSaved) {
 
-                res.status(400).json({ message: 'error while trying save podbook' });
+                res.status(400).json({ message: 'erro ao tentar salvar o podbook' });
                 return;
             }
 
-            res.status(201).json({ message: 'podbook saved' })
+            res.status(201).json({ message: 'podbook salvo com sucesso' })
 
         } catch (error) {
 

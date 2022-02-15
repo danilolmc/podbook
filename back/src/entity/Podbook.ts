@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { PodbookCategory } from "./PodbookCategory";
+import { User } from "./User";
 
 @Entity()
 export class Podbook {
@@ -13,11 +15,16 @@ export class Podbook {
     bannerTitle: string
 
     @Column({ nullable: false })
-    description: string
-
-    @Column({ nullable: false })
-    category: string
+    description: string 
 
     @Column({ nullable: false })
     audio: string
+
+    @ManyToOne(type => PodbookCategory)
+    @JoinColumn()
+    category: PodbookCategory
+
+    @ManyToOne(type => User)
+    @JoinColumn()
+    user_owner: User
 }
