@@ -13,6 +13,7 @@
             [imgUrl]="item.imgUrl"
             [description]="item.description"
             [click]="item.click"
+            imgUrlMissingReplace="/assets/illustrations/missing-image.png"
             (keyup.enter)="item.click && item.click()"></pod-card>
     </div>
     <ng-container [ngTemplateOutlet]="noData"></ng-container>

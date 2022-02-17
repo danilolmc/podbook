@@ -47,6 +47,7 @@
             padding: 1rem;
             overflow: hidden;
             border-left: 3px solid transparent;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
 
             &:hover {
               border-color: global.$primary;
@@ -209,6 +210,7 @@
         overflow: hidden;
         padding-top: 75%;
         position: relative;
+        background-color: global.$light-gray;
 
         img {
           display: block;
@@ -217,6 +219,10 @@
           transition: transform 0.2s ease;
           height: 100%;
           top: 0;
+
+          &.--image-not-found{
+            width: 75%;
+          }
         }
       }
 

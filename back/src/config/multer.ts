@@ -6,6 +6,7 @@ export const multerConfig: Options = {
     dest: path.resolve(__dirname, '..', '..', 'files', 'uploads'),
     storage: multer.diskStorage({
         destination: (req, file, callback: Function) => {
+            
             callback(null, path.resolve(__dirname, '..', '..', 'files', 'uploads'))
         },
         filename: (req, file, callback: Function) => {

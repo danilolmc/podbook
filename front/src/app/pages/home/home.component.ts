@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         return;
       }
 
-      this.homeCards = this.commonService.preparePodBookData(podbooks) || [];
+      this.homeCards = this.commonService.preparePodBookPaginatedData(podbooks) || [];
 
       console.log(podbooks);
       

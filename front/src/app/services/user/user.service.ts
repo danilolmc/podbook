@@ -32,14 +32,16 @@ export class UserService {
   private decodeAndNotify() {
 
     const token = <string>this.tokenService.getToken();
-    const user = <UserToken>jwtDecode(token);
+    const { user_id, email, name } = <UserRawData>jwtDecode(token);
 
-    this.userSubject.next(user);
+    this.userSubject.next({user_id, email});
+    this.userRawDataSubject.next({user_id, email, name});
   }
 
   logout() {
     this.tokenService.removeToken();
     this.userSubject.next(null);
+    this.userRawDataSubject.next(null);
   }
 
   isLogged() {

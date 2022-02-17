@@ -9,7 +9,7 @@
     </header>
     <figure (click)="callback()">
         <div class="img-container">
-            <img [src]="imgUrl">
+            <img [src]="imgUrl" #img (error)="handleMissingImage(img)">
         </div>
         <figcaption>
             <div class="card-text">

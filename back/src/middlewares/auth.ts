@@ -69,7 +69,7 @@ export const authenticate = async (loginData: LoginModel) => {
 
     if (!authenticationSuccess) return ({ statusCode: 401, message: 'Email or password invalid' });
 
-    const token = genToken({ user_id: userExist.id, email: userExist.email }, '2h');
+    const token = genToken({ user_id: userExist.id, email: userExist.email, name: userExist.name }, '2h');
 
     return {
         auth: true,

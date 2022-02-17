@@ -35,6 +35,9 @@ export class CardComponent implements CardProperties {
   @Input()
   imgUrl = '';
 
+  @Input()
+  imgUrlMissingReplace = '';
+
   getCardTypeClass(): string {
 
     return CardTypeStyleStratergy[this.cardType] || CardTypeStyleStratergy.default;
@@ -55,6 +58,10 @@ export class CardComponent implements CardProperties {
     return this.callbackFunction;
   }
 
+  get getReplaceMissingImage(){
+    return ''
+  }
+
   alerta($event: any){
     $event.preventDefault()
     this.contextMenu = true;
@@ -63,7 +70,10 @@ export class CardComponent implements CardProperties {
   manageA11yContextMenuFocus(element: HTMLLIElement, alternativeElement: HTMLElement){
     element.blur();
     alternativeElement.focus();
-    
+  }
+  handleMissingImage(imgElement: HTMLImageElement){
+    imgElement.src = this.imgUrlMissingReplace;
+    imgElement.classList.add('--image-not-found') 
   }
 
 }

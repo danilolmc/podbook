@@ -10,7 +10,7 @@
             </li>
             <div podMenu [visible]="!(userAuthenticated | async)?.user_id">
                 <li [class]="['--signup']" (click)="selectItem('Sign Up', 'sign-up')">
-                    <button class="button">Sign Up</button>
+                    <button role="link" class="button">Sign Up</button>
                 </li>
 
                 <li [class]="['--signin']" (click)="selectItem('Sign In', 'sign-in')">
