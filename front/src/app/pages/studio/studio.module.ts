@@ -13,6 +13,7 @@ import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
 import { ButtonModule } from "@components/button/button.module";
 import { FormFieldModule } from "@components/form-field/form-field.module";
 import { SelectModule } from "@components/select/select.module";
+import { AbstractStudioService, StudioService } from "@services/studio/studio.service";
 
 
 @NgModule({
@@ -32,6 +33,12 @@ import { SelectModule } from "@components/select/select.module";
         SelectModule
 
     ],
-    exports: [StudioComponent]
+    exports: [StudioComponent],
+    providers: [
+        {
+            provide: AbstractStudioService,
+            useExisting: StudioService
+        }
+    ]
 })
 export class StudioModule { }

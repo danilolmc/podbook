@@ -275,6 +275,8 @@
             li {
               padding: 0;
               overflow: initial;
+              box-shadow: none;
+              transition: none;
 
               span {
                 width: 30px;

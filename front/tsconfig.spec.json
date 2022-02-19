@@ -6,7 +6,9 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
   },
   "files": [
     "src/test.ts",

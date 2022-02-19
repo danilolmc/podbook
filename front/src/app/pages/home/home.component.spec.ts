@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
+import { PodbookCommonService } from '@services/common/common.service';
+import { HomeService } from '@services/home/home.service';
 
 import { HomeComponent } from './home.component';
 
@@ -10,10 +13,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [HomeComponent],
+      providers: [HomeService, PodbookCommonService],
+      imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -26,7 +31,7 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
+
   it('should change style list to grid', () => {
     component.changeStyleList(ListStatesEnum.GRID);
     expect(component.listStyle).toBe(ListStatesEnum.GRID)

@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { RecordAudioService } from './record-audio.service';
 
+declare var MediaRecorder: any;
+
 describe('RecordiAudioService', () => {
   let service: RecordAudioService;
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardProperties } from '@components/card/types/CardTypes';
 import { PodbookCommonService } from '@services/common/common.service';
-import { StudioService } from '@services/studio/studio.service';
+import { AbstractStudioService } from '@services/studio/studio.service';
 import { PaginationMetadata } from '@typing/pagination/pagination';
 import { PodbookPaginationRequestQueryParams } from '@typing/request/params';
 import { PaginatedPodbookResponse } from '../types/studioPage';
@@ -9,7 +9,7 @@ import { PaginatedPodbookResponse } from '../types/studioPage';
 @Component({
   selector: 'pod-my-podbooks',
   templateUrl: './my-podbooks.component.html',
-  styleUrls: ['./my-podbooks.component.scss']
+  styleUrls: ['./my-podbooks.component.scss'],
 })
 export class MyPodbooksComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class MyPodbooksComponent implements OnInit {
   paginationMetadata = {} as PaginationMetadata;
 
   constructor(
-    private studioService: StudioService,
+    private studioService: AbstractStudioService,
     private commonService: PodbookCommonService) {
   }
 
@@ -28,17 +28,19 @@ export class MyPodbooksComponent implements OnInit {
       page: 1
     }
 
-    this.studioService.getMyPodbooks(requestParams,).subscribe((podbooks: PaginatedPodbookResponse) => {
+    this.studioService.getMyPodbooks(requestParams).subscribe((response: PaginatedPodbookResponse | Error) => {
 
-      if (!podbooks.data.length) {
+      if (response instanceof Error) {
+        return;
+      }
+
+      if (!response.data.length) {
         this.my_cards = []
         return;
       }
 
-      this.my_cards = this.commonService.preparePodBookPaginatedData(podbooks.data) || [];
-      this.paginationMetadata = podbooks.paginationMetadata
-
-      console.log(podbooks);
+      this.my_cards = this.commonService.preparePodBookPaginatedData(response.data) || [];
+      this.paginationMetadata = response.paginationMetadata
 
     })
   }

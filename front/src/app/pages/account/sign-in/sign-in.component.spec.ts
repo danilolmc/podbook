@@ -3,8 +3,12 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormFieldModule } from '@components/form-field/form-field.module';
 import { TabModule } from '@components/tab/tab.module';
+import { SigninService } from '@services/signin/signin.service';
 import { SignInComponent } from './sign-in.component';
 
+const signInServiceStub = {
+  signip: jest.fn()
+}
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -18,7 +22,8 @@ describe('SignInComponent', () => {
         FormFieldModule,
         RouterModule,
         RouterTestingModule
-      ]
+      ],
+      providers: [{ provide: SigninService, useValue: signInServiceStub }]
     })
       .compileComponents();
   });

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">68.18% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/20</span>
+                <span class='fraction'>15/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
+                <span class="strong">42.85% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>3/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.78% </span>
+                <span class="strong">65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/18</span>
+                <span class='fraction'>13/20</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -106,13 +106,9 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,11 +119,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -144,31 +143,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
+import { TabItemComponent } from '@components/tab/tab-item/tab-item.component';
+import { TabComponent } from '@components/tab/tab.component';
 import { Subject } from 'rxjs';
 &nbsp;
 @Component({
@@ -178,39 +168,27 @@ import { Subject } from 'rxjs';
 })
 export class StudioComponent implements OnDestroy, OnInit {
 &nbsp;
+  @ViewChild(TabComponent) tab!:  TabComponent;
+  @ViewChildren(TabItemComponent) tabitems = new QueryList&lt;TabItemComponent&gt;()
+&nbsp;
   notifier = new Subject();
 &nbsp;
-  tabStudioCallback = () =&gt; {
-    this.route.navigate(['/studio'])
-    this.currentUrl = '/studio'
+  tabStudioCallback = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
+<span class="cstat-no" title="statement not covered" >    this.currentUrl = '/podbooks/studio'</span>
+<span class="cstat-no" title="statement not covered" >    this.route.navigate(['/podbooks/studio'])</span>
   };
   tabPodbooksCallback = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-<span class="cstat-no" title="statement not covered" >    this.route.navigate(['/studio/podbooks']);</span>
-<span class="cstat-no" title="statement not covered" >    this.currentUrl = '/studio/podbooks'</span>
+<span class="cstat-no" title="statement not covered" >    this.currentUrl = '/podbooks'</span>
+<span class="cstat-no" title="statement not covered" >    this.route.navigate(['/podbooks']);</span>
   };
 &nbsp;
   currentUrl = '';
 &nbsp;
-  tabItems = [
-    {
-      title: 'studio',
-      callback: this.tabStudioCallback,
-      route: '/studio',
-      selected: true,
-    },
-    {
-      title: 'my podbooks',
-      callback: this.tabPodbooksCallback,
-      route: '/studio/podbooks',
-      selected: false,
-    }
-  ];
-&nbsp;
   constructor(private route: Router) { }
 &nbsp;
   ngOnInit() {
-    
-      this.tabStudioCallback();
+&nbsp;
+    // this.tabPodbooksCallback();
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ngOnDestroy(</span>) {
@@ -221,6 +199,10 @@ export class StudioComponent implements OnDestroy, OnInit {
   isSelected(url: string) {
     return this.currentUrl === url;
   }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  openStudio(</span>) {
+<span class="cstat-no" title="statement not covered" >    this.tab.selectTab(this.tabitems.last);</span>
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -229,7 +211,7 @@ export class StudioComponent implements OnDestroy, OnInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Sep 09 2021 03:08:33 GMT-0300 (Horário Padrão de Brasília)
+                at Fri Feb 18 2022 21:13:26 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

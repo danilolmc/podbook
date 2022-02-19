@@ -38,12 +38,16 @@
     "typescript": "~4.3.2"
   },
   "jest": {
+    "verbose": true,
+    "collectCoverage": true,
     "moduleNameMapper": {
       "^@services/(.*)$": "<rootDir>/src/app/services/$1",
       "^@components/(.*)$": "<rootDir>/src/app/components/$1",
       "^@enums/(.*)$": "<rootDir>/src/app/enums/$1",
       "^@stratergy/(.*)$": "<rootDir>/src/app/stratergy/$1",
-      "^@mocks/(.*)$": "<rootDir>/src/app/mocks/$1"
+      "^@mocks/(.*)$": "<rootDir>/src/app/mocks/$1",
+      "^@core/(.*)$": "<rootDir>/src/app/core/$1",
+      "^@environments/(.*)$": "<rootDir>/src/environments/$1"
     },
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
@@ -55,7 +59,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "tsconfig": "<rootDir>/tsconfig.spec.json",
         "stringifyContentPathRegex": "\\.html$"
       }
     }

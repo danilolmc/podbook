@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
+import { validateFields } from '@core/validation/validation.utils';
 import { SigninService } from '@services/signin/signin.service';
 import { FieldsValidators } from '@typing/fieldsValidators/fieldsValidators';
-import { validateFields } from 'app/core/validation/validation.utils';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

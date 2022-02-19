@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@environments/environment';
 import { UserService } from '@services/user/user.service';
 import { tap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { SignInRequestData } from './types/signin.service.types';
 
 @Injectable({

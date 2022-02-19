@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { PodbookCommonService } from './common.service';
 
-import { CommonService } from './common.service';
 
-describe('CommonService', () => {
-  let service: CommonService;
+describe('PodbookCommonService', () => {
+  let service: PodbookCommonService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CommonService);
+    service = TestBed.inject(PodbookCommonService);
   });
 
   it('should be created', () => {
