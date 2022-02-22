@@ -1,36 +1,120 @@
-import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
-import { AudioControlService } from '@services/audio-control.service';
-import { AudioComponent } from './types/AudioControl';
-import { Mute } from './types/Mute';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AudioControlService } from '@services/audio-control/audio-control.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Audio, AudioComponent, AudioStatus } from './types/AudioControl';
 import { Playing } from './types/Playing';
 import { Repeat } from './types/Repeat';
+import { Volume } from './types/Volume';
 
 @Component({
   selector: 'pod-audio-control',
   templateUrl: './audio-control.component.html',
   styleUrls: ['./audio-control.component.scss'],
 })
-export class AudioControlComponent implements AudioComponent {
+export class AudioControlComponent implements AudioComponent, OnDestroy, OnInit {
 
-  muteInstance = new Mute();
-  repeatInstance = new Repeat();
-  playingInstance = new Playing();
+  @ViewChild('range') rangeAudioVolume!: ElementRef<HTMLInputElement>;
+
+  private unsubscribe = new Subject();
+
+  audio: Audio = {} as Audio ;
+
+  volumeInstance: Volume = {} as Volume;
+  repeatInstance: Repeat = {} as Repeat
+  playingInstance: Playing = {} as Playing;
 
   audioIsOpen = this.audioControlService.barStatus;
 
-  @HostBinding('class.closed')
-  get audioCurrentStatus(){
+  audioTitle = ''
+
+  get audioCurrentBarStatus() {
     return !this.audioControlService.barStatus.value;
   }
 
-  constructor(private audioControlService: AudioControlService){}
+  constructor(
+    private readonly audioControlService: AudioControlService
+  ) { }
+
+  ngOnInit(): void {
+    this.initializeAudioControl();
+  }
+
+  initializeAudioControl() {
+    this.audio = new Audio();
+    this.volumeInstance = new Volume(this.audio);
+    this.repeatInstance = new Repeat(this.audio);
+    this.playingInstance = new Playing(this.audio);
+
+    this.handlePlayingStatus();
+    this.handleAudioData();
+  }
 
   @Output()
-  private audioIsOpenEventEmmiter = new EventEmitter();
+  readonly audioIsOpenEventEmmiter = new EventEmitter();
 
+  handlePlayingStatus() {
+    this.audioControlService.playingStatus.asObservable().pipe(takeUntil(this.unsubscribe)).subscribe(audioStatus => {
+      if (audioStatus === AudioStatus.playing) this.playingInstance.pause();
+    })
+  }
 
-  closeAudio(){
+  handleAudioData() {
+    this.audioControlService.audioData.asObservable().pipe(takeUntil(this.unsubscribe)).subscribe(audio => {
+
+      if (!audio.audioUrl) return;
+
+      this.audio.source = audio.audioUrl;
+      this.audio.volume = parseFloat(this.rangeAudioVolume.nativeElement.value) / 100;
+      this.audioTitle = audio.audioName;
+      this.audio.currentTime;
+
+      if (audio.audioUrl.length > 0) {
+        this.audioControlService.openAudioBar()
+        this.audioIsOpenEventEmmiter.emit(this.audioIsOpen);
+      };
+
+      this.timeOutToPlay();
+    });
+  }
+
+  timeOutToPlay() {
+    setTimeout(() => {
+
+      this.playingInstance.play()
+
+    }, 500);
+  }
+
+  closeAudio() {
     this.audioControlService.closeAudioBar();
     this.audioIsOpenEventEmmiter.emit(this.audioIsOpen);
+    this.audio.source = '';
+    this.playingInstance.pause();
+  }
+
+  changeVolume($event: any) {
+
+    const newVolume = $event.target.value / 100;
+    this.volumeInstance.volume = newVolume;
+  }
+
+  toggleVolume() {
+    this.volumeInstance.toggle();
+
+    const rangeVolume = String(this.volumeInstance.volume * 100);
+
+    if (this.volumeInstance.currentMutedStatus == AudioStatus.muted) {
+      this.rangeAudioVolume.nativeElement.value = '0';
+      return;
+    }
+
+    this.rangeAudioVolume.nativeElement.value = rangeVolume;
+
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

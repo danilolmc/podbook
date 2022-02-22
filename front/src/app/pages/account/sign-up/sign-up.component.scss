@@ -51,6 +51,11 @@
         font-size: 1.3rem;
         transition: 0.5s ease;
         cursor: pointer;
+
+        .finished-step{
+          width: 1.5rem;
+          transform: translate(-3px,0);
+        }
       }
 
       .step-text {
@@ -68,6 +73,11 @@
           color: global.$primary;
         }
       }
+    }
+
+
+    & + div{
+      height: 350px;
     }
   }
 
@@ -98,16 +108,17 @@
         color: global.$white;
       }
 
-      .email,
       .password,
-      .submit {
+      .submit,
+      .name,
+      .next {
         margin: 3rem 0 2rem;
         display: block;
       }
 
       margin-bottom: 3rem;
 
-      .passwordsNotMatch {
+      .errorMessage {
         color: global.$red;
         display: block;
         height: 2rem;

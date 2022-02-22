@@ -1,41 +1,40 @@
+@use "/src/app/global/global" as global;
 
-@use '/src/app/global/global' as global; 
+.explore-page-container {
+  margin: 10.6rem 0 20rem;
+  min-height: 100vh;
+  padding: 0 4rem;
 
-.explore-page-container{
-    margin-top: 10.6rem;
-    min-height: 100vh;
-    padding-bottom: 6rem;
-
-
-    .banner{
-        .title{
-            font-size: 7.2rem;
-            color: global.$primary;
-            font-weight: 500;
-        }
-
-        pod-form-field{
-            max-width: 35rem;
-            display: block;
-            margin: 8rem 0;
-        }
+  .banner {
+    .title {
+      font-size: 7.2rem;
+      color: global.$primary;
+      font-weight: 500;
     }
 
-    .list-container-header{
-        display: flex;
-        justify-content: flex-end;
-        transform: translateY(27px);
+    pod-form-field {
+      max-width: 35rem;
+      display: block;
+      margin: 8rem 0;
     }
+  }
+
+  .list-container-header {
+    display: flex;
+    justify-content: flex-end;
+    transform: translateY(27px);
+  }
 }
 
-pod-float-button{
-    display: block;
-    position: fixed;
-    bottom: 7rem;
-    right: 12vw;
+pod-float-button {
+  display: block;
+  position: fixed;
+  bottom: 8rem;
+  right: 12vw;
+  z-index: 10;
 }
 
-pod-cards-container{
-    display: block;
-    margin-bottom: 10rem;
+pod-cards-container {
+  display: block;
+  margin-bottom: 10rem;
 }

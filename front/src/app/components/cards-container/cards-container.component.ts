@@ -1,6 +1,6 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
-import { CardProperties, CardPropertiesDTO } from '@components/card/types/CardTypes';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CardProperties } from '@components/card/types/CardTypes';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
 import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
 
@@ -18,28 +18,23 @@ import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
           ])
         ], { optional: true })
       ])
-    ])]
+    ])],
 })
 export class CardsContainerComponent {
 
-  private itemsCallback!: Function
   private styleList: ListStatesEnum = ListStatesEnum.GRID;
+
+  @Input()
+  loading = false;
 
   @Input()
   title = '';
 
   @Input()
-  cardsList: CardPropertiesDTO[] = [];
-
-  get itemsCallbackFunction() {
-    return this.itemsCallback;
-  }
+  cardsList: CardProperties[] = [];
 
   @Input()
-  set itemsCallbackFunction(fun: Function) {
-
-    this.itemsCallback = fun;
-  }
+  noDataMessage = 'No podbooks';
 
   @Input()
   set listStyle(style: ListStatesEnum) {

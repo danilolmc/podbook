@@ -1,147 +1,298 @@
-@use '/src/app/global/global' as global; 
+@use "/src/app/global/global" as global;
 @use "sass:math";
 
- .studio{
+#modal .modal-content .modal-body > label img.prev[havePreview="true"] {
+  width: 100%;
+  height: 100%;
+}
 
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 17rem;
+.studio {
+  .alert {
+    position: fixed;
+    top: 20rem;
+    right: 4rem;
+    font-size: 1rem;
+    max-width: 22rem;
+    width: 100%;
+    min-height: 55px;
+    background: global.$white;
+    padding: 2rem;
+    border-radius: 2px;
+    text-align: center;
+    word-wrap: break-word;
+    box-shadow: 0 5px 10px rgba($color: global.$red, $alpha: 0.1);
+    display: block;
+    z-index: 20;
+    opacity: 0;
+    transform: translateY(4rem);
+    transition: 0.3s ease;
+    cursor: pointer;
 
-            button{
-                border: none;
-                cursor: pointer;
-            }
+    &.error {
+      opacity: 1;
+      transform: translateY(0rem);
+      border: 1px solid global.$red;
+      color: global.$red;
+    }
 
-            .microphone{
-                background-color: global.$primary;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                height: 20.4rem;
-                width: 20.4rem;
-                margin-top: 2rem;
-                opacity: 0;
-                animation: splashAnimation .5s ease-in-out forwards;
-                transform: scale(.8);
+    &.success {
+      opacity: 1;
+      transform: translateY(0rem);
+      border: 1px solid global.$green;
+      color: global.$green;
+    }
+  }
 
-                @keyframes splashAnimation{
-                    to{
-                        opacity: 1;
-                        transform: scale(1);
-                    }
-                }
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top:15rem;
 
-                @keyframes recordingStatus{
-                    from {
-                        opacity: 0;
-                    }
-                    to{
-                        opacity: 1;
-                        width: inherit;
-                        height: inherit;
-                    }
-                }
+  button {
+    border: none;
+    cursor: pointer;
+  }
 
-                &::after,&::before, span::after{
-                    content: "";
-                    position: absolute;
-                    border-radius: 50%;
-                    display: block;
-                    background-color: global.$primary;
-                    z-index: 0;
-                    pointer-events: none;
-                }
+  .microphone {
+    background-color: global.$primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 20.4rem;
+    width: 20.4rem;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: splashAnimation 0.5s ease-in-out forwards;
+    transform: scale(0.8);
 
-                &::before{
-                    height: 25rem;
-                    width: 25rem;
-                    
-                }
-                
-                &::after{
-                    height: 30rem;
-                    width: 30rem;
+    @keyframes splashAnimation {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
+    @keyframes recordingStatus {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+        width: inherit;
+        height: inherit;
+      }
+    }
 
-                }
+    &::after,
+    &::before,
+    span::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      display: block;
+      background-color: global.$primary;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-                span{
-                    position: relative;
-                    width: inherit;
-                    height: inherit;
-                    display: inherit;
-                    align-items: inherit;
-                    justify-content: inherit;
-                    
+    &::before {
+      height: 25rem;
+      width: 25rem;
+    }
 
-                    &::after{
-                        height: 35rem;
-                        width: 35rem;
-                    }
-                        
-                    img{
-                        filter: invert(100%);
-                        transform: scale(4.5);
-                        z-index: 5;
+    &::after {
+      height: 30rem;
+      width: 30rem;
+    }
 
-                    }
-                }
-                
-                &.--recording{
-                
-                    &::after,&::before,span::after{
-                        animation: recordingStatus 1.2s ease-in-out infinite reverse;
-                    }
-                    
-                    &::after{
-                        opacity: 0;
-                    }
-                    
-                    span::after{
-                        opacity: 0;
-                    }
-                }
+    span {
+      position: relative;
+      width: inherit;
+      height: inherit;
+      display: inherit;
+      align-items: inherit;
+      justify-content: inherit;
 
-                &.--stopped{
-                
-                    &::after,&::before,span::after{
-                        animation: none;
-                        opacity: 0;
-                    }
-                }
+      &::after {
+        height: 35rem;
+        width: 35rem;
+      }
 
+      img {
+        filter: invert(100%);
+        transform: scale(4.5);
+        z-index: 5;
+      }
+    }
 
-            }
+    &.--recording {
+      &::after,
+      &::before,
+      span::after {
+        animation: recordingStatus 1.2s ease-in-out infinite reverse;
+      }
 
-            footer{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                column-gap: 7rem;
-                margin-top: 23rem;
+      &::after {
+        opacity: 0;
+      }
 
-                @keyframes staggerAnimation{
-                    to{
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                
-                .control-button{
-                    opacity: 0;
-                    transform: translateY(50px);
-                    transition: .5s ease;
-                    animation: staggerAnimation 1s cubic-bezier(0.68, -0.6, 0.32, 3) forwards;
+      span::after {
+        opacity: 0;
+      }
+    }
 
-                    
-                    @for $i from 0 to 6 {
-                        
-                        &:nth-child(#{$i}){
-                            animation-delay: #{math.div($i, 10)}s;
-                        }
-                    }
-                }
-            }
+    &.--stopped {
+      &::after,
+      &::before,
+      span::after {
+        animation: none;
+        opacity: 0;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 7rem;
+    margin-top: 20rem;
+
+    @keyframes staggerAnimation {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .control-button {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 0.5s ease;
+      animation: staggerAnimation 1s cubic-bezier(0.68, -0.6, 0.32, 3) forwards;
+      position: relative;
+      width: 4rem;
+
+      @for $i from 0 to 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{math.div($i, 10)}s;
         }
+      }
+    }
+  }
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color: #000, $alpha: 0.5);
+  z-index: 14;
+  transition: 0.3s ease;
+
+  .modal-content {
+    padding: 3rem 3rem 5rem;
+    background-color: global.$white;
+    border-radius: 2px;
+    transition: 0.3s ease;
+
+    h1 {
+      color: global.$primary;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid global.$medium-gray;
+    }
+
+    .modal-body {
+      display: grid;
+      column-gap: 5rem;
+      grid-template-columns: 400px 480px;
+      margin-top: 3rem;
+
+      & > label {
+        display: flex;
+        width: 100%;
+        height: 387px;
+        cursor: pointer;
+        background: global.$light-gray;
+        transition: 0.5s ease;
+
+        img {
+          width: 40%;
+          height: 40%;
+          display: block;
+          margin: auto;
+        }
+
+        input {
+          display: none;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .save-button {
+        margin-top: 1rem;
+        transition: 0.5s ease;
+
+        &:hover {
+          opacity: 0.6;
+        }
+
+        @keyframes spinner {
+          to {
+            transform: rotatez(360deg);
+          }
+        }
+
+        .loader {
+          border-radius: 50%;
+          width: 2rem;
+          height: 2rem;
+          border-width: 3px;
+          border-style: solid;
+          border-color: transparent transparent transparent global.$white;
+          animation: spinner 0.7s linear infinite;
+        }
+      }
+
+      .text-fields {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        justify-content: space-between;
+
+        .field-title,
+        .field-category,
+        .field-description {
+          height: 94px;
+        }
+      }
+    }
+  }
+
+  &[visibility="false"] {
+    pointer-events: none;
+    opacity: 0;
+
+    .modal-content {
+      transform: translateY(100px);
+    }
+  }
+
+  &[visibility="true"] {
+    pointer-events: all;
+    opacity: 1;
+
+    .modal-content {
+      transform: translateY(0px);
+    }
+  }
+}

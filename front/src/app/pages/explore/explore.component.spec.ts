@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListStatesEnum } from '@enums/styleListComponent/ListStateEnum';
+import { PodbookCommonService } from '@services/common/common.service';
+import { ExploreService } from '@services/explore/explore.service';
 
 import { ExploreComponent } from './explore.component';
 
@@ -11,7 +14,9 @@ describe('ExploreComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ExploreComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [HttpClientTestingModule],
+      providers: [ExploreService, PodbookCommonService]
     })
     .compileComponents();
   });

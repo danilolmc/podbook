@@ -15,16 +15,12 @@ export class TabComponent implements Tab, AfterContentInit {
   tabs!: QueryList<TabItemComponent>;
 
   @Input()
-  currentPageUrl = new BehaviorSubject('');
-
-  @Input()
   urlBased = false;
 
   ngAfterContentInit(): void {
     this.setInitialState();
 
   }
-
 
   selectTab(clickedTab: TabItemComponent) {
 

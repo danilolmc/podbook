@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CardStyleMappingEnum } from '@enums/cardComponent/CardSstyleMappingEnum';
 import { CardTypeStyleStratergy } from '@stratergy/CardComponent/cardStratergy';
 
@@ -11,18 +11,25 @@ import { CardProperties, CardTypes } from './types/CardTypes';
 })
 export class CardComponent implements CardProperties {
 
-  private callbackFunction : Function = () => { };
+
+  @ViewChild('img') imgElement!: ElementRef<HTMLImageElement>;
+  @ViewChild('option') optionElement!: ElementRef<HTMLLIElement>;
+  @ViewChild('ellipsis') ellipsisElement!: ElementRef<HTMLSpanElement>;
+
+  callbackFunction : Function = () => { };
 
   selector = 'card';
 
-  @Input()
-  title = 'Creating reading habit';
+  contextMenu = false;
 
   @Input()
-  description = 'Learn how to create an reading habit...';
+  title = '';
 
   @Input()
-  badgeText = 'habits';
+  description = '';
+
+  @Input()
+  badgeText = '';
 
   @Input()
   width = 'auto';
@@ -30,22 +37,31 @@ export class CardComponent implements CardProperties {
   @Input()
   cardType: CardTypes = CardStyleMappingEnum.DEFAULT;
 
+  @Input()
   imgUrl = '';
 
-  getCardTypeClass(): string {
+  @Input()
+  imgUrlMissingReplace = '';
+
+  get cardTypeClass(): string {
 
     return CardTypeStyleStratergy[this.cardType] || CardTypeStyleStratergy.default;
   }
 
   @Input()
-  set callback(fn: Function) {
+  set click(fn: Function | undefined) {
+
+    if(!fn) {
+      this.callbackFunction = () => {}
+      return;
+    }
+
     this.callbackFunction = fn;
   }
 
-  get callback() {
-    return this.callbackFunction;
+  handleMissingImage(){
+    this.imgElement.nativeElement.src = this.imgUrlMissingReplace;
+    this.imgElement.nativeElement.classList.add('--image-not-found') 
   }
-
-
 
 }

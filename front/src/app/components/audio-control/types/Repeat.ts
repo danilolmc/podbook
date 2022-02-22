@@ -1,10 +1,12 @@
 import { Audio } from "./AudioControl";
 
-export class Repeat extends Audio {
+export class Repeat {
 
     private repeat = false;
 
     repeatNotRepeatIcons: [string, string] = ['assets/icons/not-repeat-icon.svg', 'assets/icons/repeat-icon.svg'];
+
+    constructor(private htmlAudio: Audio) { }
 
     get repeatNotRepeatCurrentIcon(): string {
 
@@ -19,10 +21,14 @@ export class Repeat extends Audio {
 
     enableRepeating() {
         this.repeat = true;
+
+        this.htmlAudio.audio.loop = true;
     }
 
     disableRepeating() {
         this.repeat = false;
+
+        this.htmlAudio.audio.loop = false;
     }
 
 

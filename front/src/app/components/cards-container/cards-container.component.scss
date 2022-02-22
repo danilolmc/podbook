@@ -1,55 +1,81 @@
-@use '/src/app/global/global' as global; 
+@use "/src/app/global/global" as global;
 
-.cards-container{
+.cards-container {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    header{
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: global.$text;
 
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-
-     h2{
-        font-size: 2.4rem;
-        font-weight: 500;
-        color: global.$text;
-     }
+      @include global.getBreakpointMediaQuery(mobile, max-width) {
+        font-size: 1.6rem;
+      }
     }
+  }
 
-    .cards-container-content{
-        margin-top: 5.8rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(271px, 1fr));
-        gap: 7rem 3rem;
-        flex-wrap: wrap;
-        
-        &.inline{
-            
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            transition: .5s ease;
-        }
+  .cards-container-content {
+    margin-top: 5.8rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 7rem 3rem;
+
+    &.inline {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      transition: 0.5s ease;
     }
+    
+    @include global.getBreakpointMediaQuery(mobile, max-width) {
+      margin-top: 3rem;
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
-.no-content{
-    padding: 10rem 0 0;
-    
-    & > * {
-        margin: 0 auto;
-        display: block;
-    }
+.no-content {
+  padding: 10rem 0 0;
 
-    img{
-        width: 10rem;
-        opacity: .4;
+  & > * {
+    margin: 0 auto;
+    display: block;
+  }
+
+  img {
+    width: 10rem;
+    opacity: 0.4;
+  }
+
+  p {
+    margin-top: 5rem;
+    text-align: center;
+    max-width: fit-content;
+    font-size: 2rem;
+    font-weight: 300;
+    color: global.$text-medium-gray;
+  }
+}
+
+.loading {
+  padding-top: 15rem;
+  .loading-spinner {
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid transparent;
+    border-top-color: global.$primary;
+    animation: spinner 0.5s ease-in infinite;
+    border-radius: 50%;
+
+    display: block;
+    margin: 0 auto;
+
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
     }
-    
-    p{
-        margin-top: 5rem;
-        text-align: center;
-        max-width: fit-content;
-        font-size: 2rem;
-        font-weight: 300;
-        color: global.$text-medium-gray;
-    }
+  }
 }

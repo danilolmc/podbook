@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { UserService } from '@services/user/user.service';
 import { Subscription } from 'rxjs';
-import { filter, first, take, takeLast } from 'rxjs/operators';
 import { MenuType } from './types/MenuTypes';
 
 @Component({
@@ -11,36 +11,29 @@ import { MenuType } from './types/MenuTypes';
 })
 export class MenuComponent implements OnDestroy {
 
-  private subscription: Subscription;
+  subscription: Subscription;
 
   menuItems: MenuType[] = [
     {
       text: 'Explore',
       link: '/explore',
-      active: false
+      active: false,
     },
     {
       text: 'Studio',
-      link: '/studio',
+      link: '/podbooks',
       active: false
     },
-    {
-      text: 'Sign Up',
-      link: 'sign-up',
-      active: false,
-      className: '--signup'
-    },
-    {
-      text: 'Sign In',
-      link: 'sign-in',
-      active: false,
-      className: '--signin'
-    },
+
   ];
 
   currentUrl = "";
 
-  constructor(private route: Router) {
+  get userAuthenticated() {
+    return this.userService.getUser();
+  }
+
+  constructor(private route: Router, private userService: UserService) {
 
     this.subscription = this.route.events
       .subscribe(event => event instanceof NavigationEnd ? this.currentUrl = event.url : '');
@@ -55,8 +48,13 @@ export class MenuComponent implements OnDestroy {
 
   }
 
-  activeItemByUrl(item: MenuType){
+  activeItemByUrl(item: MenuType) {
     return this.currentUrl.includes(item.link);
+  }
+
+  logout(){
+    this.userService.logout();
+    this.route.navigate(['/sign-in']);
   }
 
   ngOnDestroy() {

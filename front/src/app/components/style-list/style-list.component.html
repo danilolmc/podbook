@@ -1,8 +1,8 @@
 <div class="style-list-container">
-    <span [ngClass]="{'--active': isGridState, 'style-option': true }" (click)="setGridState()">
+    <span (keyup.enter)="setGridState()" tabindex="0" [ngClass]="{'--active': isGridState, 'style-option': true }" (click)="setGridState()">
         <img src="assets/icons/grid-icon.svg" alt="Grid icon">
     </span>
-    <span [ngClass]="{'--active': isListState }" (click)="setListState()">
+    <span (keyup.enter)="setListState()" tabindex="0" [ngClass]="{'--active': isListState }" (click)="setListState()">
         <img src="assets/icons/list-icon.svg" alt="List icon">
     </span>
 </div>

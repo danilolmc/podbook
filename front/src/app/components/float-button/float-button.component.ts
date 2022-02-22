@@ -5,9 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './float-button.component.html',
   styleUrls: ['./float-button.component.scss']
 })
-export class FloatButtonComponent{
+export class FloatButtonComponent {
 
-  private callbackFn: Function = () => {}
+  private callbackFn: Function = () => { };
 
   @Input()
   src = '';
@@ -18,7 +18,12 @@ export class FloatButtonComponent{
     this.callbackFn = fun;
   }
 
-  executeCallback(){
+  get callback() {
+
+    return this.callbackFn;
+  }
+
+  executeCallback() {
     this.callbackFn();
   }
 }

@@ -1,14 +1,15 @@
 <header class="header-wrapper">
-    <pod-menu></pod-menu>
+    <pod-menu class="pod-menu"></pod-menu>
 </header>
 
 <div class="app-container">
     <router-outlet></router-outlet>
     <pod-audio-control
+        tabindex="0"
         (audioIsOpenEventEmmiter)="toggleAudioBar($event)"
         class="audio-control-bar"></pod-audio-control>
 </div>
 
 <footer class="footer-wrapper">
-    <pod-footer></pod-footer>
+    <pod-footer class="pod-footer"></pod-footer>
 </footer>

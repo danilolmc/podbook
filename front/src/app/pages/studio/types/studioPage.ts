@@ -1,4 +1,5 @@
 import { TabItem } from "@components/tab/types/TabItem";
+import { PaginationMetadata } from "@typing/pagination/pagination";
 
 export enum RecordingStatus {
     RECORDING = 'recording',
@@ -15,6 +16,54 @@ export abstract class Studio {
 
 }
 
+export interface Podbook {
+
+    bannerImage: File
+    bannerTitle: string
+    description: string
+    category: string
+    audio: File;
+}
+export interface PodbookResponse {
+
+    bannerImage: string
+    bannerTitle: string
+    description: string
+    category: { cat_id: number, name: string }
+    audio: string;
+}
+export interface PaginatedPodbookResponse {
+
+    data: {
+        bannerImage: string
+        bannerTitle: string
+        description: string
+        category: { cat_id: number, name: string }
+        audio: string;
+    }[],
+    paginationMetadata: PaginationMetadata
+
+}
+
+export interface PodbookData {
+
+    user_id: number
+    podbook: Podbook
+}
+
+export interface Navigator {
+    getUserMedia(
+        options: { video?: boolean; audio?: boolean; },
+        success: (stream: any) => void,
+        error?: (error: string) => void
+    ): void;
+}
+
+export interface RecordedAudio {
+    audioBlob?: Blob,
+    audioUrl?: string
+    audioName: string;
+}
 
 export class TabRoutedCreator {
 
@@ -45,4 +94,9 @@ export class TabRoutedCreator {
         this.tabItem = tab;
         this.urlMapping = url;
     };
+}
+
+export interface SelectOption {
+    cat_id: string;
+    name: string;
 }

@@ -1,6 +1,6 @@
+import cors from 'cors';
 import express, { Application } from 'express';
 import { Controller } from "./interfaces/Controller";
-import cors from 'cors';
 
 
 class App {
@@ -12,7 +12,8 @@ class App {
         const app = express();
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
-        app.use(cors({ origin: 'http://localhost:4200' }));
+        app.use(cors());
+        app.use(express.static(`files`))
 
         this.app = app;
         this.port = appInit.port;

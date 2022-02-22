@@ -10,6 +10,10 @@ import { StudioRoutingModule } from "@routes/studio.routing.module";
 import { StudioComponent } from "./studio.component";
 import { RecordStudioComponent } from './record-studio/record-studio.component';
 import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
+import { ButtonModule } from "@components/button/button.module";
+import { FormFieldModule } from "@components/form-field/form-field.module";
+import { SelectModule } from "@components/select/select.module";
+import { AbstractStudioService, StudioService } from "@services/studio/studio.service";
 
 
 @NgModule({
@@ -23,9 +27,18 @@ import { MyPodbooksComponent } from './my-podbooks/my-podbooks.component';
         StudioRoutingModule,
         TabModule,
         ButtonControlModule,
-        CardsContainerModule
+        CardsContainerModule,
+        ButtonModule,
+        FormFieldModule,
+        SelectModule
 
     ],
-    exports: [StudioComponent]
+    exports: [StudioComponent],
+    providers: [
+        {
+            provide: AbstractStudioService,
+            useExisting: StudioService
+        }
+    ]
 })
 export class StudioModule { }

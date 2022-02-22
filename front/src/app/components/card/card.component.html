@@ -1,14 +1,33 @@
-<div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width" (click)="callback()">
-    <figure>
-        <img src="https://i.pinimg.com/originals/c8/c7/ff/c8c7ff0070dc0cbd59345630675a2f84.jpg">
+<div [ngClass]="[selector, cardTypeClass ]" [style.width]="width">
+    <header>
+        <div class="context-menu">
+            <span class="ellipsis-icon" tabindex="0" #ellipsis>
+                <img src="assets/icons/ellipsis-icon.svg" alt="ellipsis icon">
+            </span>
+            <ng-container [ngTemplateOutlet]="context_menu"></ng-container>
+        </div>
+    </header>
+    <figure (click)="callbackFunction">
+        <div class="img-container">
+            <img [src]="imgUrl" #img (error)="handleMissingImage()">
+        </div>
         <figcaption>
             <div class="card-text">
                 <h5 class="card-title">{{ title }}</h5>
                 <p class="card-description">{{ description }}</p>
             </div>
-            <div class="badge-wrapper">
+            <div class="badge-wrapper" *ngIf="badgeText">
                 <span class="badge">{{ badgeText }}</span>
             </div>
         </figcaption>
     </figure>
 </div>
+
+<ng-template #context_menu>
+    <ul>
+        <li tabindex="0" #option class="context-menu-option">
+            <span>share podbook</span>
+            <span title="share podbook"><img src="assets/icons/share-icon.svg" alt="share icon"></span>
+        </li>
+    </ul>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="stepper">
+    <div class="stepper__progress-bar">
+        <span class="__progress-indicator"></span>
+    </div>
+
+    <div class="stepper__items-container">
+        <div class="stepper__items-container__item" *ngFor="let step of steps; let position = index;">
+            <div class="title-container">
+                <span class="title__circle"></span>
+                <span class="title__text">0{{position + 1}}. {{step.title}}</span>
+            </div>
+
+            <div class='stepper__description-container' *ngIf="stepsDescriptions.length">
+                <span class="__description">{{step.description}}</span>
+            </div>
+        </div>
+    </div>
+</div>

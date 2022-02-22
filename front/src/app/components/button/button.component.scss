@@ -1,0 +1,73 @@
+@use "/src/app/global/global" as global;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+  cursor: pointer;
+  
+  &[disabled="true"]{
+    pointer-events: none;
+  
+    .button{
+      opacity: .5;
+      visibility: inherit;
+    }
+  }
+  
+  &[disabled="false"]{
+    pointer-events: all;
+
+    .button{
+      opacity: 1;
+      visibility: inherit;
+    }
+  }
+
+
+  .button {
+    background-color: global.$primary;
+    width: 100%;
+    height: 4rem;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    transition: 0.5s ease;
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    border: 0;
+
+    &:hover {
+      & + .tooltip {
+        opacity: 1;
+        transform: translateY(50px);
+      }
+    }
+
+    span{
+      color: global.$white;
+      font-size: 1.6rem;
+    }
+
+  }
+
+  .tooltip {
+    position: absolute;
+    text-align: center;
+    display: block;
+    margin-top: 1.5rem;
+    padding: 0.3rem 0.5rem;
+    opacity: 0;
+    background-color: global.$primary;
+    transition: 0.3s ease;
+    display: block;
+    color: global.$white;
+    min-height: 1.3rem;
+    width: 100%;
+    text-overflow: ellipsis;
+    width: 7rem;
+    border-radius: 2px;
+    transform: translateY(65px);
+  }
+}

@@ -1,4 +1,7 @@
 import { Observer } from "rxjs";
+import { Playing } from "./Playing";
+import { Repeat } from "./Repeat";
+import { Volume } from "./Volume";
 
 type AudioPlayingStatus = 'playing' | 'paused';
 type AudioSongStatus = 'muted' | 'unmuted';
@@ -21,7 +24,46 @@ export interface AudioComponent {
     closeAudio: Function,
 }
 
-export abstract class Audio{
 
-    abstract toggle(): void
+export const defineAudioDuration = (audio: HTMLAudioElement, callback: Function) => {
+    if (audio.duration === Infinity) {
+
+        audio.currentTime = Number.MAX_SAFE_INTEGER;
+
+        audio.ontimeupdate = () => {
+
+            audio.ontimeupdate = () => { }
+
+            audio.currentTime = 0;
+
+            return callback(audio.duration);
+        }
+    }
+}
+
+export class Audio {
+
+    private htmlAudio = new window.Audio();
+
+    private audioCurrentTime = 0;
+
+    get currentTime() {
+        return this.audioCurrentTime
+    }
+
+    set currentTime(time: number) {
+        this.audioCurrentTime = time
+    }
+
+    get audio() {
+        return this.htmlAudio;
+    }
+
+    set volume(volme: number) {
+        this.audio.volume = volme;
+    }
+
+    set source(src: string) {
+        this.audio.src = src;
+    }
 }

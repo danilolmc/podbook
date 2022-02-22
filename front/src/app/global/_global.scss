@@ -1,11 +1,41 @@
-$primary: #8348FF;
-$very-light-purple: #8348FF;
-$text: #2E1C54;
-$text-medium-gray: #9D9CB5;
+$primary: #8348ff;
+$very-light-purple: #8348ff;
+$text: #2e1c54;
+$text-medium-gray: #9d9cb5;
 $white: #ffffff;
-$dark-gray: #C4C4C4;
-$medium-gray: #E5E5E5;
-$light-gray: #F5F5F5;
+$dark-gray: #c4c4c4;
+$medium-gray: #e5e5e5;
+$light-gray: #f5f5f5;
 $red: #da5454;
+$green: #24994b;
 
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  small-laptop-screen: 1024px,
+  large-desktop-screen: 1200px,
+  extra-large-screen: 1201px,
+);
 
+@function getBreakPoints($breakpoint){
+  @return map-get($breakpoints, $breakpoint);
+}
+
+@mixin getBreakpointMediaQuery($breakpoint, $property) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpointValue: getBreakPoints($breakpoint);
+
+    @media screen and  (#{$property}: $breakpointValue ) {
+      @content;
+    }
+  }
+
+  @warn "O breakpoint `#{$breakpoint}` não existe";
+}
+
+@mixin getCustomBreakpointMediaQuery($breakpoint, $property){
+  
+  @media screen and (#{$property}: $breakpoint) {
+    @content;
+  }
+}

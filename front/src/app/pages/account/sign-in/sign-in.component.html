@@ -1,6 +1,8 @@
 <div class="signin">
 
     <div class="form-container">
+        <img src="assets/logo/logo.svg" alt="">
+
         <form>
             <pod-form-field 
                 #email
@@ -16,6 +18,7 @@
                 type="password"
                 [validations]="fieldsValidators.password">
             </pod-form-field>
+            <span class="authentication-error">{{authenticationErrorMessage}}</span>
             <!-- <button class="forgot-password">Forgot password?</button> -->
             <button class="submit" (click)="submit($event,[email,password])">Login</button>
         </form>

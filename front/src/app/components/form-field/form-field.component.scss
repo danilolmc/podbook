@@ -1,6 +1,6 @@
 @use "/src/app/global/global" as global;
 
-.form-field-wrapper {
+.field-wrapper {
   min-width: 35.5rem;
   width: auto;
 
@@ -16,7 +16,7 @@
     font-size: 1.2rem;
   }
 
-  span {
+  div {
     background-color: global.$light-gray;
     display: flex;
     column-gap: 1rem;
@@ -42,16 +42,18 @@
         color: global.$dark-gray;
         font-weight: 300;
       }
-    }
-  }
 
-  &:focus-within {
-    label {
-      color: global.$primary;
-    }
+      &[type="search"]{
 
-    span {
-      border: 1px solid global.$primary;
+        padding-right: 1rem;
+        
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+          -webkit-appearance: none;
+        }
+      }
     }
   }
 
@@ -70,8 +72,28 @@
       color: global.$red;
     }
 
-    & span {
+    & div {
       border-color: global.$red;
+    }
+  }
+
+  &:focus-within {
+    label {
+      color: global.$primary;
+    }
+
+    div {
+      border: 1px solid global.$primary;
+    }
+
+    &.invalid {
+      label {
+        color: global.$red;
+      }
+
+      div {
+        border-color: global.$red;
+      }
     }
   }
 }

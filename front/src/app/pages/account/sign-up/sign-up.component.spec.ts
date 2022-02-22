@@ -51,6 +51,8 @@ describe('SignUpComponent', () => {
 
     component.nextStep(new MouseEvent('click'), [name, email]);
 
+    fixture.detectChanges();
+
     expect(component.currentStep).toBe(2);
     expect(component.formValues).toMatchObject({ name: 'test', email: 'test@gmail.com' });
     expect(component.steps[1].active).toBeTruthy();

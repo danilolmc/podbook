@@ -1,10 +1,16 @@
 <div class="signup">
 
+ 
     <div class="steps">
         <span [ngClass]="{'back-bar': true, '--active-bar': currentStep > 1}" [attr.position]="currentStep"></span>
         <div class="step" *ngFor="let step of steps; index as activeStep" [attr.name]="step.name"
             [ngClass]="{'--active': step.active}">
-            <span class="step-number">{{activeStep + 1}}</span>
+            <span class="step-number">
+                <img class="finished-step" *ngIf="step.finished" src="/assets/icons/check-icon.svg" alt="check icon">
+                <label *ngIf="!step.finished">{{activeStep + 1}}</label>
+            </span>
+            <span class="step-finished">
+            </span>
             <span class="step-text">{{step.name}}</span>
         </div>
     </div>
@@ -22,11 +28,9 @@
 <ng-template #firstStep>
     <div class="form-container">
         <form>
-            <pod-form-field #name class="name" labelText="Name" type="text" [validations]="fieldsValidators.name"
-                [value]="formValues.name">
+            <pod-form-field #name class="name" labelText="Name" type="text" [validations]="fieldsValidators.name">
             </pod-form-field>
-            <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email"
-                [value]="formValues.email">
+            <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email">
             </pod-form-field>
             <button class="next" (click)="nextStep($event,[name,email])">Next</button>
         </form>
@@ -44,7 +48,6 @@
                 labelText="Password" 
                 type="password"
                 [validations]="fieldsValidators.password" 
-                [value]="formValues.password"
                 (change)="checkPasswordMatch($event,formValues.repeatedPassword)">
             </pod-form-field>
 
@@ -54,12 +57,11 @@
                 labelText="Confirm password" 
                 type="password"
                 [validations]="fieldsValidators.password" 
-                [value]="formValues.repeatedPassword"
                 (change)="checkPasswordMatch(formValues.password,$event)"
                 >
             </pod-form-field>
 
-            <span class="passwordsNotMatch" *ngIf="passwordDoNotMatch">Passwords do not match</span>
+            <span class="errorMessage" *ngIf="formErrorMesage && !passwordsMatch">{{formErrorMesage}}</span>
             <button class="submit" (click)="submit($event, [password,repeatPassword])">Sign up</button>
         </form>
         <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>

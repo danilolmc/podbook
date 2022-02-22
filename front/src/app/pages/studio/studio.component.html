@@ -1,7 +1,21 @@
 <div class="studio-container">
-    <pod-tab class="tabs">
-        <pod-tab-item title="studio" [callback]="tabStudioCallback" [selectItem]="isSelected('/studio')"></pod-tab-item>
-        <pod-tab-item title="my podbooks" [callback]="tabPodbooksCallback" [selectItem]="isSelected('/studio/podbooks')"></pod-tab-item>
-        <router-outlet></router-outlet>
-    </pod-tab>
+    <div class="tabs-container">
+        <div class="tabs">
+            <a tabindex="0" 
+                [routerLink]="['/podbooks']" 
+                routerLinkActive="active-link" 
+                [routerLinkActiveOptions]="{exact: true}">my
+                podbooks</a>
+            <a tabindex="0" [routerLink]="['studio']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">studio</a>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
 </div>
+
+<pod-float-button 
+    tabindex="0" 
+    [callback]="tabStudioCallback" 
+    src="assets/icons/plus-icon.svg" 
+    *ngIf="isSelected('/podbooks')"
+    (click)="openStudio()">
+</pod-float-button>

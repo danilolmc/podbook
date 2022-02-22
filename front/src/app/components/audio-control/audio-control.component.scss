@@ -1,135 +1,174 @@
-@use '/src/app/global/global' as global; 
+@use "/src/app/global/global" as global;
+@use "/src/app/global/shared-styles/shared" as shared;
 
-:host{
-    overflow: hidden;
-    transition: .5s ease;
-    
-    &.closed{
-        
-        pointer-events: none;
-        height: 0;
-    }
+:host {
+  transition: 0.5s ease;
+
+  &.closed {
+    pointer-events: none;
+    height: 0;
+  }
 }
 
-.audio-control-container{
+.audio-control-container {
+  display: flex;
+  align-items: center;
+  background-color: global.$light-gray;
+  padding: 0rem 2rem;
+  height: 100%;
+  transition: 0.5s ease;
+
+  &.--opend {
+    transform: translateY(0%);
+  }
+
+  &.--closed {
+    transform: translateY(100%);
+  }
+
+  .audio-control-inner {
+    max-width: 120rem;
+    margin: auto;
+    width: 100%;
     display: flex;
     align-items: center;
-    background-color: global.$light-gray;
-    padding: 0rem 2rem;
-    height: 100%;
-    transition: .5s ease;
 
-    &.--opend{
-        transform: translateY(0%);
-    }
+    .control {
+      display: flex;
+      align-items: center;
+      column-gap: 5rem;
+      flex: 1;
 
-    &.--closed{
-        transform: translateY(100%);
-    }
-    
-    .audio-control-inner{
-        max-width: 120rem;
-        margin: auto;
-        width: 100%;
-        display: flex;
-        align-items: center;
+      & div {
+        display: inherit;
+        align-items: inherit;
+      }
+
+      > div {
+        column-gap: 10rem;
+      }
+
+      div.audio-controls {
+        column-gap: 2rem;
+        margin-left: 5rem;
+        position: relative;
+
+        & > div {
+       
+          display: flex;
+          align-items: center;
+          grid-column-gap: 1rem;
+          flex-direction: column;
+          column-gap: 1rem;
+          transition: 1s ease;
+
+          &:hover {
+            & .range-input {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
         
-        .control{
-            display: flex;
-            align-items: center;
-            column-gap: 5rem;
-            flex: 1;
+        }   
 
-            & div{
-                display: inherit;
-                align-items: inherit;
-            }
-            
-            > div{
-                column-gap: 10rem;
-            }
+        @include shared.custom-input-range();
 
-            div.audio-controls{
-                column-gap: 3rem;
-                margin-left: 5rem;
-            }
-
-            .audio{
-
-                justify-content: center;
-                flex-direction: column;
-                row-gap: .7rem;
-                transform: translateY(-.8rem);
-
-                header, footer{
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                }
-
-                .audio-bar-container{
-                    width: 51rem;
-                    background: global.$medium-gray;
-                    height: 3px;
-                    display: block;
-
-                    .audio-progress-bar{
-                        display: block;
-                        width: 35%;
-                        height: 100%;
-                        background-color: global.$primary;
-                    }
-                }
-            }
-
-            .play-pause-button{
-                border: 1px solid global.$primary;
-                width: 4rem;
-                height: 4rem;
-                display: grid;
-                place-content: center;
-                border-radius: 50%;
-                background: global.$primary;
-                transition: .5s ease;
-                position: relative;
-                cursor: pointer;    
-            }
-            
-            .repeat-button{
-                
-                display: grid;
-                place-content: center;
-
-                img{
-                    width: 80%;
-                    margin-top: .2rem;
-                }
-            }
-            
-            .mute-unmute-button,.repeat-button{
-                border: 0;
-                background: none;
-                overflow: hidden;
-                width: 1.5rem;
-                cursor: pointer;    
-
-                img{
-
-                    margin: 0 auto;
-                }
-            }
-
+        .range-input {
+          width: 150%;
+          opacity: 0;
+          transition: 0.5s ease;
+          transform: rotateZ(-90deg) translateX(50px);
+          position: absolute;
+          visibility: hidden;
         }
 
-        & > button{
+      }
 
-            background: none;
-            border: 0;
-            cursor: pointer;
+      .audio {
+        justify-content: center;
+        flex-direction: column;
+        row-gap: 0.7rem;
+        transform: translateY(-0.8rem);
 
-            img{
-                width: 50%;
-            }
+        header,
+        footer {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
         }
+
+        .audio-bar-container {
+          width: 51rem;
+          background: global.$medium-gray;
+          height: 3px;
+          display: block;
+
+          .audio-progress-bar {
+            display: block;
+            width: 35%;
+            height: 100%;
+            background-color: global.$primary;
+          }
+        }
+      }
+
+      .play-pause-button {
+        border: 1px solid global.$primary;
+        width: 4rem;
+        height: 4rem;
+        display: grid;
+        place-content: center;
+        border-radius: 50%;
+        background: global.$primary;
+        transition: 0.5s ease;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .repeat-button {
+        display: grid;
+        place-content: center;
+
+        img {
+          width: 80%;
+          margin-top: 0.2rem;
+        }
+      }
+
+      .mute-unmute-button,
+      .repeat-button {
+        border: 0;
+        background: none;
+        overflow: hidden;
+        cursor: pointer;
+        display: grid;
+        width: 1.5rem;
+        place-content: center;
+
+        img {
+          margin: 0 auto;
+        }
+      }
+
+      .mute-unmute-button {
+        transition: 0.5s ease;
+      }
+
+      .repeat-button {
+        transition: 1s ease;
+      }
+
+   
     }
+
+    & > button {
+      background: none;
+      border: 0;
+      cursor: pointer;
+
+      img {
+        width: 50%;
+      }
+    }
+  }
 }
