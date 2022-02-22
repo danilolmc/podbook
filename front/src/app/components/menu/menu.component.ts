@@ -11,7 +11,7 @@ import { MenuType } from './types/MenuTypes';
 })
 export class MenuComponent implements OnDestroy {
 
-  private subscription: Subscription;
+  subscription: Subscription;
 
   menuItems: MenuType[] = [
     {

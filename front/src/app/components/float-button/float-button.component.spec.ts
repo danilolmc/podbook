@@ -23,22 +23,31 @@ describe('FloatButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call callback function passed by in parameter', () => {
+  it('should call callback function passed on parameter', () => {
 
-    const myObj = {
- 
-      log(){
-       return 'test';
-      }
-    }
+    const fn = jest.fn(() => 'test');
 
-    const spyLogFunction = jest.spyOn(myObj, 'log');
-
-    component.callback = myObj.log;
+    component.callback = fn;
     
     component.executeCallback();
 
-    expect(spyLogFunction).toHaveBeenCalled();
+    expect(fn).toHaveBeenCalled();
 
+  })
+
+  it('should set callback Funcion', () => {
+    const fn = jest.fn(() => 'testFn');
+
+    component.callback = fn;
+
+    expect(component.callback).toBe(fn);
+  })
+
+  it('should get callback Function', () => {
+    const fn = () => 'test';
+
+    component.callback = fn;
+
+    expect(component.callback).toBe(fn);
   })
 });

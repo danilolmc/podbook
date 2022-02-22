@@ -5,9 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
-
-  constructor() { }
+export class ButtonComponent {
 
   @Input()
   icon = ''
@@ -26,9 +24,6 @@ export class ButtonComponent implements OnInit {
 
   @Input()
   height = '';
-
-  ngOnInit(): void {
-  }
 
   @Input()
   borderRadius = '0px';

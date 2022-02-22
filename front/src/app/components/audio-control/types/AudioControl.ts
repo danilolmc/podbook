@@ -52,7 +52,7 @@ export class Audio {
     }
 
     set currentTime(time: number) {
-        this.audioCurrentTime = this.currentTime
+        this.audioCurrentTime = time
     }
 
     get audio() {

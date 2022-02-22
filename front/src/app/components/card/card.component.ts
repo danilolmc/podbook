@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CardStyleMappingEnum } from '@enums/cardComponent/CardSstyleMappingEnum';
 import { CardTypeStyleStratergy } from '@stratergy/CardComponent/cardStratergy';
 
@@ -11,7 +11,12 @@ import { CardProperties, CardTypes } from './types/CardTypes';
 })
 export class CardComponent implements CardProperties {
 
-  private callbackFunction : Function = () => { };
+
+  @ViewChild('img') imgElement!: ElementRef<HTMLImageElement>;
+  @ViewChild('option') optionElement!: ElementRef<HTMLLIElement>;
+  @ViewChild('ellipsis') ellipsisElement!: ElementRef<HTMLSpanElement>;
+
+  callbackFunction : Function = () => { };
 
   selector = 'card';
 
@@ -38,7 +43,7 @@ export class CardComponent implements CardProperties {
   @Input()
   imgUrlMissingReplace = '';
 
-  getCardTypeClass(): string {
+  get cardTypeClass(): string {
 
     return CardTypeStyleStratergy[this.cardType] || CardTypeStyleStratergy.default;
   }
@@ -54,26 +59,9 @@ export class CardComponent implements CardProperties {
     this.callbackFunction = fn;
   }
 
-  get callback() {
-    return this.callbackFunction;
-  }
-
-  get getReplaceMissingImage(){
-    return ''
-  }
-
-  alerta($event: any){
-    $event.preventDefault()
-    this.contextMenu = true;
-  }
-
-  manageA11yContextMenuFocus(element: HTMLLIElement, alternativeElement: HTMLElement){
-    element.blur();
-    alternativeElement.focus();
-  }
-  handleMissingImage(imgElement: HTMLImageElement){
-    imgElement.src = this.imgUrlMissingReplace;
-    imgElement.classList.add('--image-not-found') 
+  handleMissingImage(){
+    this.imgElement.nativeElement.src = this.imgUrlMissingReplace;
+    this.imgElement.nativeElement.classList.add('--image-not-found') 
   }
 
 }

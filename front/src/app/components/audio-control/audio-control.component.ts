@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,36 +12,57 @@ import { Volume } from './types/Volume';
   templateUrl: './audio-control.component.html',
   styleUrls: ['./audio-control.component.scss'],
 })
-export class AudioControlComponent implements AudioComponent, OnDestroy {
+export class AudioControlComponent implements AudioComponent, OnDestroy, OnInit {
 
   @ViewChild('range') rangeAudioVolume!: ElementRef<HTMLInputElement>;
 
   private unsubscribe = new Subject();
-  
-  private audio =  new Audio();
 
-  volumeInstance = new Volume(this.audio);
-  repeatInstance = new Repeat(this.audio);
-  playingInstance = new Playing(this.audio);
+  audio: Audio = {} as Audio ;
+
+  volumeInstance: Volume = {} as Volume;
+  repeatInstance: Repeat = {} as Repeat
+  playingInstance: Playing = {} as Playing;
 
   audioIsOpen = this.audioControlService.barStatus;
 
   audioTitle = ''
 
-  @HostBinding('class.closed')
-  get audioCurrentStatus() {
+  get audioCurrentBarStatus() {
     return !this.audioControlService.barStatus.value;
   }
 
-  constructor(private audioControlService: AudioControlService) {
+  constructor(
+    private readonly audioControlService: AudioControlService
+  ) { }
 
+  ngOnInit(): void {
+    this.initializeAudioControl();
+  }
+
+  initializeAudioControl() {
+    this.audio = new Audio();
+    this.volumeInstance = new Volume(this.audio);
+    this.repeatInstance = new Repeat(this.audio);
+    this.playingInstance = new Playing(this.audio);
+
+    this.handlePlayingStatus();
+    this.handleAudioData();
+  }
+
+  @Output()
+  readonly audioIsOpenEventEmmiter = new EventEmitter();
+
+  handlePlayingStatus() {
     this.audioControlService.playingStatus.asObservable().pipe(takeUntil(this.unsubscribe)).subscribe(audioStatus => {
       if (audioStatus === AudioStatus.playing) this.playingInstance.pause();
     })
+  }
 
+  handleAudioData() {
     this.audioControlService.audioData.asObservable().pipe(takeUntil(this.unsubscribe)).subscribe(audio => {
-      
-      if(!audio.audioUrl) return;
+
+      if (!audio.audioUrl) return;
 
       this.audio.source = audio.audioUrl;
       this.audio.volume = parseFloat(this.rangeAudioVolume.nativeElement.value) / 100;
@@ -53,18 +74,17 @@ export class AudioControlComponent implements AudioComponent, OnDestroy {
         this.audioIsOpenEventEmmiter.emit(this.audioIsOpen);
       };
 
-      
-      setTimeout(() => {
-        
-        this.playingInstance.play()
-
-      }, 500);
+      this.timeOutToPlay();
     });
   }
 
-  @Output()
-  private audioIsOpenEventEmmiter = new EventEmitter();
+  timeOutToPlay() {
+    setTimeout(() => {
 
+      this.playingInstance.play()
+
+    }, 500);
+  }
 
   closeAudio() {
     this.audioControlService.closeAudioBar();
@@ -76,10 +96,7 @@ export class AudioControlComponent implements AudioComponent, OnDestroy {
   changeVolume($event: any) {
 
     const newVolume = $event.target.value / 100;
-
     this.volumeInstance.volume = newVolume;
-
-    console.log(this.volumeInstance.volume)
   }
 
   toggleVolume() {

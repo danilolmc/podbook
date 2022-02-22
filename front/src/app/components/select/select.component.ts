@@ -39,8 +39,6 @@ export class SelectComponent implements OnInit, FormFieldCommon {
 
   value = '';
 
-  constructor() {}
-
   ngOnInit(): void {
     const validators = {
       required: () => this.input.setValidators([Validators.required])
@@ -49,7 +47,6 @@ export class SelectComponent implements OnInit, FormFieldCommon {
     this.required && validators.required();
   
   }
-  
 
   closeCombobox(){
     this.isOpen = false;

@@ -17,7 +17,7 @@ describe('MyPodbooksComponent', () => {
       imports: [CardsContainerModule, BrowserAnimationsModule, HttpClientTestingModule],
       providers: [
         PodbookCommonService,
-        { provide: AbstractStudioService, useClass: StudioService }
+        { provide: AbstractStudioService, useExisting: StudioService }
       ]
     })
       .compileComponents();

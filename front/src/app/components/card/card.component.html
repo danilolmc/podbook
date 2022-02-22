@@ -1,4 +1,4 @@
-<div [ngClass]="[selector,getCardTypeClass()]" [style.width]="width">
+<div [ngClass]="[selector, cardTypeClass ]" [style.width]="width">
     <header>
         <div class="context-menu">
             <span class="ellipsis-icon" tabindex="0" #ellipsis>
@@ -7,9 +7,9 @@
             <ng-container [ngTemplateOutlet]="context_menu"></ng-container>
         </div>
     </header>
-    <figure (click)="callback()">
+    <figure (click)="callbackFunction">
         <div class="img-container">
-            <img [src]="imgUrl" #img (error)="handleMissingImage(img)">
+            <img [src]="imgUrl" #img (error)="handleMissingImage()">
         </div>
         <figcaption>
             <div class="card-text">
@@ -25,7 +25,7 @@
 
 <ng-template #context_menu>
     <ul>
-        <li tabindex="0" #option (keyup.enter)="manageA11yContextMenuFocus(option, ellipsis)">
+        <li tabindex="0" #option class="context-menu-option">
             <span>share podbook</span>
             <span title="share podbook"><img src="assets/icons/share-icon.svg" alt="share icon"></span>
         </li>

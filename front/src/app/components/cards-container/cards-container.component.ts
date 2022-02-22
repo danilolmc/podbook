@@ -20,9 +20,8 @@ import { StyleListStratergy } from '@stratergy/StyleList/styleListStratergy';
       ])
     ])],
 })
-export class CardsContainerComponent implements OnChanges {
+export class CardsContainerComponent {
 
-  private itemsCallback!: Function
   private styleList: ListStatesEnum = ListStatesEnum.GRID;
 
   @Input()
@@ -30,22 +29,12 @@ export class CardsContainerComponent implements OnChanges {
 
   @Input()
   title = '';
-  
+
   @Input()
   cardsList: CardProperties[] = [];
 
   @Input()
   noDataMessage = 'No podbooks';
-
-  get itemsCallbackFunction() {
-    return this.itemsCallback;
-  }
-
-  @Input()
-  set itemsCallbackFunction(fun: Function) {
-
-    this.itemsCallback = fun;
-  }
 
   @Input()
   set listStyle(style: ListStatesEnum) {
@@ -54,10 +43,6 @@ export class CardsContainerComponent implements OnChanges {
 
   getlistStyle() {
     return StyleListStratergy[this.styleList];
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-      console.log(this.loading);
   }
 
 }

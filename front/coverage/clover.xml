@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1645229607094" clover="3.2.0">
-  <project timestamp="1645229607094" name="All files">
-    <metrics statements="761" coveredstatements="550" conditionals="138" coveredconditionals="42" methods="224" coveredmethods="126" elements="1123" coveredelements="718" complexity="0" loc="761" ncloc="761" packages="44" files="78" classes="78"/>
+<coverage generated="1645490619707" clover="3.2.0">
+  <project timestamp="1645490619707" name="All files">
+    <metrics statements="773" coveredstatements="585" conditionals="138" coveredconditionals="48" methods="230" coveredmethods="142" elements="1141" coveredelements="775" complexity="0" loc="773" ncloc="773" packages="44" files="79" classes="79"/>
     <package name="app">
       <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\app.component.html">
@@ -18,13 +18,13 @@
       </file>
     </package>
     <package name="app.components.audio-control">
-      <metrics statements="48" coveredstatements="26" conditionals="8" coveredconditionals="2" methods="9" coveredmethods="5"/>
+      <metrics statements="55" coveredstatements="36" conditionals="8" coveredconditionals="2" methods="14" coveredmethods="9"/>
       <file name="audio-control.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\audio-control\audio-control.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="audio-control.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\audio-control\audio-control.component.ts">
-        <metrics statements="47" coveredstatements="25" conditionals="8" coveredconditionals="2" methods="9" coveredmethods="5"/>
+        <metrics statements="54" coveredstatements="35" conditionals="8" coveredconditionals="2" methods="14" coveredmethods="9"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -34,50 +34,57 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="19" count="7" type="stmt"/>
-        <line num="21" count="7" type="stmt"/>
-        <line num="23" count="7" type="stmt"/>
-        <line num="24" count="7" type="stmt"/>
-        <line num="25" count="7" type="stmt"/>
-        <line num="27" count="7" type="stmt"/>
-        <line num="29" count="7" type="stmt"/>
-        <line num="33" count="14" type="stmt"/>
-        <line num="36" count="7" type="stmt"/>
-        <line num="38" count="7" type="stmt"/>
-        <line num="39" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="42" count="7" type="stmt"/>
-        <line num="44" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="66" count="7" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="21" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="25" count="13" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="29" count="13" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="13" type="stmt"/>
+        <line num="40" count="14" type="stmt"/>
+        <line num="44" count="14" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
+        <line num="47" count="14" type="stmt"/>
+        <line num="49" count="14" type="stmt"/>
+        <line num="50" count="14" type="stmt"/>
+        <line num="54" count="13" type="stmt"/>
+        <line num="57" count="15" type="stmt"/>
+        <line num="58" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="63" count="14" type="stmt"/>
+        <line num="65" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
+        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="73" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
-        <line num="86" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="91" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="100" count="6" type="stmt"/>
-        <line num="101" count="6" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="90" count="4" type="stmt"/>
+        <line num="91" count="4" type="stmt"/>
+        <line num="92" count="4" type="stmt"/>
+        <line num="93" count="4" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="107" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="117" count="12" type="stmt"/>
+        <line num="118" count="12" type="stmt"/>
       </file>
     </package>
     <package name="app.components.audio-control.types">
-      <metrics statements="70" coveredstatements="49" conditionals="12" coveredconditionals="2" methods="31" coveredmethods="18"/>
+      <metrics statements="70" coveredstatements="50" conditionals="12" coveredconditionals="2" methods="31" coveredmethods="19"/>
       <file name="AudioControl.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\audio-control\types\AudioControl.ts">
-        <metrics statements="20" coveredstatements="10" conditionals="4" coveredconditionals="2" methods="10" coveredmethods="3"/>
+        <metrics statements="20" coveredstatements="11" conditionals="4" coveredconditionals="2" methods="10" coveredmethods="4"/>
         <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="15" count="5" type="stmt"/>
         <line num="16" count="5" type="stmt"/>
@@ -91,43 +98,43 @@
         <line num="37" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
         <line num="44" count="5" type="stmt"/>
-        <line num="46" count="7" type="stmt"/>
-        <line num="48" count="7" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
+        <line num="48" count="14" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="59" count="14" type="stmt"/>
+        <line num="59" count="29" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
       </file>
       <file name="Playing.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\audio-control\types\Playing.ts">
         <metrics statements="18" coveredstatements="14" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="7" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="9" count="7" type="stmt"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="13" count="7" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="13" count="14" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="21" count="16" type="stmt"/>
-        <line num="23" count="16" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
+        <line num="21" count="28" type="stmt"/>
+        <line num="23" count="28" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
       </file>
       <file name="Repeat.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\audio-control\types\Repeat.ts">
         <metrics statements="12" coveredstatements="11" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="5"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="7" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="9" count="7" type="stmt"/>
-        <line num="13" count="16" type="stmt"/>
-        <line num="15" count="16" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="13" count="28" type="stmt"/>
+        <line num="15" count="28" type="stmt"/>
         <line num="19" count="2" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
@@ -139,12 +146,12 @@
         <metrics statements="20" coveredstatements="14" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="7" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
-        <line num="9" count="7" type="stmt"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="15" count="16" type="stmt"/>
-        <line num="17" count="16" type="stmt"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="15" count="28" type="stmt"/>
+        <line num="17" count="28" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
@@ -160,27 +167,27 @@
       </file>
     </package>
     <package name="app.components.button">
-      <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
       <file name="button.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\button\button.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="button.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\button\button.component.ts">
-        <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
       </file>
     </package>
     <package name="app.components.button-control">
-      <metrics statements="21" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="6"/>
+      <metrics statements="20" coveredstatements="19" conditionals="2" coveredconditionals="2" methods="8" coveredmethods="6"/>
       <file name="button-control.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\button-control\button-control.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
@@ -190,73 +197,56 @@
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="16" count="4" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
         <line num="30" count="2" type="stmt"/>
-        <line num="34" count="8" type="stmt"/>
-        <line num="38" count="8" type="stmt"/>
+        <line num="34" count="12" type="stmt"/>
+        <line num="38" count="12" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="51" count="1" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
       </file>
       <file name="button-control.module.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\button-control\button-control.module.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="app.components.button-control.directives">
-      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="button-control.directive.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\button-control\directives\button-control.directive.ts">
-        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
       </file>
     </package>
     <package name="app.components.card">
-      <metrics statements="32" coveredstatements="20" conditionals="4" coveredconditionals="1" methods="9" coveredmethods="1"/>
+      <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="3"/>
       <file name="card.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\card\card.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="4" type="stmt"/>
       </file>
       <file name="card.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\card\card.component.ts">
-        <metrics statements="27" coveredstatements="15" conditionals="4" coveredconditionals="1" methods="9" coveredmethods="1"/>
+        <metrics statements="21" coveredstatements="21" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="3"/>
         <line num="1" count="4" type="stmt"/>
         <line num="2" count="4" type="stmt"/>
         <line num="3" count="4" type="stmt"/>
         <line num="12" count="4" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="21" count="3" type="stmt"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="27" count="3" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
-        <line num="36" count="3" type="stmt"/>
-        <line num="39" count="3" type="stmt"/>
-        <line num="43" count="14" type="cond" truecount="1" falsecount="1"/>
-        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="32" count="8" type="stmt"/>
+        <line num="35" count="8" type="stmt"/>
+        <line num="38" count="8" type="stmt"/>
+        <line num="41" count="8" type="stmt"/>
+        <line num="44" count="8" type="stmt"/>
+        <line num="48" count="24" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
       </file>
       <file name="card.module.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\card\card.module.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -267,28 +257,25 @@
       </file>
     </package>
     <package name="app.components.cards-container">
-      <metrics statements="23" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
+      <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="cards-container.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\cards-container\cards-container.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
       </file>
       <file name="cards-container.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\cards-container\cards-container.component.ts">
-        <metrics statements="15" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="1"/>
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="3" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="4" count="3" type="stmt"/>
         <line num="5" count="3" type="stmt"/>
         <line num="23" count="3" type="stmt"/>
-        <line num="26" count="2" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="60" count="1" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
       </file>
       <file name="cards-container.module.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\cards-container\cards-container.module.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -302,19 +289,20 @@
       </file>
     </package>
     <package name="app.components.float-button">
-      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
       <file name="float-button.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\float-button\float-button.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
       <file name="float-button.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\float-button\float-button.component.ts">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
         <line num="1" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
       </file>
       <file name="float-button.module.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\float-button\float-button.module.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -326,13 +314,13 @@
       </file>
     </package>
     <package name="app.components.footer">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="footer.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\footer\footer.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="footer.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\footer\footer.component.ts">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
@@ -450,30 +438,30 @@
       </file>
     </package>
     <package name="app.components.menu">
-      <metrics statements="18" coveredstatements="12" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="4"/>
+      <metrics statements="18" coveredstatements="15" conditionals="4" coveredconditionals="1" methods="8" coveredmethods="6"/>
       <file name="menu.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\menu\menu.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="menu.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\menu\menu.component.ts">
-        <metrics statements="17" coveredstatements="11" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="4"/>
+        <metrics statements="17" coveredstatements="14" conditionals="4" coveredconditionals="1" methods="8" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="33" count="8" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="33" count="20" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="39" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="52" count="9" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
+        <line num="52" count="21" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="61" count="5" type="stmt"/>
       </file>
     </package>
     <package name="app.components.menu.directives">
@@ -482,43 +470,43 @@
         <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="1" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
-        <line num="9" count="9" type="stmt"/>
-        <line num="10" count="9" type="stmt"/>
-        <line num="14" count="16" type="stmt"/>
-        <line num="19" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="23" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="21" type="stmt"/>
+        <line num="10" count="21" type="stmt"/>
+        <line num="14" count="40" type="stmt"/>
+        <line num="19" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="40" type="cond" truecount="2" falsecount="0"/>
       </file>
     </package>
     <package name="app.components.select">
-      <metrics statements="23" coveredstatements="16" conditionals="4" coveredconditionals="1" methods="7" coveredmethods="2"/>
+      <metrics statements="23" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="5"/>
       <file name="select.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\components\select\select.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="select.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\components\select\select.component.ts">
-        <metrics statements="22" coveredstatements="15" conditionals="4" coveredconditionals="1" methods="7" coveredmethods="2"/>
+        <metrics statements="22" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="49" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="38" count="6" type="stmt"/>
+        <line num="40" count="6" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="47" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="60" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
       </file>
     </package>
     <package name="app.components.stepper">
@@ -682,6 +670,35 @@
         <line num="4" count="6" type="stmt"/>
       </file>
     </package>
+    <package name="app.mocks.audio-control-component">
+      <metrics statements="20" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="6"/>
+      <file name="audio-control-component.mocks.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\mocks\audio-control-component\audio-control-component.mocks.ts">
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+      </file>
+      <file name="menu-component.mocks.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\mocks\audio-control-component\menu-component.mocks.ts">
+        <metrics statements="14" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="4"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="31" count="20" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="app.pages.account.sign-in">
       <metrics statements="27" coveredstatements="17" conditionals="4" coveredconditionals="0" methods="9" coveredmethods="3"/>
       <file name="sign-in.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\pages\account\sign-in\sign-in.component.html">
@@ -831,13 +848,13 @@
       </file>
     </package>
     <package name="app.pages.home">
-      <metrics statements="21" coveredstatements="14" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="3"/>
+      <metrics statements="19" coveredstatements="14" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="3"/>
       <file name="home.component.html" path="C:\Users\usuario\Documents\podbook\front\src\app\pages\home\home.component.html">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="home.component.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\pages\home\home.component.ts">
-        <metrics statements="20" coveredstatements="13" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="3"/>
+        <metrics statements="18" coveredstatements="13" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -854,10 +871,8 @@
         <line num="34" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
       </file>
     </package>
     <package name="app.pages.studio">
@@ -925,9 +940,9 @@
         <line num="2" count="5" type="stmt"/>
         <line num="4" count="5" type="stmt"/>
         <line num="9" count="5" type="stmt"/>
-        <line num="11" count="15" type="stmt"/>
-        <line num="13" count="15" type="stmt"/>
-        <line num="15" count="15" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
@@ -1066,26 +1081,26 @@
         <line num="1" count="10" type="stmt"/>
         <line num="3" count="10" type="stmt"/>
         <line num="8" count="10" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
       </file>
     </package>
     <package name="app.services.user">
-      <metrics statements="21" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="3"/>
+      <metrics statements="21" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2"/>
       <file name="user.service.ts" path="C:\Users\usuario\Documents\podbook\front\src\app\services\user\user.service.ts">
-        <metrics statements="21" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="3"/>
+        <metrics statements="21" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="7" coveredmethods="2"/>
         <line num="1" count="9" type="stmt"/>
         <line num="2" count="9" type="stmt"/>
         <line num="4" count="9" type="stmt"/>
         <line num="5" count="9" type="stmt"/>
         <line num="10" count="9" type="stmt"/>
-        <line num="12" count="8" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="16" count="8" type="cond" truecount="1" falsecount="1"/>
-        <line num="20" count="8" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>

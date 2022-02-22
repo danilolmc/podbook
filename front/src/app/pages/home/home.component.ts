@@ -37,15 +37,8 @@ export class HomeComponent implements OnInit {
 
       this.homeCards = this.commonService.preparePodBookPaginatedData(podbooks) || [];
 
-      console.log(podbooks);
-      
-
     });
 
-  }
-
-  call() {
-    console.log('asdasd')
   }
 
   changeStyleList(style: ListStatesEnum) {

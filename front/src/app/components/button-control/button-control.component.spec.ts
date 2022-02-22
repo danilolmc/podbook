@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { hasUncaughtExceptionCaptureCallback } from 'process';
 
 import { ButtonControlComponent } from './button-control.component';
 
@@ -49,9 +50,26 @@ describe('ButtonControlComponent', () => {
     component.isOn = false;
     component.toggleControl();
     expect(component.isOn).toBeTruthy();
-    
+
     component.isOn = true;
     component.toggleControl();
     expect(component.isOn).toBeFalsy();
   })
+
+  it('should switch isOn to false when its true and toggleControl is called', () => {
+    component.isOn = true;
+
+    component.toggleControl();
+
+    expect(component.isOn).toBeFalsy()
+  })
+
+  it('should switch isOn to true when its false and toggleControl is called', () => {
+    component.isOn = false;
+
+    component.toggleControl();
+
+    expect(component.isOn).toBeTruthy()
+  })
+
 });

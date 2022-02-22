@@ -22,4 +22,15 @@ describe('ButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should execute callback function', () => {
+    
+    const callBackFn = jest.fn();
+
+    component.callback = callBackFn;
+
+    component.executeCallback();
+
+    expect(callBackFn).toHaveBeenCalled();
+  });
 });
