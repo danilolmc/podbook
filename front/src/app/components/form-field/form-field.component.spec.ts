@@ -78,4 +78,40 @@ describe('FormFieldComponent', () => {
     expect(passwordVisibilityIcon).toStrictEqual(expectedPasswordHiddenIconObject);
 
   })
+
+  it('should set formControl valueChange on ngOnInit', () => {
+    const valueChangeSpy = jest.spyOn(component, 'setValueChanges');
+
+    component.ngOnInit();
+
+    expect(valueChangeSpy).toHaveBeenCalled();
+
+  })
+
+  it('should set validators', () => {
+
+    component.validations = [{
+      validationName: '',
+      validationErrorMessage: '',
+      validatorRequiredParameter: true
+    }];
+
+    component.value = 'test';
+
+    component.ngOnInit();
+
+    expect(component.input).toBeDefined();
+    expect(component.value).toBe('test');
+
+  })
+
+  it('should ngOnDestroy call subject',() => {
+    const spyNext = jest.spyOn(component.notifier, 'next');
+    const spyComplete = jest.spyOn(component.notifier, 'complete');
+
+    component.ngOnDestroy();
+
+    expect(spyNext).toHaveBeenCalled();
+    expect(spyComplete).toHaveBeenCalled();
+  })
 });

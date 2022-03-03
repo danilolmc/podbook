@@ -11,7 +11,7 @@ export class ButtonComponent {
   icon = ''
 
   @Input()
-  callback = function () { }
+  callback = {} as Function;
 
   @Input()
   name = '';
@@ -27,9 +27,5 @@ export class ButtonComponent {
 
   @Input()
   borderRadius = '0px';
-
-  executeCallback() {
-    this.callback();
-  }
 
 }

@@ -19,23 +19,22 @@ export class TabComponent implements Tab, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.setInitialState();
-
   }
 
   selectTab(clickedTab: TabItemComponent) {
 
-    clickedTab.callBackFunction();
+    clickedTab.callback();
 
-    this.tabs.forEach(tab => tab.selectItem = false);
+    this.tabs.forEach(tab => tab.selectItem = false)
 
     clickedTab.selectItem = true;
   }
 
   setInitialState() {
 
-    const thereItemActive = this.tabs.some(tab => tab.selectedItem);
+    const thereItemActive = this.tabs.some(tab => tab.selected);
 
-    if(!thereItemActive){
+    if (!thereItemActive) {
       this.tabs.forEach((tabItem, index) => {
         if (index === 0) tabItem.selectItem = true;
       });

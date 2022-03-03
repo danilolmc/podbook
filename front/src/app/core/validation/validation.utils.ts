@@ -4,24 +4,26 @@ export const validateFields = (fields: FormFieldCommon[]) => {
 
     const someFieldIsInvalid = fields.filter(field => field.input.invalid);
 
-    if (!!someFieldIsInvalid.length) { 
+    if (!!someFieldIsInvalid.length) {
         someFieldIsInvalid[0].fieldRef.nativeElement.focus();
-     };
+    };
 
     return !someFieldIsInvalid.length;
 }
 
 export const validateFile = (file: Blob | string) => {
-    
-    if(file instanceof Blob){
-        
-        return file.size > 0;
-    }
-    
-    if(file as any instanceof String){
 
-        return file.length > 0;
+    let isValid = false;
+
+    if (file instanceof Blob) {
+
+        isValid = file.size > 0;
     }
 
-    return;
+    if (file instanceof String) {
+
+        isValid = file.length > 0;
+    }
+
+    return isValid;
 }

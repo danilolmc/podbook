@@ -1,5 +1,5 @@
 <button class="button" [style.borderRadius]="borderRadius" [style.width]='width' [style.height]='height'
-    (click)="executeCallback()">
+    (click)="callback()">
     <img [src]="icon" *ngIf="icon" [alt]="name + ' ' + 'control'">
     <span>
         <ng-content></ng-content>

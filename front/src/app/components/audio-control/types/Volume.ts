@@ -29,7 +29,7 @@ export class Volume{
         this.audio.volume = volume;
         this.savedAudioVolume = volume;
 
-        this.volume === 0 ? this.mute() : this.unmute();
+        volume === 0 ? this.mute() : this.unmute();
     }
 
     mute() {

@@ -67,36 +67,39 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
       this.validations.forEach(key => {
         throw new Error(`key ${key} not found in formValidations`);
       })
-
-
     }
 
+    this.setValueChanges();
+  
+  }
+
+  setValueChanges(){
     this.input
-      .valueChanges
-      .pipe(
-        debounceTime(200),
-        distinctUntilChanged(),
-        takeUntil(this.notifier))
-      .subscribe((value: string) => {
+    .valueChanges
+    .pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      takeUntil(this.notifier))
+    .subscribe((value: string) => {
 
-        this.validationCurrentErrorMessage = '';
+      this.validationCurrentErrorMessage = '';
 
-        this.change.emit(value);
+      this.change.emit(value);
 
-        this.value = value;
+      this.value = value;
 
-        this.validations.map(item => {
+      this.validations.map(item => {
 
-          if (item.validationName === 'required') checkNoWhiteSpaceValidation(value, this.input)
-        });
-
-        const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
-
-        if (!message.length) return;
-
-        this.validationCurrentErrorMessage = message[0].validationErrorMessage;
-
+        if (item.validationName === 'required') checkNoWhiteSpaceValidation(value, this.input)
       });
+
+      const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
+
+      if (!message.length) return;
+
+      this.validationCurrentErrorMessage = message[0].validationErrorMessage;
+
+    });
   }
 
 

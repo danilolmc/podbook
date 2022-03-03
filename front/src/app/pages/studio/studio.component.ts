@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
   templateUrl: './studio.component.html',
   styleUrls: ['./studio.component.scss'],
 })
-export class StudioComponent implements OnDestroy, OnInit {
+export class StudioComponent implements OnDestroy {
 
   @ViewChild(TabComponent) tab!:  TabComponent;
   @ViewChildren(TabItemComponent) tabitems = new QueryList<TabItemComponent>()
@@ -28,11 +28,6 @@ export class StudioComponent implements OnDestroy, OnInit {
   currentUrl = '';
 
   constructor(private route: Router) { }
-
-  ngOnInit() {
-
-    // this.tabPodbooksCallback();
-  }
 
   ngOnDestroy() {
     this.notifier.next();

@@ -7,23 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FloatButtonComponent {
 
-  private callbackFn: Function = () => { };
+  @Input()
+  callback: Function = {} as Function;
 
   @Input()
   src = '';
 
-  @Input()
-  set callback(fun: Function) {
-
-    this.callbackFn = fun;
-  }
-
-  get callback() {
-
-    return this.callbackFn;
-  }
-
   executeCallback() {
-    this.callbackFn();
+    this.callback();
   }
 }

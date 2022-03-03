@@ -1,7 +1,4 @@
 import { Observer } from "rxjs";
-import { Playing } from "./Playing";
-import { Repeat } from "./Repeat";
-import { Volume } from "./Volume";
 
 type AudioPlayingStatus = 'playing' | 'paused';
 type AudioSongStatus = 'muted' | 'unmuted';

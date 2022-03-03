@@ -7,27 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TabItemComponent{
 
-
-  private callbackFn: Function = () => {}
+  @Input()
+  callback: Function = () => {}
 
   @Input()
   title = '';
 
-  private selected = false;
-
-  @Input()
-  set callback(fun: Function) {
-
-    this.callbackFn = fun;
-  }
-
-  get callBackFunction(){
-    return this.callbackFn;
-  }
-
-  get selectedItem(){
-    return this.selected;
-  }
+  selected = false;
 
   @Input()
   set selectItem(status: boolean){

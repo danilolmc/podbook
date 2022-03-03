@@ -16,7 +16,7 @@ export class CardComponent implements CardProperties {
   @ViewChild('option') optionElement!: ElementRef<HTMLLIElement>;
   @ViewChild('ellipsis') ellipsisElement!: ElementRef<HTMLSpanElement>;
 
-  callbackFunction : Function = () => { };
+  callbackFunction : Function = {} as Function;
 
   selector = 'card';
 

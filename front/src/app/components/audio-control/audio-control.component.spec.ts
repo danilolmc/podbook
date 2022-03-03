@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AudioControlServiceStub } from '@mocks/audio-control-component/audio-control-component.mocks';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { AudioControlComponent } from './audio-control.component';
-import { AudioStatus } from './types/AudioControl';
+import { AudioStatus, defineAudioDuration } from './types/AudioControl';
 import { Playing } from './types/Playing';
 import { Repeat } from './types/Repeat';
 import { Volume } from './types/Volume';
@@ -179,5 +179,4 @@ describe('AudioControlComponent', () => {
     expect(playInstance.currentPlayingStatus).toBe(AudioStatus.paused);
     expect(audioControlService.playingStatus.value).toBe(AudioStatus.paused);
   })
-
 });

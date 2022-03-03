@@ -70,6 +70,16 @@ describe('CardComponent', () => {
     expect(component.callbackFunction).toBe(callBackFn);
   })
 
+  it('should call defined callbackFunction', () => {
+    const callBackFn = jest.fn(() => 'fn');
+
+    component.click = callBackFn;
+
+    component.callbackFunction();
+
+    expect(callBackFn).toHaveBeenCalled();
+  })
+
   it('should define generic callbackFunction when call click with a undefined param', () => {
 
     component.click = undefined;

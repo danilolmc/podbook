@@ -29,7 +29,7 @@ describe('ButtonComponent', () => {
 
     component.callback = callBackFn;
 
-    component.executeCallback();
+    component.callback();
 
     expect(callBackFn).toHaveBeenCalled();
   });

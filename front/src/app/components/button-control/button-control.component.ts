@@ -38,11 +38,6 @@ export class ButtonControlComponent implements ButtonControl {
     return ControlButtonStyleStrategy[Number(this.isOn)];
   }
 
-  get fixedColor(): string{
-    return '#8348FF';
-  }
-
-
   toggleControl(){
     this.isOn = this.isOn ? false : true;
   }

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { hasUncaughtExceptionCaptureCallback } from 'process';
-
+import { ControlButtonStyleStrategy } from '@stratergy/Control-button/control-button-strategy';
 import { ButtonControlComponent } from './button-control.component';
+
 
 const callback = () => { };
 
@@ -70,6 +70,42 @@ describe('ButtonControlComponent', () => {
     component.toggleControl();
 
     expect(component.isOn).toBeTruthy()
+  })
+
+  it('should get --on css class when isOn is true', () => {
+    component.isOn = true;
+
+    const cssClass = component.currentStyleClass;
+
+    expect(cssClass).toBe(ControlButtonStyleStrategy[1])
+  })
+
+  it('should get --off css class when isOn is false', () => {
+    component.isOn = false;
+
+    const cssClass = component.currentStyleClass;
+
+    expect(cssClass).toBe(ControlButtonStyleStrategy[0])
+  })
+
+  it('should get first icon from onOffIcons when isOn is false', () => {
+    component.isOn = false;
+
+    component.onOffIcons = ['icon1', 'icon2'];
+
+    const currentIcon = component.currentIcon;
+
+    expect(currentIcon).toBe(component.onOffIcons[0]);
+  })
+
+  it('should get last icon from onOffIcons when isOn is true', () => {
+    component.isOn = true;
+
+    component.onOffIcons = ['icon1', 'icon2'];
+
+    const currentIcon = component.currentIcon;
+
+    expect(currentIcon).toBe(component.onOffIcons[1]);
   })
 
 });
