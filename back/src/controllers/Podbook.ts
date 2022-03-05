@@ -1,13 +1,13 @@
 import { Request, Response, Router } from 'express';
+import jwt from 'jsonwebtoken';
 import { Controller } from "../interfaces/Controller";
-import { DecodedJwt, decodeToken, verifyToken } from '../middlewares/auth';
+import { verifyToken } from '../middlewares/auth';
 import { getPodbooksFiles } from '../middlewares/podbookResponse';
 import { afterUpload, fileUpload } from '../middlewares/upload';
 import { PageOptions, PageOptionsParams } from '../model/Pagination';
 import { PodbookModel } from '../model/PodbookModel';
 import PodbookRepository from '../repository/PodbookRespository';
 import { setupLimitAndPageErrorsCase } from '../utils/ExploreErrorsCase';
-import jwt from 'jsonwebtoken';
 
 class PodbookController implements Controller {
 

@@ -55,7 +55,8 @@ export const afterUpload = (req: any, res: Response, next: Function) => {
         bannerTitle: req.body.bannerTitle,
         category: req.body.category,
         audio: files.audio.filename,
-        description: req.body.description
+        description: req.body.description,
+        user_owner: req.body.user_owner
     }
 
     req.body = podbook
