@@ -2,7 +2,7 @@
     <header>
         <h2>{{title}}</h2>
     </header>
-    <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation] *ngIf="cardsList.length">
+    <div [class]="['cards-container-content', getlistStyle()]"  [@taskListAnimation] *ngIf="cardsList.length > 0 && !loading">
         <pod-card 
             title=""
             [attr.tabindex]="0"
@@ -22,7 +22,7 @@
 
 
 <ng-template #noData>
-    <div class="no-content" *ngIf="!loading && !cardsList.length">
+    <div class="no-content" *ngIf="!loading && cardsList.length == 0">
         <img src="assets/illustrations/no_data.svg" alt="No data found">
         <p>{{noDataMessage}}</p>
     </div>

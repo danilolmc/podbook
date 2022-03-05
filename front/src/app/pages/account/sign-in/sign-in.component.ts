@@ -12,11 +12,9 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnDestroy {
 
-  private unsubscriber = new Subject();
-
-  private fromUrl = '';
+  unsubscriber = new Subject();
 
   authenticationErrorMessage = '';
 
@@ -37,22 +35,19 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   constructor(
     private signinService: SigninService,
-    private activatedRoute: ActivatedRoute,
     private router: Router) { }
-
-  ngOnInit() {
-    this.activatedRoute
-      .queryParams
-      .subscribe(params => this.fromUrl = params['fromUrl']);
-  }
 
   submit(event: Event, credentials: FormFieldComponent[]) {
 
     event.preventDefault();
 
-    const credentialsIsValid = this.validateSignInValues(credentials);
+    const credentialsIsValid = validateFields(credentials);
 
-    if (!credentialsIsValid) return;
+    console.log('e valido', credentialsIsValid);
+
+    if (!credentialsIsValid) {
+      return;
+    };
 
     const [email, password] = credentials.map(field => field.value);
 
@@ -64,12 +59,6 @@ export class SignInComponent implements OnInit, OnDestroy {
       },
         ({ error }) => this.authenticationErrorMessage = error.message
       );
-  }
-
-
-  validateSignInValues(fields: FormFieldComponent[]) {
-
-    return validateFields(fields);
   }
 
   ngOnDestroy() {

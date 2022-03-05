@@ -10,12 +10,13 @@ const formValidations: {
     minLength: (length: number) => Validators.minLength(length)
 }
 
-export const checkNoWhiteSpaceValidation = (value: string, input: FormControl) => {
+export const checkNoWhiteSpaceValidation = (input: FormControl) => {
 
-    const validationWithNoSpace = value.replace(/^\s*|\s*$/g, '').length === 0 || input.getError('required');
+    const validationWithNoSpace = input.value.replace(/^\s*|\s*$/g, '').length === 0 || input.getError('required');
 
     if (validationWithNoSpace) {
-      input.setErrors({ required: true })};
+        input.setErrors({ required: true })
+    };
 }
 
 export const getValidations = (keys?: { key: string, parameter: any }[]) => {

@@ -3,7 +3,7 @@
     <ul *ngIf="tabs">
         <li 
             *ngFor="let tab of tabs" 
-            [ngClass]="{'--selected': tab.selectedItem }" 
+            [ngClass]="{'--selected': tab.selected }" 
             (click)="selectTab(tab)"
         >{{tab.title}}</li>
     </ul>

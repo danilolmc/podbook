@@ -61,7 +61,7 @@
                 >
             </pod-form-field>
 
-            <span class="errorMessage" *ngIf="formErrorMesage && !passwordsMatch">{{formErrorMesage}}</span>
+            <span class="errorMessage" *ngIf="formErrorMessage && !passwordsMatch">{{formErrorMessage}}</span>
             <button class="submit" (click)="submit($event, [password,repeatPassword])">Sign up</button>
         </form>
         <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>

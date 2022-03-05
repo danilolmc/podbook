@@ -37,27 +37,24 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const requestParams : PodbookPaginationRequestQueryParams = {
-      limit: 5,
+    const requestParams: PodbookPaginationRequestQueryParams = {
+      limit: 8,
       page: 1
-    } 
-    this.exploreService.getPodbooks(requestParams).subscribe((podbooks: PaginatedPodbookResponse) => {
+    }
+    this.exploreService.getPodbooks(requestParams).toPromise().then((podbooks: PaginatedPodbookResponse) => {
 
       this.loading = true;
-      
-      if(!podbooks.data.length) {
+
+      if (!podbooks.data.length) {
         this.exploreCards = []
         this.loading = false;
         return;
       }
-      
+
       this.exploreCards = this.commonService.preparePodBookPaginatedData(podbooks.data) || [];
-      this.paginationMetadata = podbooks.paginationMetadata
-      
-      console.log(podbooks);
-      this.loading = false;
-      
-    })
+      this.paginationMetadata = podbooks.paginationMetadata;
+
+    }).finally(() => this.loading = false)
   }
 
 }

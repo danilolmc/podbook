@@ -20,7 +20,7 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
 
   passowrdIsVisible = false;
 
-  input: FormControl = {} as FormControl;
+  input = new FormControl('');
 
   notifier = new Subject();
 
@@ -50,6 +50,33 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
 
   ngOnInit() {
 
+    this.setValidators();
+    this.setValueChanges();
+
+  }
+
+  setValueChanges() {
+    this.input
+      .valueChanges
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        takeUntil(this.notifier))
+      .subscribe((value: string) => {
+
+        this.validationCurrentErrorMessage = '';
+
+        this.change.emit(value);
+
+        this.value = value;
+
+        this.setValidationMessage();
+
+      });
+  }
+
+
+  setValidators() {
     const validators = getValidations(
       this.validations.map(keyItem =>
       ({
@@ -69,39 +96,20 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
       })
     }
 
-    this.setValueChanges();
-  
   }
 
-  setValueChanges(){
-    this.input
-    .valueChanges
-    .pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      takeUntil(this.notifier))
-    .subscribe((value: string) => {
+  setValidationMessage() {
+    this.validations.map(item => {
 
-      this.validationCurrentErrorMessage = '';
-
-      this.change.emit(value);
-
-      this.value = value;
-
-      this.validations.map(item => {
-
-        if (item.validationName === 'required') checkNoWhiteSpaceValidation(value, this.input)
-      });
-
-      const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
-
-      if (!message.length) return;
-
-      this.validationCurrentErrorMessage = message[0].validationErrorMessage;
-
+      if (item.validationName === 'required') checkNoWhiteSpaceValidation(this.input)
     });
-  }
 
+    const message = this.validations.filter(validation => this.input.errors?.hasOwnProperty(validation.validationName.toLowerCase()))
+
+    if (!message.length) return;
+
+    this.validationCurrentErrorMessage = message[0].validationErrorMessage;
+  }
 
   getFormFieldIcon(): IconProperties | undefined {
     const iconData = getIcon(this.type, FormFieldIconData);
@@ -117,7 +125,7 @@ export class FormFieldComponent implements FormFieldProperties, OnInit, OnDestro
   get passwordVisibilityIcon() {
 
     const passowrdObject = {
-      active_icon: this.passowrdIsVisible ? 'password-hide-icon' : 'password-show-icon',
+      active_icon: this.passowrdIsVisible ? 'password-show-icon' : 'password-hide-icon',
       type: this.passowrdIsVisible ? 'text' : 'password'
     }
 

@@ -16,10 +16,10 @@ export class PodbookCommonService {
 
     const preparedPodbooks = podbooks.map(podbook => (
       {
-        imgUrl: `${host}:${port}${podbook.bannerImage}`,
-        badgeText: podbook.category.name,
-        description: podbook.description,
-        title: podbook.bannerTitle,
+        imgUrl: `${host}:${port}${podbook?.bannerImage}`,
+        badgeText: podbook?.category?.name || '',
+        description: podbook?.description,
+        title: podbook?.bannerTitle,
         click: () => this.audioControlService.startCardAudio(`${host}:${port}${podbook.audio}`, podbook.bannerTitle)
       })
     )

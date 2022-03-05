@@ -55,7 +55,11 @@
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
-      "<rootDir>/dist/"
+      "<rootDir>/dist/",
+      "<rootDir>/src/app/mocks/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/app/mocks/"
     ],
     "globals": {
       "ts-jest": {

@@ -11,7 +11,7 @@ import { StudioService } from '@services/studio/studio.service';
 import { UserService } from '@services/user/user.service';
 import { recordingStatusStratergy } from '@stratergy/StudioPage/studioStratergy';
 import { FieldsValidators, FormFieldCommon } from '@typing/fieldsValidators/fieldsValidators';
-import { validateFields, validateFile } from 'app/core/validation/validation.utils';
+import { validateBlobFile, validateFields } from 'app/core/validation/validation.utils';
 import { Subject } from 'rxjs';
 import { first, takeUntil, tap } from 'rxjs/operators';
 import { PodbookData, RecordedAudio, RecordingStatus, SelectOption, Studio } from '../types/studioPage';
@@ -207,7 +207,7 @@ export class RecordStudioComponent implements Studio, OnInit, OnDestroy {
     let fieldsAreValid = false;
 
     if (audioBlob) {
-      fieldsAreValid = Boolean(validateFields(fields) && validateFile(audioBlob))
+      fieldsAreValid = Boolean(validateFields(fields) && validateBlobFile(audioBlob))
     }
 
     if (!fieldsAreValid) {

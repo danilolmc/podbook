@@ -11,19 +11,9 @@ export const validateFields = (fields: FormFieldCommon[]) => {
     return !someFieldIsInvalid.length;
 }
 
-export const validateFile = (file: Blob | string) => {
 
-    let isValid = false;
 
-    if (file instanceof Blob) {
+export const validateBlobFile = (file: Blob) =>  file.size > 0;
 
-        isValid = file.size > 0;
-    }
 
-    if (file instanceof String) {
-
-        isValid = file.length > 0;
-    }
-
-    return isValid;
-}
+export const validateStringFile = (file: string) =>  file.length > 0;

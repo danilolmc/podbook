@@ -14,7 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
-  private unsubscriber = new Subject();
+  unsubscriber = new Subject();
   passwordsMatch = false;
 
   @ViewChild('password') passwordField!: FormFieldComponent;
@@ -30,8 +30,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
   readonly signupTotalSteps = 2;
   readonly passwordMinSize = 8;
 
-  formErrorMesage = '';
+  formErrorMessage = '';
   currentStep = 1;
+
+  readonly stepMissingMessage = 'Esse passo não existe';
 
 
   steps = [
@@ -70,9 +72,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit() {
-    
+
     this.steps.map((step, index) => {
-      if(index + 1 < this.currentStep){
+      if (index + 1 < this.currentStep) {
         step.active = true;
         step.finished = true;
       }
@@ -84,7 +86,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     const itCanNotSubmit = [
       !this.validateBeforeGoToNextStep(event, fields),
-      !Boolean(this.formErrorMesage === ''),
+      !Boolean(this.formErrorMessage === ''),
       !this.passwordsMatch].some(condition => condition === true);
 
 
@@ -103,16 +105,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
       .subscribe((response: any) => {
         if (response.body.auth) this.router.navigate(['/podbooks'])
       },
-        ({ error }) => this.formErrorMesage = error.message
+        ({ error }) => this.formErrorMessage = error.message
       );
 
   }
 
-  checkPasswordMatch(password: string | Event, repeatedPassword: string | Event) {
-
-    const isEvent = password instanceof Event || repeatedPassword instanceof Event;
-
-    if (isEvent) return;
+  checkPasswordMatch(password: string, repeatedPassword: string) {
 
     const pass = password.toString()
     const repeatedPass = repeatedPassword.toString();
@@ -127,12 +125,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     if (!minSizeValid || this.passwordsMatch) {
 
-      this.formErrorMesage = '';
+      this.formErrorMessage = '';
     }
 
     if (minSizeValid && !this.passwordsMatch) {
 
-      this.formErrorMesage = 'Passwords do not match';
+      this.formErrorMessage = 'As senhas estão diferentes';
     }
 
   }
@@ -179,17 +177,31 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   activeStep(step: number) {
+    if (step > this.steps.length || step < 1) {
+      return this.stepMissingMessage;
+    };
+
     this.steps[step - 1].active = true;
+    return;
   }
 
   disableStep(step: number) {
+    if (step > this.steps.length || step < 1) {
+      return this.stepMissingMessage;
+    };
+
     this.steps[step - 1].active = false;
+    return;
   }
 
   finishCurrentStep(currentStep: number) {
-    this.steps[currentStep - 1].finished = true;
-  }
+    if (currentStep > this.steps.length || currentStep < 1) {
+      return this.stepMissingMessage;
+    };
 
+    this.steps[currentStep - 1].finished = true;
+    return;
+  }
 
   ngOnDestroy() {
     this.unsubscriber.next();
