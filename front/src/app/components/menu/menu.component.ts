@@ -40,9 +40,13 @@ export class MenuComponent implements OnDestroy {
   }
 
   selectItem(itemToActive: string, itemLink: string) {
+
+    if(itemToActive.length === 0 || itemLink.length === 0) return;
+
     this.menuItems.map(item => {
       itemToActive === item.text ? item.active = true : item.active = false;
     });
+
 
     this.route.navigate([itemLink]);
 

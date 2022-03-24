@@ -11,11 +11,3 @@
     </div>
     <router-outlet></router-outlet>
 </div>
-
-<pod-float-button 
-    tabindex="0" 
-    [callback]="tabStudioCallback" 
-    src="assets/icons/plus-icon.svg" 
-    *ngIf="isSelected('/podbooks')"
-    (click)="openStudio()">
-</pod-float-button>

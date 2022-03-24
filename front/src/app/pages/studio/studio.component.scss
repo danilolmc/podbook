@@ -3,7 +3,6 @@
 
 
 .studio-container {
-  min-height: 100vh;
   margin: 8rem 0 20rem;
 
   .tabs-container {
@@ -35,15 +34,5 @@
 
     }
   }
-
- 
-
 }
 
-pod-float-button {
-  display: block;
-  position: fixed;
-  bottom: 8rem;
-  right: 12vw;
-  z-index: 10;
-}

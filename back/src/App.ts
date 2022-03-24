@@ -6,17 +6,19 @@ import { Controller } from "./interfaces/Controller";
 class App {
     public app: Application;
     public port: number;
+    public host: string;
 
-    constructor(appInit: { port: number, controllers: Controller[], middlewares: any[] }) {
+    constructor(appInit: { host: string, port: number, controllers: Controller[], middlewares: any[] }) {
 
         const app = express();
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
         app.use(cors());
         app.use(express.static(`files`))
-
+        
         this.app = app;
         this.port = appInit.port;
+        this.host = appInit.host;
         this.routes(appInit.controllers);
         this.middlewares(appInit?.middlewares);
     }
@@ -34,8 +36,8 @@ class App {
     }
 
     public listen() {
-        this.app.listen(this.port, () => {
-            console.log(`App listening on the http://localhost:${this.port}`)
+        this.app.listen(this.port, this.host, () => {
+            console.log(`App listening on the ${this.host}:${this.port}`)
         })
     }
 }

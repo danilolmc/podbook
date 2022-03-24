@@ -84,26 +84,30 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   submit(event: Event, fields: FormFieldComponent[]) {
 
-    const itCanNotSubmit = [
-      !this.validateBeforeGoToNextStep(event, fields),
-      !Boolean(this.formErrorMessage === ''),
-      !this.passwordsMatch].some(condition => condition === true);
-
-
-    if (itCanNotSubmit) return;
+    event.preventDefault();
 
     const [password, repeatedPassword] = fields.map(field => field.value);
+
+    this.checkPasswordMatch(password, repeatedPassword);
+
+    const itCanNotSubmit = [
+      this.validateBeforeGoToNextStep(fields),
+      Boolean(this.formErrorMessage === ''),
+      this.passwordsMatch].some(condition => condition === false);
+
+    if (itCanNotSubmit) {
+      return;
+    };
 
     this.formValues = { ...this.formValues, password, repeatedPassword };
 
     const { name, email, password: pass } = this.formValues;
 
-    const signupData = { name, email, password: pass };
-
-    this.signupService.signup(signupData)
+    this.signupService.signup({ name, email, password: pass })
       .pipe(takeUntil(this.unsubscriber))
-      .subscribe((response: any) => {
-        if (response.body.auth) this.router.navigate(['/podbooks'])
+      .subscribe((response) => {
+        console.log("resposta", response.body)
+        if (response.body?.auth) this.router.navigate(['/podbooks'])
       },
         ({ error }) => this.formErrorMessage = error.message
       );
@@ -135,29 +139,22 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   }
 
-  nextStep(event: Event, fields: FormFieldComponent[]) {
+  nextStep(fields: FormFieldComponent[]) {
 
-    if (!this.validateBeforeGoToNextStep(event, fields)) return;
+    if (!this.validateBeforeGoToNextStep(fields)) return;
 
     this.finishCurrentStep(this.currentStep);
 
-    const goToNextStep = () => {
-
-      this.currentStep += 1;
-      this.activeStep(this.currentStep);
-      setTimeout(() => this.passwordField.fieldRef.nativeElement.focus(), 10)
-    }
+    this.currentStep += 1;
+    this.activeStep(this.currentStep);
+    setTimeout(() => this.passwordField.fieldRef.nativeElement.focus(), 10)
 
     const [name, email] = fields.map(field => field.input.value);
 
     this.formValues = { ...this.formValues, name, email };
-
-    goToNextStep();
   }
 
-  validateBeforeGoToNextStep(event: Event, fields: FormFieldComponent[]) {
-
-    event.preventDefault()
+  validateBeforeGoToNextStep(fields: FormFieldComponent[]) {
 
     return validateFields(fields);
   }

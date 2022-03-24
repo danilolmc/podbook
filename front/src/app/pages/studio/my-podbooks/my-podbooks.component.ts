@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CardProperties } from '@components/card/types/CardTypes';
 import { PodbookCommonService } from '@services/common/common.service';
 import { AbstractStudioService } from '@services/studio/studio.service';
@@ -16,33 +17,30 @@ export class MyPodbooksComponent implements OnInit {
   my_cards: CardProperties[] = [];
   paginationMetadata = {} as PaginationMetadata;
 
+  requestParams: PodbookPaginationRequestQueryParams = {
+    limit: 15,
+    page: 1
+  }
+
   constructor(
     private studioService: AbstractStudioService,
-    private commonService: PodbookCommonService) {
-  }
+    private commonService: PodbookCommonService) { }
 
   ngOnInit(): void {
 
-    const requestParams: PodbookPaginationRequestQueryParams = {
-      limit: 15,
-      page: 1
-    }
+    this.studioService.getMyPodbooks(this.requestParams)
+      .subscribe((response: PaginatedPodbookResponse) => {
 
-    this.studioService.getMyPodbooks(requestParams).subscribe((response: PaginatedPodbookResponse | Error) => {
+        if (!response.data.length) {
+          this.my_cards = [];
+          return;
+        }
 
-      if (response instanceof Error) {
-        return;
-      }
+        this.my_cards = this.commonService.preparePodBookPaginatedData(response.data);
+        this.paginationMetadata = response.paginationMetadata
 
-      if (!response.data.length) {
-        this.my_cards = []
-        return;
-      }
-
-      this.my_cards = this.commonService.preparePodBookPaginatedData(response.data) || [];
-      this.paginationMetadata = response.paginationMetadata
-
-    })
+      },
+      () => { this.my_cards = []; })
   }
 
 }

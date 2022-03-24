@@ -4,9 +4,7 @@ import { BehaviorSubject, of } from "rxjs";
 export const RouterStub = {
 
     events: of(new RouterEvent(0, '')),
-    navigate(router: string) {
-
-    }
+    navigate: (route: string | string[]) => {}
 }
 
 export class MockActivatedRoute {

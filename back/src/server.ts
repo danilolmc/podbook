@@ -20,6 +20,7 @@ const controllers = [
 createConnection().then(() => {
 
   const app = new App({
+    host: String(process.env.HOST),
     port: Number(process.env.SERVER_PORT),
     controllers: controllers,
     middlewares: []

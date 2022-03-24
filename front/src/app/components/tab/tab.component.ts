@@ -1,5 +1,4 @@
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, Input, QueryList } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { TabItemComponent } from './tab-item/tab-item.component';
 import { Tab } from './types/Tab';
 
@@ -25,7 +24,7 @@ export class TabComponent implements Tab, AfterContentInit {
 
     clickedTab.callback();
 
-    this.tabs.forEach(tab => tab.selectItem = false)
+    this.tabs.forEach(tab => tab.selectItem = false);
 
     clickedTab.selectItem = true;
   }
@@ -40,5 +39,4 @@ export class TabComponent implements Tab, AfterContentInit {
       });
     }
   }
-
 }

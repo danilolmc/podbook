@@ -2,9 +2,17 @@
     <div [ngClass]="{'field-wrapper': true, 'invalid': !!input.errors && input.dirty || validationCurrentErrorMessage}">
         <label *ngIf="labelText" [for]="id">{{labelText}}</label>
         <div>
-            <input #inputRef [formControl]="input" [id]="id" [placeholder]="placeholder" [type]="type"
+            <input 
+                #inputRef 
+                [formControl]="input" 
+                [attr.id]="id" 
+                [attr.name]="id" 
+                [placeholder]="placeholder" 
+                [type]="type"
                 *ngIf="type !== 'password'; else passwordInput">
-            <img *ngIf="getFormFieldIcon()" [src]="'assets/icons/' + getFormFieldIcon()?.icon + '.svg'"
+            <img 
+                *ngIf="getFormFieldIcon()" 
+                [src]="'assets/icons/' + getFormFieldIcon()?.icon + '.svg'"
                 [alt]="getFormFieldIcon()?.name">
         </div>
     </div>
@@ -12,8 +20,16 @@
 </label>
 
 <ng-template #passwordInput>
-    <input #inputRef [formControl]="input" [id]="id" [placeholder]="placeholder" [type]="passwordVisibilityIcon.type">
-    <button *ngIf="type === 'password'" (click)="showHidePassword($event)">
+    <input 
+        #inputRef 
+        [formControl]="input" 
+        [attr.id]="id" 
+        [attr.name]="id" 
+        [attr.placeholder]="placeholder" 
+        [type]="passwordVisibilityIcon.type">
+    <button 
+        *ngIf="type === 'password'" 
+        (click)="showHidePassword($event)">
         <img [src]="'assets/icons/' + passwordVisibilityIcon.active_icon + '.svg'">
     </button>
 </ng-template>

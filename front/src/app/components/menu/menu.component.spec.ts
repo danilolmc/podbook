@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -7,6 +8,7 @@ import { RouterStub } from '@mocks/shared/router.mocks';
 import { UserService } from '@services/user/user.service';
 import { MenuDirective } from './directives/menu.directive';
 import { MenuComponent } from './menu.component';
+import { MenuType } from './types/MenuTypes';
 
 
 describe('MenuComponent', () => {
@@ -14,18 +16,21 @@ describe('MenuComponent', () => {
   let fixture: ComponentFixture<MenuComponent>;
   let userService: UserService;
   let router: Router;
-  let loaction: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MenuComponent, MenuDirective],
-      imports: [RouterTestingModule],
       providers: [
         {
           provide: UserService,
           useValue: UserServiceStub
         },
-      ]
+        {
+          provide: Router,
+          useValue: RouterStub
+        }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   });
@@ -42,7 +47,7 @@ describe('MenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should active item by url', () => {
+  it('should active explore menu item by url', () => {
     const item = {
       text: 'Explore',
       link: '/explore',
@@ -54,6 +59,81 @@ describe('MenuComponent', () => {
     expect(component.activeItemByUrl(item)).toBeTruthy();
   })
 
+  it('should active studio menu item by url', () => {
+    const item = {
+      text: 'studio',
+      link: '/studio',
+      active: false
+    };
+
+    component.currentUrl = '/studio';
+
+    expect(component.activeItemByUrl(item)).toBeTruthy();
+  });
+  
+  it('should active explore menu item by its name', () => {
+
+    const menuItems: MenuType[] = [
+      {
+        text: 'ExploreTest',
+        link: '/exploreTest',
+        active: false,
+      },
+      {
+        text: 'StudioTest',
+        link: '/podbooksTest',
+        active: false
+      },
+    ];
+
+    component.menuItems = menuItems;
+
+    const { text, link } = menuItems[0];
+
+    component.selectItem(text, link);
+
+    expect(menuItems[0].active).toBeTruthy();
+    expect(menuItems[1].active).toBeFalsy();
+  });
+
+  it('should active studio menu item by its name', () => {
+
+    const menuItems: MenuType[] = [
+      {
+        text: 'ExploreTest',
+        link: '/exploreTest',
+        active: false,
+      },
+      {
+        text: 'StudioTest',
+        link: '/podbooksTest',
+        active: false
+      },
+
+    ];
+
+    component.menuItems = menuItems;
+
+    const { text, link } = menuItems[1];
+
+    component.selectItem(text, link);
+
+    expect(menuItems[1].active).toBeTruthy();
+    expect(menuItems[0].active).toBeFalsy();
+  });
+
+  it('should not active menu item when call active select function with invalid params', () => {
+
+    const spyNavigate = jest.spyOn(router, 'navigate');
+
+    const itemName = '';
+    const itemUrl = '/studio';
+
+    component.selectItem(itemName, itemUrl);
+
+    expect(spyNavigate).not.toHaveBeenCalled();
+  });
+
   it('should unsubscribe from obervable when destroy component', () => {
     const unsubscriptionSpy = jest.spyOn(component.subscription, 'unsubscribe');
 
@@ -63,7 +143,7 @@ describe('MenuComponent', () => {
   })
 
   it('should logout navigate to signin page', () => {
-    
+
     const spyRouterNavigate = jest.spyOn(router, 'navigate');
 
     component.logout();

@@ -32,7 +32,7 @@
             </pod-form-field>
             <pod-form-field #email class="email" labelText="Email" type="email" [validations]="fieldsValidators.email">
             </pod-form-field>
-            <button class="next" (click)="nextStep($event,[name,email])">Next</button>
+            <button class="next" (click)="nextStep([name,email])">Next</button>
         </form>
         <ng-container *ngTemplateOutlet="signinAnchor"></ng-container>
     </div>

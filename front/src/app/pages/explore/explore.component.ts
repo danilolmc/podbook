@@ -23,7 +23,11 @@ export class ExploreComponent implements OnInit {
 
   paginationMetadata = {} as PaginationMetadata;
 
-  call() { }
+  readonly requestParams: PodbookPaginationRequestQueryParams = {
+    limit: 8,
+    page: 1
+  }
+
 
   constructor(
     private exploreService: ExploreService,
@@ -37,24 +41,19 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const requestParams: PodbookPaginationRequestQueryParams = {
-      limit: 8,
-      page: 1
-    }
-    this.exploreService.getPodbooks(requestParams).toPromise().then((podbooks: PaginatedPodbookResponse) => {
+    this.exploreService
+      .getPodbooks(this.requestParams)
+      .subscribe((podbooks: PaginatedPodbookResponse) => {
 
-      this.loading = true;
+        if (!podbooks.data.length) {
+          this.exploreCards = []
+          return;
+        }
 
-      if (!podbooks.data.length) {
-        this.exploreCards = []
-        this.loading = false;
-        return;
-      }
+        this.exploreCards = this.commonService.preparePodBookPaginatedData(podbooks.data);
+        this.paginationMetadata = podbooks.paginationMetadata;
 
-      this.exploreCards = this.commonService.preparePodBookPaginatedData(podbooks.data) || [];
-      this.paginationMetadata = podbooks.paginationMetadata;
-
-    }).finally(() => this.loading = false)
+      })
   }
 
 }

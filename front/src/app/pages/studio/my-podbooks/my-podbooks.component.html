@@ -1,9 +1,14 @@
+
 <div class="my-podbooks">
 
     <header>
         <h2>PODBOOKS</h2>
     </header>
     <div class="my-podbooks-container">
+        <div>
+            <a tabindex="0" [routerLink]="['studio']" class="add-podbooks">Novo podbook</a>
+        </div>
+
         <pod-cards-container 
             [cardsList]="my_cards"
             [ngStyle]="{'min-height.px': my_cards.length * 100}">

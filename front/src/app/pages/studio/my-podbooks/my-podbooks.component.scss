@@ -42,7 +42,39 @@
     }
 
     .my-podbooks-container {
-      margin-top: 5rem;
+      margin-top: 10rem;
+
+      .add-podbooks{
+        background: none;
+        color: global.$primary;
+        border: none;
+        outline-color: global.$primary;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        width: 135px;
+        font-size: 1.6rem;
+        text-decoration: none;
+        transition: .3s ease;
+
+        &:hover{
+          filter: brightness(120%);
+        }
+
+
+        &::after{
+          content: "+";
+          display: block;
+          color: global.$white;
+          background-color: global.$primary;
+          width: 2rem;
+          height: 2rem;
+          text-align: center;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
+

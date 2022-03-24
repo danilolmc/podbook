@@ -1,6 +1,7 @@
 import { of } from "rxjs";
 
 export const signInServiceStub = {
-    signin: () => of('')
+    signin: (response: Object) => of(response)
 }
+
 

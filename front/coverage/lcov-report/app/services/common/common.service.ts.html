@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/12</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">84.61% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>22/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.55% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -83,11 +83,7 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,27 +92,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
 import { PodbookResponse } from '@pages/studio/types/studioPage';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 &nbsp;
@@ -127,21 +120,19 @@ export class PodbookCommonService {
 &nbsp;
   constructor(private audioControlService: AudioControlService) { }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  preparePodBookPaginatedData(</span>podbooks: PodbookResponse[]) {
+  preparePodBookPaginatedData(podbooks: PodbookResponse[]) {
 &nbsp;
-    const { host, port } = <span class="cstat-no" title="statement not covered" >environment.apiRequest;</span>
-&nbsp;
-    const preparedPodbooks = <span class="cstat-no" title="statement not covered" >podbooks.map(<span class="fstat-no" title="function not covered" >podbook </span>=&gt; <span class="cstat-no" title="statement not covered" >(</span></span>
+    const preparedPodbooks = podbooks.map(podbook =&gt; (
       {
-        imgUrl: `${host}:${port}${podbook?.bannerImage}`,
-        badgeText: podbook?.category?.name || '',
-        description: podbook?.description,
-        title: podbook?.bannerTitle,
-        click: <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >this.audioControlService.startCardAudio(`${host}:${port}${podbook.audio}`, podbook.bannerTitle)</span>
+        imgUrl: podbook<span class="branch-0 cbranch-no" title="branch not covered" >?.b</span>annerImage,
+        badgeText: podbook<span class="branch-0 cbranch-no" title="branch not covered" >?.c</span>ategory?.name || '',
+        description: podbook<span class="branch-0 cbranch-no" title="branch not covered" >?.d</span>escription || '',
+        title: podbook<span class="branch-0 cbranch-no" title="branch not covered" >?.b</span>annerTitle || '' ,
+        click: () =&gt; this.audioControlService.startCardAudio(podbook.audio, podbook.bannerTitle)
       })
     )
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return preparedPodbooks;</span>
+    return preparedPodbooks;
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -151,7 +142,7 @@ export class PodbookCommonService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Mar 05 2022 01:04:33 GMT-0300 (Horário Padrão de Brasília)
+                at Thu Mar 24 2022 20:25:45 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

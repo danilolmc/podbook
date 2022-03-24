@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         return;
       }
 
-      this.homeCards = this.commonService.preparePodBookPaginatedData(podbooks) || [];
+      this.homeCards = this.commonService.preparePodBookPaginatedData(podbooks);
 
     });
 
@@ -44,10 +44,4 @@ export class HomeComponent implements OnInit {
   changeStyleList(style: ListStatesEnum) {
     this.listStyle = style;
   }
-
-  callbackTest() {
-    alert("funciona")
-  }
-
-
 }

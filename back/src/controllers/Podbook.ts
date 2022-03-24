@@ -31,7 +31,7 @@ class PodbookController implements Controller {
 
             const limitOfRecords = Number(req.query.limit) || 10;
 
-            const recentPodbooks = getPodbooksFiles(await podbookRepository.getRecents(limitOfRecords));
+            const recentPodbooks = getPodbooksFiles(await podbookRepository.getRecents(limitOfRecords), req);
 
             if (!recentPodbooks) {
                 res.status(200).json({ message: 'não foi possível encontrar os podbooks mais recentes' })
@@ -73,7 +73,7 @@ class PodbookController implements Controller {
 
             const podbooks = await podbookRepository.explorePodbooks(pageOptions);
 
-            const podbooksDataWithFiles = getPodbooksFiles(podbooks.data);
+            const podbooksDataWithFiles = getPodbooksFiles(podbooks.data, req);
             const paginationMetadata = podbooks.paginationMetadata;
 
             if (pageOptions.currentPage > paginationMetadata.pagesAmount) {

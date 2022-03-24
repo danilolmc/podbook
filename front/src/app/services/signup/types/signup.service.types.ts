@@ -5,8 +5,8 @@ export interface SignupRequestData {
 }
 
 export interface SignupResponseData {
-    body: Body,
-    headers: Headers,
+    content: Object,
+    headers: Object,
     user: {
         id: number,
         name: string,
