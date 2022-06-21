@@ -41,7 +41,7 @@ The container will be running at PORT 3306 named as mysql-container
 
 ### Running Backend
 
-Create an `.env` and set the two follow environment variables bellow:
+Create a `.env` and set the two follow environment variables bellow:
 
 - `SERVER_PORT=3333` - The PORT where the server will be running
 - `TOKEN_KEY=secret_jwt` - The JWT secret key to your aplication
