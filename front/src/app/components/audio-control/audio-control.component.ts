@@ -18,7 +18,14 @@ export class AudioControlComponent implements AudioComponent, OnDestroy, OnInit 
 
   private unsubscribe = new Subject();
 
-  audio: Audio = {} as Audio ;
+  timer: any = null;
+
+  audio: Audio = {} as Audio;
+
+  audioInformations = {
+    duration: 0,
+    currentTime: 0
+  }
 
   volumeInstance: Volume = {} as Volume;
   repeatInstance: Repeat = {} as Repeat
@@ -79,11 +86,26 @@ export class AudioControlComponent implements AudioComponent, OnDestroy, OnInit 
   }
 
   timeOutToPlay() {
-    setTimeout(() => {
 
+    const setCurrentAudioDuration = (value: any) => {
+      this.audioInformations = { ...this.audioInformations, duration: value };
+    }
+
+
+    setTimeout(() => {
       this.playingInstance.play()
+      this.audio.getDuration(setCurrentAudioDuration)
+
+      this.timer = setInterval(() => {
+
+        this.audioInformations = { ...this.audioInformations, currentTime: this.audio.currentTime };
+
+      }, 1000)
 
     }, 500);
+
+
+    setTimeout(() => clearInterval(this.timer), this.audioInformations.duration)
   }
 
   closeAudio() {

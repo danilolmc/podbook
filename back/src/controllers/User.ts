@@ -46,7 +46,7 @@ class UserController implements Controller {
         } catch (error) {
 
             res.status(500).json({
-                message: "erro ao tentar cadastrar usuario, tente novamente",
+                message: "1 erro ao tentar cadastrar usuario, tente novamente",
             })
         }
 

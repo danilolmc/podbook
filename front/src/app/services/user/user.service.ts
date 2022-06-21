@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from '@services/token/token.service';
 import { UserRawData, UserToken } from '@typing/user/user';
-import jwtDecode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private userSubject = new BehaviorSubject<UserToken | null>(null);
-  private userRawDataSubject = new BehaviorSubject<UserRawData | null>(null);
+  userSubject = new BehaviorSubject<UserToken | null>(null);
+  userRawDataSubject = new BehaviorSubject<UserRawData | null>(null);
 
   constructor(private tokenService: TokenService) {
-    this.tokenService.hasToken() && this.decodeAndNotify();
+    const hasToken = this.tokenService.hasToken();
+
+    if(!hasToken) return;
+
+    this.decodeAndNotify();
   }
 
   getUser() {
@@ -29,10 +33,10 @@ export class UserService {
     this.decodeAndNotify();
   }
 
-  private decodeAndNotify() {
+  decodeAndNotify() {
 
     const token = <string>this.tokenService.getToken();
-    const { user_id, email, name } = <UserRawData>jwtDecode(token);
+    const { user_id, email, name } = jwtDecode(token) as UserRawData;
 
     this.userSubject.next({user_id, email});
     this.userRawDataSubject.next({user_id, email, name});

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.17% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/23</span>
+                <span class='fraction'>18/26</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.61% </span>
+                <span class="strong">65.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/21</span>
+                <span class='fraction'>15/23</span>
             </div>
         
             
@@ -107,26 +107,34 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,8 +142,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,44 +162,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
 import { TokenService } from '@services/token/token.service';
 import { UserRawData, UserToken } from '@typing/user/user';
-import jwtDecode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 &nbsp;
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 &nbsp;
-  private userSubject = new BehaviorSubject&lt;UserToken | null&gt;(null);
-  private userRawDataSubject = new BehaviorSubject&lt;UserRawData | null&gt;(null);
+  userSubject = new BehaviorSubject&lt;UserToken | null&gt;(null);
+  userRawDataSubject = new BehaviorSubject&lt;UserRawData | null&gt;(null);
 &nbsp;
   constructor(private tokenService: TokenService) {
-    this.tokenService.hasToken() &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.decodeAndNotify();</span>
+    const hasToken = this.tokenService.hasToken();
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(!hasToken) return;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.decodeAndNotify();</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  getUser(</span>) {
-<span class="cstat-no" title="statement not covered" >    return this.userSubject.asObservable();</span>
+  getUser() {
+    return this.userSubject.asObservable();
   }
 &nbsp;
   getUserRawData() {
     return this.userRawDataSubject.value;
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  setToken(</span>token: string) {
-<span class="cstat-no" title="statement not covered" >    this.tokenService.setToken(token);</span>
-<span class="cstat-no" title="statement not covered" >    this.decodeAndNotify();</span>
+  setToken(token: string) {
+    this.tokenService.setToken(token);
+    this.decodeAndNotify();
   }
 &nbsp;
-  private <span class="fstat-no" title="function not covered" >decodeAndNotify(</span>) {
+<span class="fstat-no" title="function not covered" >  decodeAndNotify(</span>) {
 &nbsp;
     const token = &lt;string&gt;<span class="cstat-no" title="statement not covered" >this.tokenService.getToken();</span>
-    const { user_id, email, name } = &lt;UserRawData&gt;<span class="cstat-no" title="statement not covered" >jwtDecode(token);</span>
+    const { user_id, email, name } = <span class="cstat-no" title="statement not covered" >jwtDecode(token) as UserRawData;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.userSubject.next({user_id, email});</span>
 <span class="cstat-no" title="statement not covered" >    this.userRawDataSubject.next({user_id, email, name});</span>
@@ -203,8 +215,8 @@ export class UserService {
 <span class="cstat-no" title="statement not covered" >    this.userRawDataSubject.next(null);</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  isLogged(</span>) {
-<span class="cstat-no" title="statement not covered" >    return this.tokenService.hasToken();</span>
+  isLogged() {
+    return this.tokenService.hasToken();
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -214,7 +226,7 @@ export class UserService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 21 2022 21:43:39 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Jun 20 2022 22:54:18 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

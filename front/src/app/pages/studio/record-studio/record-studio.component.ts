@@ -4,20 +4,17 @@ import { Router } from '@angular/router';
 import { AudioStatus } from '@components/audio-control/types/AudioControl';
 import { FormFieldComponent } from '@components/form-field/form-field.component';
 import { SelectComponent } from '@components/select/select.component';
+import { validateFields, validateFile } from '@core/validation/validation.utils';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { RecordAudioService } from '@services/record-audio/record-audio.service';
 import { RecordFormService } from '@services/record-form/record-form.service';
-import { StudioService } from '@services/studio/studio.service';
 import { UserService } from '@services/user/user.service';
 import { recordingStatusStratergy } from '@stratergy/StudioPage/studioStratergy';
 import { FieldsValidators, FormFieldCommon } from '@typing/fieldsValidators/fieldsValidators';
-import { validateFields, validateFile } from 'app/core/validation/validation.utils';
 import { Subject } from 'rxjs';
 import { first, takeUntil, tap } from 'rxjs/operators';
 import { PodbookData, RecordedAudio, RecordingStatus, SelectOption, Studio } from '../types/studioPage';
 
-// TODO: Desacoplar o modal em um novo componente para diminuir o tamanho da classe e aumentar a coesão e restpeitar responsabilidade unica
-// TODO: Sugestão: separar o a logica de cadastro de podbook em um componente
 
 @Component({
   selector: 'pod-record-studio',
@@ -75,7 +72,6 @@ export class RecordStudioComponent implements Studio, OnInit, OnDestroy {
     private audioControlService: AudioControlService,
     private renderer: Renderer2,
     private userService: UserService,
-    private studioService: StudioService,
     private recordFormService: RecordFormService,
     private router: Router) {
   }

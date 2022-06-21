@@ -13,4 +13,10 @@ describe('PodbookCommonService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return podbook on given pattern', () => {
+    
+  })
 });
+
+

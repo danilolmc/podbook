@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
+    "@types/jwt-decode": "^3.1.0",
     "crypto": "^1.0.1",
     "jwt-decode": "^3.1.2",
     "rxjs": "~6.6.0",
@@ -43,6 +44,7 @@
     "moduleNameMapper": {
       "^@services/(.*)$": "<rootDir>/src/app/services/$1",
       "^@components/(.*)$": "<rootDir>/src/app/components/$1",
+      "^@pipes/(.*)$": "<rootDir>/src/app/pipes/$1",
       "^@enums/(.*)$": "<rootDir>/src/app/enums/$1",
       "^@stratergy/(.*)$": "<rootDir>/src/app/stratergy/$1",
       "^@mocks/(.*)$": "<rootDir>/src/app/mocks/$1",

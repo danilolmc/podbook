@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  db:
+    image: mysql
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_DATABASE: podbook
+      ### replace the password bellow with your own
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - '3306:3306'
+    volumes: 
+    - C:/Users/Danil/Documents/Volumes Docker/mysql:/var/lib/mysql

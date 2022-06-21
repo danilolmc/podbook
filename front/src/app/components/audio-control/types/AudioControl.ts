@@ -1,7 +1,4 @@
 import { Observer } from "rxjs";
-import { Playing } from "./Playing";
-import { Repeat } from "./Repeat";
-import { Volume } from "./Volume";
 
 type AudioPlayingStatus = 'playing' | 'paused';
 type AudioSongStatus = 'muted' | 'unmuted';
@@ -25,19 +22,23 @@ export interface AudioComponent {
 }
 
 
-export const defineAudioDuration = (audio: HTMLAudioElement, callback: Function) => {
+const defineAudioDuration = (audio: HTMLAudioElement, callback: Function) => {
     if (audio.duration === Infinity) {
 
         audio.currentTime = Number.MAX_SAFE_INTEGER;
 
-        audio.ontimeupdate = () => {
-
-            audio.ontimeupdate = () => { }
-
-            audio.currentTime = 0;
-
-            return callback(audio.duration);
-        }
+        audio.addEventListener('loadedmetadata', function () {
+            if (audio.duration == Infinity) {
+                audio.currentTime = 1e101;
+                audio.ontimeupdate = function () {
+                    this.ontimeupdate = () => {
+                        return;
+                    }
+                    audio.currentTime = 0;
+                    return callback(audio.duration);
+                }
+            }
+        });
     }
 }
 
@@ -45,18 +46,20 @@ export class Audio {
 
     private htmlAudio = new window.Audio();
 
-    private audioCurrentTime = 0;
-
     get currentTime() {
-        return this.audioCurrentTime
+        return this.htmlAudio.currentTime
     }
 
     set currentTime(time: number) {
-        this.audioCurrentTime = time
+        this.htmlAudio.currentTime = time
     }
 
     get audio() {
         return this.htmlAudio;
+    }
+   
+    getDuration(callback: Function) {
+        return defineAudioDuration(this.htmlAudio, callback);
     }
 
     set volume(volme: number) {

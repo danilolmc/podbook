@@ -10,11 +10,11 @@
                 <div class="audio">
                     <header>
                         <span class="audio-name">{{audioTitle}}</span>
-                        <span class="audio-timing">0:55 / 2:30</span>
+                        <span class="audio-timing">{{audio.currentTime | audioTime }} / {{audioInformations.duration | audioTime}}</span>
                     </header>
                     <footer>
                         <div class="audio-bar-container">
-                            <span class="audio-progress-bar"></span>
+                            <span class="audio-progress-bar" [style.width.%]="(104 / audioInformations.duration) * audioInformations.currentTime"></span>
                         </div>
                     </footer>
                 </div>

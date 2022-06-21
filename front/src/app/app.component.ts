@@ -13,6 +13,5 @@ export class AppComponent {
 
   toggleAudioBar(event: Event){
     console.log(event)
-    // event ? this.audioBarStatus = 
   }
 }

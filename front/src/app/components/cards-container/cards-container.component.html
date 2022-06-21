@@ -12,7 +12,7 @@
             [title]="item.title"
             [imgUrl]="item.imgUrl"
             [description]="item.description"
-            [click]="item.click"
+            (click)="item.click && item.click()"
             imgUrlMissingReplace="/assets/illustrations/missing-image.png"
             (keyup.enter)="item.click && item.click()"></pod-card>
     </div>

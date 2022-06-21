@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AudioControlServiceStub } from '@mocks/audio-control-component/audio-control-component.mocks';
+import { AudioPipe } from '@pipes/audioTimeFormat';
 import { AudioControlService } from '@services/audio-control/audio-control.service';
 import { AudioControlComponent } from './audio-control.component';
 import { AudioStatus } from './types/AudioControl';
@@ -19,7 +20,7 @@ describe('AudioControlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AudioControlComponent],
+      declarations: [AudioControlComponent, AudioPipe],
       providers: [
         {
           provide: AudioControlService,

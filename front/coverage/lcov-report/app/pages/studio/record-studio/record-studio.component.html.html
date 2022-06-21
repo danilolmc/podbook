@@ -104,7 +104,27 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,7 +171,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;div class="studio"&gt;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;div class="studio" [attr.tabindex]="modalIsVisible ? -1 : 0"&gt;
+&nbsp;
+    &lt;span [ngClass]="['alert', alert.type]"&gt;{{alert.message}}&lt;/span&gt;
 &nbsp;
     &lt;button [ngClass]="['microphone', getRecordingStatusClass()]" (click)="toggleRecordingStatus()"&gt;
         &lt;span&gt;
@@ -160,43 +202,61 @@
     &lt;/button&gt;
 &nbsp;
     &lt;footer&gt;
-        &lt;pod-button-control 
-            podButtonControl
-            [animation]=true
-            [callback]="call('button1')"
-            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
-            class="control-button "
-            &gt;&lt;/pod-button-control&gt;
-        &lt;pod-button-control 
-            podButtonControl
-            [animation]=true
-            [callback]="call('button1')"
-            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
-            class="control-button"
-            &gt;&lt;/pod-button-control&gt;
-        &lt;pod-button-control 
-            podButtonControl
-            [animation]=true
-            [callback]="call('button1')"
-            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
-            class="control-button"
-            &gt;&lt;/pod-button-control&gt;
-        &lt;pod-button-control 
-            podButtonControl
-            [animation]=true
-            [callback]="call('button1')"
-            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
-            class="control-button"
-            &gt;&lt;/pod-button-control&gt;
-        &lt;pod-button-control 
-            podButtonControl
-            [animation]=true
-        
-            [callback]="call('button1')"
-            [onOffIcons]="['assets/icons/play-icon.svg','assets/icons/pause-icon-white.svg']" 
-            class="control-button"
-            &gt;&lt;/pod-button-control&gt;
+        &lt;pod-button [attr.disabled]="actionButtonsDisabled"  name="salvar" class="control-button" (click)="openModal()"
+            icon="assets/icons/save-icon-white.svg" borderRadius='50px'&gt;
+        &lt;/pod-button&gt;
+        &lt;pod-button [attr.disabled]="actionButtonsDisabled" name="compartilhar" class="control-button"
+            icon="assets/icons/share-icon-white.svg" borderRadius='50px'&gt;
+        &lt;/pod-button&gt;
+&nbsp;
+        &lt;pod-button [attr.disabled]="actionButtonsDisabled"  name="descartar" class="control-button"
+            icon="assets/icons/delete-icon-white.svg" borderRadius='50px'&gt;
+        &lt;/pod-button&gt;
+&nbsp;
+        &lt;pod-button [attr.disabled]="actionButtonsDisabled"  name="repetir" class="control-button"
+            icon="assets/icons/repeat-recording-icon-white.svg" borderRadius='50px' (click)="repeat()"&gt;
+        &lt;/pod-button&gt;
     &lt;/footer&gt;
+&nbsp;
+&lt;/div&gt;
+&nbsp;
+&nbsp;
+&lt;div id="modal" [attr.visibility]='modalIsVisible' (click)="closeModal($event)"&gt;
+&nbsp;
+&nbsp;
+    &lt;div class="modal-content"&gt;
+&nbsp;
+        &lt;h1&gt;Save my podbook&lt;/h1&gt;
+&nbsp;
+        &lt;div class="modal-body"&gt;
+&nbsp;
+            &lt;label for="upload-file" #previewLabel&gt;
+                &lt;img src="assets/illustrations/gallery.svg" alt="preview image" #preview class="prev" [attr.havePreview]="false"&gt;
+                &lt;input type="file" accept="image/png, image/jpeg" id="upload-file" (change)="setImagePreview($event)" #file&gt;
+            &lt;/label&gt;
+&nbsp;
+&nbsp;
+            &lt;div class="text-fields"&gt;
+&nbsp;
+                &lt;pod-form-field class="field-title" #title labelText='podbook title' [validations]="modalFieldsValidators.title"&gt;&lt;/pod-form-field&gt;
+                &lt;pod-form-field class="field-category" #description labelText='podbook description' [validations]="modalFieldsValidators.description"&gt;&lt;/pod-form-field&gt;
+                &lt;pod-select id="categoria" labelText="podbook category" [options]="categoryOptions" #category [required]="true"&gt;&lt;/pod-select&gt;
+&nbsp;
+                &lt;pod-button 
+                    class="save-button" 
+                    contentText="save podbook" 
+                    width='100%' 
+                    height="50px"
+                    borderRadius="5px"
+                    [attr.disabled]="buttonIsDisabled"
+                    (click)="saveRecordedAudio([title,category,description], file)"
+                &gt;
+                &lt;div role="progressbar" class="loader" *ngIf="loading"&gt;&lt;/div&gt;
+                &lt;span  role="text" *ngIf="!loading" #textButton&gt;save&lt;/span&gt;
+                &lt;/pod-button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 &nbsp;
 &lt;/div&gt;</pre></td></tr></table></pre>
 
@@ -205,7 +265,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Sep 09 2021 03:08:33 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Jun 20 2022 22:54:18 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>
