@@ -10,26 +10,26 @@ Project that simulate audio studio for recording audiobooks.
 
 ##### Frontend
 
-- Angular
-- RxJS
-- SASS
-- Jest
-- JWT
-- TypeScript
+- [Angular](https://angular.io/start)
+- [RxJS](https://rxjs.dev/guide/overview)
+- [SASS](https://sass-lang.com/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [JWT](https://jestjs.io/pt-BR/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ##### Backend
 
-- TypeScript
-- TypeORM
-- NodeJS
-- Express
-- Multer
+- [TypeScript](https://www.typescriptlang.org/)
+- [TypeORM](https://typeorm.io/)
+- [NodeJS](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Multer](https://www.npmjs.com/package/multer)
 
 #### Infra
 
-- Docker
-- Docker Compose
-- MySQL
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [MySQL](https://www.mysql.com/)
 
 ### Rising up Infra
 
@@ -38,6 +38,8 @@ Project that simulate audio studio for recording audiobooks.
 2 - Type docker ps to check if the mysql container is up
 
 The container will be running at PORT 3306 named as mysql-container
+
+<br>
 
 ### Running Backend
 
@@ -50,7 +52,7 @@ Set the database password defined at `docker-compose.yaml`
 
 After, navigate to `back` folder and install project dependecies typing on your terminal the follow:
 
-```console
+```javascript
 npm install
 
 // If you have yarn installed type
@@ -59,7 +61,7 @@ yarn
 
 To start development server type
 
-```console
+```javascript
 npm run dev
 
 // If you have yarn installed type
@@ -68,11 +70,13 @@ yarn dev
 
 The server will be running at the port defined by the environment variable `SERVER_PORT`
 
+<br>
+
 ### Running Front-end
 
 Navigate to `front` folder and install project dependecies typing on your terminal the follow:
 
-```console
+```javascript
 npm install
 
 // If you have yarn installed type
@@ -80,16 +84,19 @@ yarn
 ```
 
 To start development server run
-```console
+```javascript
 npm start
 
 // If you have yarn installed type
 yarn start
 ```
+The server will be running at the port 4200
 
-#### Running unit tests
+<br>
 
-```console
+### Running Front-end unit tests
+
+```javascript
 npm run test
 
 // If you have yarn installed type
