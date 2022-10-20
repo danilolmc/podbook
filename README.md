@@ -2,57 +2,48 @@
 
 <br>
 
-![](/front/ProjectImg.png)
+![](./ProjectImg.png)
 
 Project that simulate audio studio for recording audiobooks. 
 
-### Technologies 
+### 🛠️ Technologies 
 
 ##### Frontend
 
-- [Angular](https://angular.io/start)
-- [RxJS](https://rxjs.dev/guide/overview)
-- [SASS](https://sass-lang.com/)
-- [Jest](https://jestjs.io/pt-BR/)
-- [JWT](https://jestjs.io/pt-BR/)
-- [TypeScript](https://www.typescriptlang.org/)
+- Angular
+- RxJS
+- SASS
+- Jest
+- JWT
+- TypeScript
 
 ##### Backend
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [TypeORM](https://typeorm.io/)
-- [NodeJS](https://nodejs.org/)
-- [Express](https://expressjs.com/)
-- [Multer](https://www.npmjs.com/package/multer)
+- TypeScript
+- TypeORM
+- NodeJS
+- Express
+- Multer
 
 #### Infra
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- [MySQL](https://www.mysql.com/)
+- Docker
+- Docker Compose
+- MySQL
+- Nginx 
 
-### Rising up Infra
+### 🪚 Running Backend manually
 
-1 - With Docker and Docker Compose already installed, navigate to `back/db` folder and type docker-compose up
+Create an `.env` and set the two follow environment variables bellow:
 
-2 - Type docker ps to check if the mysql container is up
-
-The container will be running at PORT 3306 named as mysql-container
-
-<br>
-
-### Running Backend
-
-Create a `.env` and set the two follow environment variables bellow:
-
-- `SERVER_PORT=3333` - The PORT where the server will be running
-- `TOKEN_KEY=secret_jwt` - The JWT secret key to your aplication
+`SERVER_PORT=3333` - The PORT where the server will be running
+`TOKEN_KEY=secret_jwt` - The JWT secret key to your aplication
 
 Set the database password defined at `docker-compose.yaml`
 
 After, navigate to `back` folder and install project dependecies typing on your terminal the follow:
 
-```javascript
+```console
 npm install
 
 // If you have yarn installed type
@@ -61,7 +52,7 @@ yarn
 
 To start development server type
 
-```javascript
+```console
 npm run dev
 
 // If you have yarn installed type
@@ -70,13 +61,11 @@ yarn dev
 
 The server will be running at the port defined by the environment variable `SERVER_PORT`
 
-<br>
-
-### Running Front-end
+### 🪚 Running Front-end manually
 
 Navigate to `front` folder and install project dependecies typing on your terminal the follow:
 
-```javascript
+```console
 npm install
 
 // If you have yarn installed type
@@ -84,23 +73,34 @@ yarn
 ```
 
 To start development server run
-```javascript
+```console
 npm start
 
-// If you have yarn installed type
+// If you have yarn installed
 yarn start
 ```
-The server will be running at the port 4200
 
-<br>
+#### 🧪 Running unit tests
 
-### Running Front-end unit tests
-
-```javascript
+```console
 npm run test
 
-// If you have yarn installed type
+// If you have yarn installed
 yarn test
+```
+#### 🎢Raise up production infra trought docker-compose
+
+1 - First, with docker up running and docker-compose installed on your machine run the following on terminal:
+```console
+docker-compose up
+```
+
+> The previous step it gonna raise up the front-end, back-end and database 
+
+
+2 - In order to see the containers up running run on our terminal:
+```console
+docker ps
 ```
 
 ### Contribution

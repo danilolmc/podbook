@@ -45,3 +45,6 @@ Thumbs.db
 back/files/**/*
 
 .env
+
+#volumes
+.database/
