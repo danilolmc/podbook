@@ -2,11 +2,11 @@
 
 <br>
 
-![](/front/ProjectImg.png)
+![](./ProjectImg.png)
 
 Project that simulate audio studio for recording audiobooks. 
 
-### Technologies 
+### 🛠️ Technologies 
 
 ##### Frontend
 
@@ -30,16 +30,9 @@ Project that simulate audio studio for recording audiobooks.
 - Docker
 - Docker Compose
 - MySQL
+- Nginx 
 
-### Rising up Infra
-
-1 - With Docker and Docker Compose already installed, navigate to `back/db` folder and type docker-compose up
-
-2 - Type docker ps to check if the mysql container is up
-
-The container will be running at PORT 3306 named as mysql-container
-
-### Running Backend
+### 🪚Runnin Backend manually
 
 Create an `.env` and set the two follow environment variables bellow:
 
@@ -68,7 +61,7 @@ yarn dev
 
 The server will be running at the port defined by the environment variable `SERVER_PORT`
 
-### Running Front-end
+### 🪚Running Front-end manually
 
 Navigate to `front` folder and install project dependecies typing on your terminal the follow:
 
@@ -83,17 +76,31 @@ To start development server run
 ```console
 npm start
 
-// If you have yarn installed type
+// If you have yarn installed
 yarn start
 ```
 
-#### Running unit tests
+#### 🧪 Running unit tests
 
 ```console
 npm run test
 
-// If you have yarn installed type
+// If you have yarn installed
 yarn test
+```
+#### 🎢Raise up production infra trought docker-compose
+
+1 - First, with docker up running and docker-compose installed on your machine run the following on terminal:
+```console
+docker-compose up
+```
+
+> The previous step it gonna raise up the front-end, back-end and database 
+
+
+2 - In order to see the containers up running run on our terminal:
+```console
+docker ps
 ```
 
 ### Contribution
